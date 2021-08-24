@@ -57,7 +57,7 @@
 .stepHeader-counter {
     @include square($checkoutStep-counter-size);
 
-    background-color: color("primary");
+    background-color: $blue;
     border-radius: 50%;
     text-align: center;
     transition: transform 250ms ease;
@@ -100,6 +100,7 @@
 // -----------------------------------------------------------------------------
 .stepHeader {
     align-items: top;
+    color: $blue;
     display: flex;
     flex-wrap: wrap;
     padding: spacing("single") 0;
@@ -125,6 +126,7 @@
 }
 
 .stepHeader-title {
+    color: inherit;
     margin: 0 0 0 $checkoutStep-header-figure-margin;
     min-width: 9rem;
 }
