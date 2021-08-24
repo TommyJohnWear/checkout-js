@@ -67,6 +67,20 @@ export interface HostedWidgetPaymentMethodValues {
     shouldSaveInstrument: boolean;
 }
 
+const HowHeard: FunctionComponent = () => {
+    const options = ['Option 1', 'Option 2'];
+
+    return(
+        <div className="how-heard-wrapper">
+            <h3 className="how-heard-title">How did you hear about us?</h3>
+            <p>We&apos;ll owe you one! (of no dollar value)</p>
+            <select className="how-heard-select">
+                { options.map(option => <option key={ option }>{ option }</option>) }
+            </select>
+        </div>
+    );
+};
+
 const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormValues> & WithLanguageProps> = ({
     availableStoreCredit = 0,
     didExceedSpamLimit,
@@ -142,6 +156,8 @@ const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormV
             />
 
             <PaymentRedeemables />
+
+            <HowHeard />
 
             { isTermsConditionsRequired && <TermsConditions
                 termsConditionsText={ termsConditionsText }
