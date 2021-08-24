@@ -62,7 +62,7 @@ class ShippingFormFooter extends PureComponent<ShippingFormFooterProps> {
                     id="checkout-shipping-continue"
                     isLoading={ isLoading }
                     type="submit"
-                    variant={ ButtonVariant.Primary }
+                    variant={ ButtonVariant.Red }
                 >
                     <TranslatedString id="common.continue_action" />
                 </Button>

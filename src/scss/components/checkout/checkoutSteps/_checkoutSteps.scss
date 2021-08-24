@@ -103,7 +103,9 @@
     color: $blue;
     display: flex;
     flex-wrap: wrap;
-    padding: spacing("single") 0;
+    padding-bottom: 1rem;
+    // padding: spacing("single") 0;
+    padding-top: 1rem;
 
     @include breakpoint("small") {
         flex-wrap: nowrap;

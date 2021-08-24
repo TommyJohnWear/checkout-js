@@ -29,7 +29,8 @@
 
 .form-checklist-item:hover,
 .form-checklist-item--selected {
-    background-color: container("fill", "dark");
+    background-color: transparent;
+    // background-color: container("fill", "dark");
 }
 
 //

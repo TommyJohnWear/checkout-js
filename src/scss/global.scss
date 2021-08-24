@@ -1,0 +1,41 @@
+html,
+.optimizedCheckout-contentPrimary {
+    color: $grey-dark;
+    font-size: 16px;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.black-link {
+    border-bottom: 2px solid $black;
+    color: $black;
+    font-weight: bold;
+    position: relative;
+
+    &:hover,
+    &:focus {
+        border-bottom: 2px solid transparent;
+        color: $black;
+    }
+
+    &:visited {
+        border-bottom: 1px solid $blue;
+        color: $blue;
+        font-weight: normal;
+    }
+}
+
+.form-input.optimizedCheckout-form-input {
+    border: 1px solid $grey;
+    border-radius: 4px;
+    box-shadow: none;
+    color: $black;
+    padding: 1rem 0.5rem;
+
+    &:focus {
+        border: 1px solid $black;
+        box-shadow: none;
+    }
+}

@@ -14,7 +14,7 @@
 
     .button {
         border-radius: 4px;
-        text-transform: uppercase;
+        text-transform: capitalize;
         transition: all 100ms ease-out;
 
         &:focus {

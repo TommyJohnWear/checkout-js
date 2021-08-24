@@ -9,7 +9,7 @@ export interface EditLinkProps {
 
 const EditLink: FunctionComponent<EditLinkProps> = ({ className, url }) => (
     <a
-        className={ className || 'cart-header-link' }
+        className={ className || 'black-link cart-header-link' }
         data-test="cart-edit-link"
         href={ url }
         id="cart-edit-link"

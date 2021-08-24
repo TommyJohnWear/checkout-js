@@ -32,6 +32,8 @@
 //
 // -----------------------------------------------------------------------------
 
+@import "theme";
+
 // global app defined settings must be set first
 @import "settings/global/global"; // 1
 
@@ -55,7 +57,8 @@
 
 @import "tools/toolkit";
 
-@import "theme";
+// Global stylesheets
+@import "global";
 
 // Components
 // -----------------------------------------------------------------------------

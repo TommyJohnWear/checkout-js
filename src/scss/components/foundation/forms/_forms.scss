@@ -101,7 +101,8 @@
         background-color: $legend-bg;
         color: $header-font-color;
         font-weight: $legend-font-weight;
-        padding: spacing("half") 0;
+        // padding: spacing("half") 0;
+        padding-bottom: 1rem;
         width: auto;
     }
 
