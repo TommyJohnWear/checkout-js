@@ -84,7 +84,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                             isLoading={ isLoading }
                             testId="customer-continue-as-guest-button"
                             type="submit"
-                            variant={ ButtonVariant.Red }
+                            variant={ ButtonVariant.Primary }
                         >
                             <TranslatedString id="customer.continue_as_guest_action" />
                         </Button>
@@ -96,7 +96,6 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                         <TranslatedString id="customer.login_text" />
                         { ' ' }
                         <a
-                            className="black-link"
                             data-test="customer-continue-button"
                             id="checkout-customer-login"
                             onClick={ onShowLogin }

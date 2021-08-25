@@ -110,7 +110,7 @@ class BillingForm extends PureComponent<BillingFormProps & WithLanguageProps & F
                         id="checkout-billing-continue"
                         isLoading={ isUpdating || isResettingAddress }
                         type="submit"
-                        variant={ ButtonVariant.Red }
+                        variant={ ButtonVariant.Primary }
                     >
                         <TranslatedString id="common.continue_action" />
                     </Button>

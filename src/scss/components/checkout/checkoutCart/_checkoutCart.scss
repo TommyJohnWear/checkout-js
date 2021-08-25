@@ -95,6 +95,7 @@
 }
 
 .cart-priceItem-value {
+    font-weight: normal;
     text-align: right;
 }
 
@@ -114,7 +115,8 @@
     .cart-priceItem-value {
         color: $blue;
         font-size: fontSize("larger");
-        font-weight: fontWeight("bold");
+        font-weight: inherit;
+        // font-weight: fontWeight("bold");
         line-height: 1.2;
     }
 }

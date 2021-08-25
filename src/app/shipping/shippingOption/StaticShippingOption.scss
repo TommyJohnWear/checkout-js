@@ -33,6 +33,13 @@
 // ShippingOption Label
 // ---------------------------------------------------
 .shippingOptionLabel {
+    align-items: center;
+    color: $grey-dark;
+    display: flex;
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: normal;
+
     .shippingOption {
         align-items: center;
         display: flex;

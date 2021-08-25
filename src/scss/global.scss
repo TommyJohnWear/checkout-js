@@ -8,9 +8,9 @@ p {
     margin-bottom: 1rem;
 }
 
-.black-link {
+a {
     border-bottom: 2px solid $black;
-    color: $black;
+    color: $black !important;
     font-weight: bold;
     position: relative;
 
@@ -25,6 +25,11 @@ p {
         color: $blue;
         font-weight: normal;
     }
+}
+
+.optimizedCheckout-headingSecondary {
+    color: $grey-dark;
+    font-size: 1rem;
 }
 
 .form-input.optimizedCheckout-form-input {
