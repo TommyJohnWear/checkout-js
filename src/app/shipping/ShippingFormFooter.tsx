@@ -4,9 +4,10 @@ import { TranslatedString } from '../locale';
 import { OrderComments } from '../orderComments';
 import { Alert, AlertType } from '../ui/alert';
 import { Button, ButtonVariant } from '../ui/button';
-import { Fieldset, Legend } from '../ui/form';
+import { Fieldset , Legend } from '../ui/form';
 
 import { ShippingOptions } from './shippingOption';
+import TextSubscribe from './TextSubscribe';
 
 export interface ShippingFormFooterProps {
     cartHasChanged: boolean;
@@ -16,7 +17,6 @@ export interface ShippingFormFooterProps {
     shouldDisableSubmit: boolean;
     isLoading: boolean;
 }
-
 class ShippingFormFooter extends PureComponent<ShippingFormFooterProps> {
     render(): ReactNode {
         const {
@@ -29,6 +29,10 @@ class ShippingFormFooter extends PureComponent<ShippingFormFooterProps> {
         } = this.props;
 
         return <>
+            <Fieldset id="checkout-shipping-subscribe">
+                <TextSubscribe />
+            </Fieldset>
+
             <Fieldset
                 id="checkout-shipping-options"
                 legend={
