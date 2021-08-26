@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CheckboxFormField, Fieldset } from '../ui/form';
+import { CheckboxFormField } from '../ui/form';
 
 const TextSubscribe = () => (
   <div className="form-body">
