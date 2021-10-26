@@ -26,6 +26,14 @@
     }
 }
 
+.checkout-view-header {
+    margin-bottom: remCalc(10px);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
 .checkout-view-content {
     @include breakpoint("large") {
         @include collapse;
@@ -99,10 +107,16 @@
 // Checkout Step Header
 // -----------------------------------------------------------------------------
 .stepHeader {
-    align-items: top;
+    padding: spacing("single") 0;
+
+    &.is-readonly {
+        cursor: default;
+    }
+}
+
+.stepHeader-row {
     display: flex;
     flex-wrap: wrap;
-    padding: spacing("single") 0;
 
     @include breakpoint("small") {
         flex-wrap: nowrap;
@@ -110,10 +124,6 @@
 
     @include breakpoint("large") {
         flex-wrap: nowrap;
-    }
-
-    &.is-readonly {
-        cursor: default;
     }
 }
 
@@ -163,5 +173,21 @@
 
     .button {
         margin-bottom: 0;
+    }
+}
+
+.stepHeader-suggestion {
+    margin: 0;
+
+    @include breakpoint("small") {
+        margin-left: remCalc($checkoutStep-counter-size) + $checkoutStep-header-figure-margin;
+    }
+
+    @include breakpoint("large") {
+        margin-left: 0;
+    }
+
+    @include breakpoint(1080px) {
+        margin-left: remCalc($checkoutStep-counter-size) + $checkoutStep-header-figure-margin;
     }
 }

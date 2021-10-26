@@ -46,7 +46,6 @@ export interface PaymentMethodProps {
 }
 
 export interface WithCheckoutPaymentMethodProps {
-    isPpsdkEnabled: boolean;
     isInitializing: boolean;
     deinitializeCustomer(options: CustomerRequestOptions): Promise<CheckoutSelectors>;
     deinitializePayment(options: PaymentRequestOptions): Promise<CheckoutSelectors>;
@@ -65,9 +64,9 @@ export interface WithCheckoutPaymentMethodProps {
  */
 // tslint:disable:cyclomatic-complexity
 const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckoutPaymentMethodProps> = props => {
-    const { method, isPpsdkEnabled } = props;
+    const { method } = props;
 
-    if (isPpsdkEnabled && method.type === PaymentMethodProviderType.PPSDK) {
+    if (method.type === PaymentMethodProviderType.PPSDK) {
         return <PPSDKPaymentMethod { ...props } />;
     }
 
@@ -120,7 +119,7 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
     }
 
     if (method.gateway === PaymentMethodId.Checkoutcom) {
-        if (method.id === 'credit_card') {
+        if (method.id === 'credit_card' || method.id === 'card') {
             return <HostedCreditCardPaymentMethod { ...props } />;
         }
 
@@ -197,6 +196,7 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
     if (method.gateway === PaymentMethodId.Afterpay ||
         method.gateway === PaymentMethodId.Clearpay ||
         method.id === PaymentMethodId.Laybuy ||
+        method.id === PaymentMethodId.Opy ||
         method.id === PaymentMethodId.Quadpay ||
         method.id === PaymentMethodId.Sezzle ||
         method.id === PaymentMethodId.Zip ||
@@ -232,19 +232,12 @@ function mapToWithCheckoutPaymentMethodProps(
         statuses: { isInitializingPayment },
     } = checkoutState;
 
-    const isPpsdkEnabled = Boolean(
-        checkoutService.getState()
-            .data.getConfig()
-            ?.checkoutSettings.features['PAYMENTS-6806.enable_ppsdk_strategy']
-    );
-
     return {
         deinitializeCustomer: checkoutService.deinitializeCustomer,
         deinitializePayment: checkoutService.deinitializePayment,
         initializeCustomer: checkoutService.initializeCustomer,
         initializePayment: checkoutService.initializePayment,
         isInitializing: isInitializingPayment(method.id),
-        isPpsdkEnabled,
     };
 }
 

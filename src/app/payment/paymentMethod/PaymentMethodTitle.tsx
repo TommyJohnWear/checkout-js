@@ -73,6 +73,10 @@ function getPaymentMethodTitle(
                 logoUrl: cdnPath('/img/payment-providers/amazon-header.png'),
                 titleText: '',
             },
+            [PaymentMethodId.Bolt]: {
+                logoUrl: '',
+                titleText: language.translate('payment.credit_card_text'),
+            },
             [PaymentMethodId.ChasePay]: {
                 logoUrl: cdnPath('/img/payment-providers/chase-pay.png'),
                 titleText: '',
@@ -86,8 +90,8 @@ function getPaymentMethodTitle(
                 titleText: '',
             },
             [PaymentMethodId.DigitalRiver]: {
-                logoUrl: cdnPath('/img/payment-providers/digital-river-header.png'),
-                titleText: '',
+                logoUrl: '',
+                titleText: language.translate('payment.digitalriver_display_name_text'),
             },
             [PaymentMethodId.Klarna]: {
                 logoUrl: cdnPath('/img/payment-providers/klarna-header.png'),
@@ -99,6 +103,10 @@ function getPaymentMethodTitle(
             },
             [PaymentMethodId.Masterpass]: {
                 logoUrl: 'https://masterpass.com/dyn/img/acc/global/mp_mark_hor_blk.svg',
+                titleText: '',
+            },
+            [PaymentMethodId.Opy]: {
+                logoUrl: cdnPath('/img/payment-providers/opy.svg'),
                 titleText: '',
             },
             [PaymentMethodType.Paypal]: {
@@ -130,7 +138,7 @@ function getPaymentMethodTitle(
                 titleText: method.method === 'credit_card' ? startCase(methodName) : methodName,
             },
             [PaymentMethodId.Checkoutcom]: {
-                logoUrl: ['credit_card', 'checkoutcom'].includes(method.id) ? '' : cdnPath(`/img/payment-providers/checkoutcom_${method.id.toLowerCase()}.svg`),
+                logoUrl: ['credit_card', 'card', 'checkoutcom'].includes(method.id) ? '' : cdnPath(`/img/payment-providers/checkoutcom_${method.id.toLowerCase()}.svg`),
                 titleText: methodName,
             },
             [PaymentMethodId.StripeV3]: {
