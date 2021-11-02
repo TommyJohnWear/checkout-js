@@ -8,10 +8,12 @@
 // 1. If set to false, there is no outputted CSS for this component.
 //
 // -----------------------------------------------------------------------------
+@use "sass:color" as scolor;
 
 @if $exportCSS--buttons { // 1
 
     .button {
+        border-radius: 4px;
         text-transform: uppercase;
         transition: all 100ms ease-out;
 
@@ -59,5 +61,17 @@
 
     .button--slab {
         width: 100%;
+    }
+
+    .button--red {
+        background-color: $red;
+        border: none;
+        color: $white;
+        font-weight: bold;
+
+        &:hover {
+            background-color: rgba($red, 0.85);
+            color: white;
+        }
     }
 }

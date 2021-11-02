@@ -86,7 +86,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                             isLoading={ isLoading }
                             testId="customer-continue-as-guest-button"
                             type="submit"
-                            variant={ ButtonVariant.Primary }
+                            variant={ ButtonVariant.Red }
                         >
                             <TranslatedString id={ continueAsGuestButtonLabelId } />
                         </Button>
