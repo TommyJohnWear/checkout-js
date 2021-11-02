@@ -25,7 +25,7 @@ const CartSummary: FunctionComponent<WithCheckoutCartSummaryProps> = ({
         ...props,
         cartUrl,
         headerLink: (
-            <EditLink url="https://beta.tommyjohn.io/cart" />
+            <EditLink url="https://checkout.tommyjohn.io/cart.php" />
             // <EditLink url={ cartUrl } />
         ),
     })
