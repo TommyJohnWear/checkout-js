@@ -29,22 +29,19 @@
 // -----------------------------------------------------------------------------
 
 .cart-header {
-    display: table;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding: $checkoutCart-padding;
     width: 100%;
 }
 
 .cart-title {
-    display: table-cell;
     margin-bottom: 0;
     vertical-align: middle;
 }
 
 .cart-header-link {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-
     .icon {
         margin: -2px 3px 0 0;
     }
@@ -98,6 +95,7 @@
 }
 
 .cart-priceItem-value {
+    font-weight: normal;
     text-align: right;
 }
 
@@ -115,8 +113,10 @@
     }
 
     .cart-priceItem-value {
+        color: $blue;
         font-size: fontSize("larger");
-        font-weight: fontWeight("bold");
+        font-weight: inherit;
+        // font-weight: fontWeight("bold");
         line-height: 1.2;
     }
 }

@@ -141,7 +141,7 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                     isLoading={ isApplyingRedeemable }
                     onClick={ handleSubmit(setSubmitted) }
                     testId="redeemableEntry-submit"
-                    variant={ ButtonVariant.Secondary }
+                    variant={ ButtonVariant.Primary }
                 >
                     <TranslatedString id="redeemable.apply_action" />
                 </Button>

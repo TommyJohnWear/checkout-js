@@ -1,0 +1,28 @@
+#subscribe-to-text-wrapper {
+    background-color: $grey-light;
+    padding: 1.5rem 1rem;
+
+    & .form-field .form-label > div {
+        & > :not(:last-child) {
+            margin-bottom: 0.25rem;
+        }
+
+        & > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .subscribe-heading {
+        color: $grey-dark;
+        font-size: 0.875rem;
+        font-weight: bold;
+    }
+
+    .subscribe-subheading {
+        font-size: 0.75rem;
+    }
+
+    .subscribe-text {
+        font-size: 0.625rem;
+    }
+}

@@ -71,15 +71,22 @@
         position: relative;
     }
 
+    .form-checklist {
+        overflow: hidden;
+    }
+
     .form-field--error {
         .form-input,
         .form-select {
-            background-color: $color-errorLighter;
+            // background-color: $color-errorLighter;
+            background-color: $white;
             transition: background-color 0.8s ease-out;
         }
 
-        .form-label {
-            color: color("error");
+        .form-label,
+        .form-inlineMessage {
+            // color: color("error");
+            color: $red-dark;
         }
     }
 
@@ -101,7 +108,8 @@
         background-color: $legend-bg;
         color: $header-font-color;
         font-weight: $legend-font-weight;
-        padding: spacing("half") 0;
+        // padding: spacing("half") 0;
+        padding-bottom: 1rem;
         width: auto;
     }
 
@@ -112,6 +120,8 @@
     }
 
     .form-toggle-password {
+        border-bottom: none;
+
         @include breakpoint("large") {
             display: none;
         }

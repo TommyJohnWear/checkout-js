@@ -127,7 +127,7 @@
             "forgot_password_action": "Forgot password?",
             "guest_customer_text": "Guest Customer",
             "guest_subscribe_to_newsletter_text": "Subscribe to our newsletter.",
-            "guest_marketing_consent": "Subscribe to our newsleteer",
+            "guest_marketing_consent": "Subscribe to our newsletter",
             "login_action": "Sign In",
             "login_text": "Already have an account?",
             "email_in_use_text": "There's already an account for {email}. Please enter a different email address or sign-in.",

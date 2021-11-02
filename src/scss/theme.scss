@@ -12,7 +12,6 @@ $line-grey: #c8c8c8;
 
 // Reds
 $red: #b73d31;
-
 $red-dark: #9b2e29;
 
 // Greens
@@ -23,5 +22,9 @@ $blue: #00424a;
 $blue-light: #587679;
 $blue-dark: #afbdbe;
 
-
-$brand: $blue;
+// Outline
+$outline-orange: #f7b9a1;
+$outline-width: 2px;
+$outline: $outline-width solid $outline-orange;
+$outline-fallback: $outline-width solid transparent;
+$outline-shadow: 0 0 0 $outline-width $outline-orange;
