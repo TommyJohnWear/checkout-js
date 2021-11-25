@@ -1,25 +1,44 @@
+@import "fonts/fonts";
+@include basetica;
+
 .how-heard-wrapper {
     background-color: #f5f5f5;
     border-radius: 8px;
     color: #00424a;
-    padding: 1rem;
+    font-family: "Basetica";
+    padding: 16px;
+    @media screen and (max-width: $screen-medium-large) and (min-width: $screen-medium-small) {
+        margin: 42px 0;
+    }
 
     & > :not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: 16px;
     }
 }
 
 .how-heard-title {
     color: inherit;
+    font-family: "Basetica";
+    font-size: 16px;
     font-weight: normal;
+}
+
+.how-heard-subtitle {
+    font-size: 14px;
 }
 
 .how-heard-select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background-image: url('../static/svg/icon-chevron-down.svg');
+    background-position: calc(100% - 18px) 50%;
+    background-repeat: no-repeat;
     border: 1px solid #c8c8c8;
     border-radius: 4px;
     color: #4d4d4d;
+    font-family: "Basetica";
+    font-size: 14px;
+    height: 50px;
     padding: 0.75rem;
 }

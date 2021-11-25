@@ -1,6 +1,10 @@
+@import "fonts/fonts";
+@include basetica;
+
 html,
 .optimizedCheckout-contentPrimary {
     color: $grey-dark;
+    font-family: "Basetica";
     font-size: 16px;
 }
 
