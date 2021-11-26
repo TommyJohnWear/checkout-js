@@ -7,7 +7,7 @@
     color: #00424a;
     font-family: "Basetica";
     padding: 16px;
-    @media screen and (max-width: $screen-medium-large) and (min-width: $screen-medium-small) {
+    @media screen and (max-width: $screen-mlarge) and (min-width: $screen-msmall) {
         margin: 42px 0;
     }
 

@@ -98,7 +98,6 @@ const HowHeard: FunctionComponent = () => {
                 <option disabled hidden value=''>Make a selection</option>
                 { options.map(option => <option key={ option } value={option}>{ option }</option>) }
             </select>
-            <input name="orderComment" hidden type="text" value={selected ? "How Heard "+selected : ""} />
         </div>
     );
 };
