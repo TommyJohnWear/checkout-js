@@ -8,6 +8,8 @@ import { isMobileView, MobileView } from '../ui/responsive';
 import CheckoutStepHeader from './CheckoutStepHeader';
 import CheckoutStepType from './CheckoutStepType';
 
+declare let utag_data: any;
+
 export interface CheckoutStepProps {
     heading?: ReactNode;
     isActive?: boolean;
@@ -141,6 +143,8 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
             const input = this.getChildInput();
             const position = this.getScrollPosition();
             const { type, onExpanded = noop } = this.props;
+
+            utag_data.site_section = type;
 
             if (input) {
                 input.focus();

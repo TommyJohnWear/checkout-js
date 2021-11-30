@@ -13,6 +13,8 @@ import OrderSummaryItem from './OrderSummaryItem';
 
 const COLLAPSED_ITEMS_LIMIT = 4;
 
+declare let utag_data: any;
+
 export interface OrderSummaryItemsProps {
     items: LineItemMap;
 }
@@ -33,6 +35,8 @@ class OrderSummaryItems extends React.Component<OrderSummaryItemsProps, OrderSum
     render(): ReactNode {
         const { items } = this.props;
         const { isExpanded } = this.state;
+
+        utag_data.cart_total_items = getItemsCount(items);
 
         return (<Fragment>
             <h3
@@ -80,6 +84,9 @@ class OrderSummaryItems extends React.Component<OrderSummaryItemsProps, OrderSum
 
     private renderActions(): ReactNode {
         const { isExpanded } = this.state;
+
+
+        utag_data.cart_total_items = this.getLineItemCount();
 
         if (this.getLineItemCount() < 5) {
             return;

@@ -9,6 +9,7 @@ import localizeAddress from './localizeAddress';
 import AddressType from './AddressType';
 import './StaticAddress.scss';
 
+declare let utag_data: any;
 export interface StaticAddressProps {
     address: Address;
     type?: AddressType;
@@ -33,6 +34,13 @@ const StaticAddress: FunctionComponent<StaticAddressEditableProps & WithCheckout
         address,
         fields.filter(field => !field.custom)
     );
+
+    utag_data.customer_first_name = address.firstName;
+    utag_data.customer_last_name = address.lastName;
+    utag_data.country_code = address.countryCode;
+    utag_data.customer_city = address.city;
+    utag_data.customer_state = address.stateOrProvince;
+    utag_data.customer_zip = address.postalCode;
 
     return !isValid ? null : <div className="vcard checkout-address--static">
         {
