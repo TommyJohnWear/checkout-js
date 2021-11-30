@@ -19,6 +19,8 @@ import PaymentRedeemables from './PaymentRedeemables';
 import PaymentSubmitButton from './PaymentSubmitButton';
 import SpamProtectionField from './SpamProtectionField';
 
+declare let utag_data: any;
+
 export interface PaymentFormProps {
     availableStoreCredit?: number;
     defaultGatewayId?: string;
@@ -89,6 +91,8 @@ const HowHeard: FunctionComponent = () => {
         setSelected('')
       }
     },[])
+
+    utag_data.howHeard = selected;
 
     return(
         <div className="how-heard-wrapper">

@@ -1,3 +1,6 @@
 export { default as renderCheckout } from '../app/checkout/renderCheckout';
 export { default as renderOrderConfirmation } from '../app/order/renderOrderConfirmation';
 export { initializeLanguageService } from '../app/locale/getLanguageService';
+
+import initTealium from './checkout/tealium';
+initTealium();
