@@ -12,7 +12,7 @@ import { getAddressFormFieldInputId, getAddressFormFieldLegacyName } from './get
 import { mapToAddress, GoogleAutocompleteFormField } from './googleAutocomplete';
 import './AddressForm.scss';
 
-declare let utag_data: any
+declare let utag_data: any;
 export interface AddressFormProps {
     fieldName?: string;
     countryCode?: string;

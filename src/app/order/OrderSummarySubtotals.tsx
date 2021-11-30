@@ -36,8 +36,8 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
 }) => {
 
     let taxAmount = 0;
-    if(taxes?.length) {
-      for(let taxObj of taxes){
+    if (taxes?.length) {
+      for (const taxObj of taxes) {
           taxAmount += taxObj.amount;
       }
     }

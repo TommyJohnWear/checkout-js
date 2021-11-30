@@ -24,7 +24,7 @@ import CheckoutStepStatus from './CheckoutStepStatus';
 import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
 
-declare let utag_data: any
+declare let utag_data: any;
 
 const Billing = lazy(() => retry(() => import(
     /* webpackChunkName: "billing" */
@@ -189,7 +189,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
         const { error } = this.state;
         let errorModal = null;
 
-        utag_data.page_name = "checkout";
+        utag_data.page_name = 'checkout';
 
         if (error) {
             if (isCustomError(error)) {

@@ -15,7 +15,7 @@ import CustomerViewType from './CustomerViewType';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 
-declare let utag_data: any
+declare let utag_data: any;
 
 export interface LoginFormProps {
     canCancel?: boolean;

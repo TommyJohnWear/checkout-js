@@ -14,7 +14,7 @@ import EmailLoginForm, { EmailLoginFormValues } from './EmailLoginForm';
 import GuestForm, { GuestFormValues } from './GuestForm';
 import LoginForm from './LoginForm';
 
-declare let utag_data: any
+declare let utag_data: any;
 
 export interface CustomerProps {
     viewType: CustomerViewType;

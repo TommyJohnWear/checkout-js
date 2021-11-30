@@ -77,20 +77,20 @@ export interface AccountCreationValues {
 const HowHeard: FunctionComponent = () => {
     const [selected, setSelected] = React.useState('');
     const options = ['Option 1', 'Option 2'];
-    const handleChange = (val:any) => {
-      localStorage.setItem('selectHowHeard',val)
-      setSelected(val);
-    }
+    const handleChange = (event: any) => {
+        localStorage.setItem('selectHowHeard', event?.target.value);
+        setSelected(event?.target.value);
+    };
     React.useEffect(() => {
       try {
-        const lastSelected = localStorage.getItem('selectHowHeard')
-      if(lastSelected) {
-        setSelected(lastSelected)
+          const lastSelected = localStorage.getItem('selectHowHeard');
+          if (lastSelected) {
+              setSelected(lastSelected);
+          }
+      } catch (e) {
+          setSelected('');
       }
-      } catch(e) {
-        setSelected('')
-      }
-    },[])
+    }, []);
 
     utag_data.howHeard = selected;
 
@@ -98,9 +98,9 @@ const HowHeard: FunctionComponent = () => {
         <div className="how-heard-wrapper">
             <h3 className="how-heard-title">How did you hear about us?</h3>
             <p className="how-heard-subtitle">We&apos;ll owe you one! (of no dollar value)</p>
-            <select className="how-heard-select" onChange={e=>handleChange(e.target.value)} value={selected}>
-                <option disabled hidden value=''>Make a selection</option>
-                { options.map(option => <option key={ option } value={option}>{ option }</option>) }
+            <select className="how-heard-select" onChange={ handleChange }>
+                <option disabled hidden value="">Make a selection</option>
+                { options.map(option => <option key={ option } value={ option }>{ option }</option>) }
             </select>
         </div>
     );
