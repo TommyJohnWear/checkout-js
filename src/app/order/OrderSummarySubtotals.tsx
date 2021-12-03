@@ -6,6 +6,7 @@ import { TranslatedString } from '../locale';
 import OrderSummaryDiscount from './OrderSummaryDiscount';
 import OrderSummaryPrice from './OrderSummaryPrice';
 
+declare let utag_data: any;
 export interface OrderSummarySubtotalsProps {
     coupons: Coupon[];
     giftCertificates?: GiftCertificate[];
@@ -33,6 +34,18 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     onRemovedGiftCertificate,
     onRemovedCoupon,
 }) => {
+
+    let taxAmount = 0;
+    if (taxes?.length) {
+      for (const taxObj of taxes) {
+          taxAmount += taxObj.amount;
+      }
+    }
+    utag_data.checkcout_tax_amount = taxAmount;
+    utag_data.checkcout_shipping_amount = shippingAmount;
+    utag_data.checkout_sub_total = subtotalAmount;
+    utag_data.checkcout_discount_amount = discountAmount;
+
     return (<Fragment>
         <OrderSummaryPrice
             amount={ subtotalAmount }

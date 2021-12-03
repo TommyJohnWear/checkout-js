@@ -4,6 +4,7 @@ import { withCurrency, TranslatedString, WithCurrencyProps } from '../locale';
 
 import OrderSummaryPrice from './OrderSummaryPrice';
 
+declare let utag_data: any;
 export interface OrderSummaryTotalProps {
     orderAmount: number;
     shopperCurrencyCode: string;
@@ -17,6 +18,8 @@ const OrderSummaryTotal: FunctionComponent<OrderSummaryTotalProps & WithCurrency
     currency,
 }) => {
 
+    utag_data.shop_currency = shopperCurrencyCode;
+    utag_data.checkout_order_total = orderAmount;
     const hasDifferentCurrency = shopperCurrencyCode !== storeCurrencyCode;
     const label = <Fragment>
         { hasDifferentCurrency ?

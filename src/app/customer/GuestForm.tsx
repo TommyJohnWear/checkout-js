@@ -10,6 +10,8 @@ import { BasicFormField, Fieldset, Form, Legend  } from '../ui/form';
 import EmailField from './EmailField';
 import SubscribeField from './SubscribeField';
 
+declare let utag_data: any;
+
 export interface GuestFormProps {
     canSubscribe: boolean;
     checkoutButtons?: ReactNode;
@@ -124,6 +126,8 @@ export default withLanguage(withFormik<GuestFormProps & WithLanguageProps, Guest
         privacyPolicy: false,
     }),
     handleSubmit: (values, { props: { onContinueAsGuest } }) => {
+        utag_data.customer_logged_in = false;
+
         onContinueAsGuest(values);
     },
     validationSchema: ({ language, privacyPolicyUrl }: GuestFormProps & WithLanguageProps) => {

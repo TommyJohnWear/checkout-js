@@ -15,6 +15,8 @@ import CustomerViewType from './CustomerViewType';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 
+declare let utag_data: any;
+
 export interface LoginFormProps {
     canCancel?: boolean;
     continueAsGuestButtonLabelId: string;
@@ -190,6 +192,7 @@ export default withLanguage(withFormik<LoginFormProps & WithLanguageProps, Login
     }),
     handleSubmit: (values, { props: { onSignIn } }) => {
         onSignIn(values);
+        utag_data.customer_logged_in = true;
     },
     validationSchema: ({ language }: LoginFormProps & WithLanguageProps) =>
         getEmailValidationSchema({ language }).concat(object({

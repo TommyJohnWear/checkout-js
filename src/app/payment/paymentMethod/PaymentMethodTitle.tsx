@@ -13,6 +13,8 @@ import getPaymentMethodName from './getPaymentMethodName';
 import PaymentMethodId from './PaymentMethodId';
 import PaymentMethodType from './PaymentMethodType';
 
+declare let utag_data: any;
+
 export interface PaymentMethodTitleProps {
     method: PaymentMethod;
     isSelected?: boolean;
@@ -177,6 +179,8 @@ const PaymentMethodTitle: FunctionComponent<PaymentMethodTitleProps & WithLangua
         if (!isSelected) {
             return;
         }
+
+        utag_data.payment_method = methodName;
 
         if ('hostedForm' in values && 'cardType' in values.hostedForm && values.hostedForm.cardType) {
             return values.hostedForm.cardType;

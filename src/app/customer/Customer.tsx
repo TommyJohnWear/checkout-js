@@ -14,6 +14,8 @@ import EmailLoginForm, { EmailLoginFormValues } from './EmailLoginForm';
 import GuestForm, { GuestFormValues } from './GuestForm';
 import LoginForm from './LoginForm';
 
+declare let utag_data: any;
+
 export interface CustomerProps {
     viewType: CustomerViewType;
     isEmbedded?: boolean;
@@ -304,6 +306,8 @@ class Customer extends Component<CustomerProps & WithCheckoutCustomerProps, Cust
             onContinueAsGuestError = noop,
         } = this.props;
 
+        utag_data.customer_logged_in = false;
+
         const email = formValues.email.trim();
         try {
             const { data } = await continueAsGuest({
@@ -456,6 +460,10 @@ export function mapToWithCheckoutCustomerProps(
             isAccountCreationEnabled,
         },
     } = config as StoreConfig & { checkoutSettings: { isAccountCreationEnabled: boolean } };
+
+    utag_data.customer_email = customer?.email;
+    utag_data.customer_first_name = customer?.firstName;
+    utag_data.customer_last_name = customer?.lastName;
 
     return {
         customerAccountFields: getCustomerAccountFields(),
