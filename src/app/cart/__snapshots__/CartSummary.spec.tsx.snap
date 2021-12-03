@@ -2,6 +2,6 @@
 
 exports[`CartSummary Component renders OrderSummary with Edit Cart link 1`] = `
 <Memo(EditLink)
-  url="https://store-k1drp8k8.bcapp.dev/cart.php"
+  url="https://checkout.tommyjohn.io/cart.php"
 />
 `;

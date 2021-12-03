@@ -199,7 +199,7 @@ describe('GuestForm', () => {
         );
 
         expect(component.find('label[htmlFor="shouldSubscribe"]').text())
-            .toEqual('I would like to receive updates and offers.');
+            .toEqual('Subscribe to our newsletter');
         expect(component.exists('input[name="shouldSubscribe"]'))
             .toEqual(true);
     });

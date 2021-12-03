@@ -90,7 +90,7 @@ exports[`Customer when view type is "guest" matches snapshot 1`] = `
               data-test="customer-continue-button"
               id="checkout-customer-login"
             >
-              Sign in now
+              Sign In
             </a>
           </p>
         </div>

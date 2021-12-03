@@ -27,6 +27,9 @@ exports[`OrderSummaryModal renders order summary 1`] = `
           id="cart.cart_heading"
         />
       </ModalHeader>
+      <div
+        className="cart-modal-link"
+      />
     </React.Fragment>
   }
   isOpen={true}
