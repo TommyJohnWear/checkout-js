@@ -86,6 +86,15 @@ const HowHeard: FunctionComponent = () => {
     );
 };
 
+const PayPalComponent: FunctionComponent = () => {
+    return(
+        <div
+            data-pp-message
+            data-pp-amount="100.00">
+        </div>
+    );
+};
+
 const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormValues> & WithLanguageProps> = ({
     availableStoreCredit = 0,
     didExceedSpamLimit,
@@ -159,6 +168,8 @@ const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormV
                 resetForm={ resetForm }
                 values={ values }
             />
+
+            <PayPalComponent />
 
             <PaymentRedeemables />
 
