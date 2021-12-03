@@ -1,6 +1,6 @@
 {
     "name": "@bigcommerce/checkout",
-    "version": "1.178.3-alpha.1638480812154",
+    "version": "1.178.3-alpha.1638534086631",
     "private": true,
     "description": "Browser-based application providing a seamless UI for BigCommerce shoppers to complete their checkout.",
     "license": "MIT",
@@ -15,7 +15,7 @@
         "dev": "webpack --mode development --watch",
         "dev:server": "http-server build",
         "release": "echo 'Please do not release locally, use CircleCi'",
-        "release:alpha": "npm run build -- --prerelease && npm run release:version",
+        "release:alpha": "npm run lint && npm run test -- --coverage && npm run build -- --prerelease && npm run release:version",
         "release:version": "git add dist && standard-version -a",
         "lint": "eslint 'src/**/*.{ts,tsx}'",
         "test": "jest",
