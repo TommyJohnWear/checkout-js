@@ -1,4 +1,4 @@
-import { CheckoutSelectors, RequestError } from '@bigcommerce/checkout-sdk';
+import { CheckoutSelectors, RequestError, Coupon, GiftCertificate } from '@bigcommerce/checkout-sdk';
 import { memoizeOne } from '@bigcommerce/memoize';
 import { withFormik, FieldProps, FormikProps } from 'formik';
 import { noop } from 'lodash';
@@ -11,11 +11,17 @@ import { Alert, AlertType } from '../ui/alert';
 import { Button, ButtonVariant } from '../ui/button';
 import { FormContextType, FormField, FormProvider, Label, TextInput } from '../ui/form';
 import { Toggle } from '../ui/toggle';
+import OrderSummaryDiscount from '../order/OrderSummaryDiscount';
 
 import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 
 export interface RedeemableFormValues {
     redeemableCode: string;
+    coupons?: Coupon[];
+    giftCertificates?: GiftCertificate[];
+    discountAmount?: number;
+    onRemovedGiftCertificate?(code: string): void;
+    onRemovedCoupon?(code: string): void;
 }
 
 export type ReedemableChildrenProps = Pick<RedeemableProps,
@@ -74,6 +80,10 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
     clearError = noop,
     submitForm,
     language,
+    coupons,
+    onRemovedCoupon,
+    onRemovedGiftCertificate,
+    giftCertificates,
 }) => {
     const handleKeyDown = useCallback(memoizeOne((setSubmitted: FormContextType['setSubmitted']) => (
         (event: KeyboardEvent) => {
@@ -145,6 +155,35 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                 >
                     <TranslatedString id="redeemable.apply_action" />
                 </Button>
+            </div>
+
+            <div className="couponContainer">
+                <p className="couponHeading"> Discount Code Applied </p>
+
+                { (coupons || [])
+                    .map((coupon, index) =>
+                        <OrderSummaryDiscount
+                            amount={ coupon.discountedAmount }
+                            code={ coupon.code }
+                            key={ index }
+                            label={ coupon.displayName }
+                            onRemoved={ onRemovedCoupon }
+                            testId="cart-coupon"
+                        />
+                ) }
+
+                { (giftCertificates || [])
+                    .map((giftCertificate, index) =>
+                        <OrderSummaryDiscount
+                            amount={ giftCertificate.used }
+                            code={ giftCertificate.code }
+                            key={ index }
+                            label={ <TranslatedString id="cart.gift_certificate_text" /> }
+                            onRemoved={ onRemovedGiftCertificate }
+                            remaining={ giftCertificate.remaining }
+                            testId="cart-gift-certificate"
+                        />
+                ) }
             </div>
         </Fragment>
     ), [appliedRedeemableError, handleKeyDown, handleSubmit, isApplyingRedeemable, language, renderErrorMessage]);

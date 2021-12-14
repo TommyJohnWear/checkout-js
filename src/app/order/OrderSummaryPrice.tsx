@@ -61,7 +61,6 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
             children,
             className,
             currencyCode,
-            label,
             superscript,
             testId,
             zeroLabel,
@@ -87,10 +86,6 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                         ) }
                     >
                         <span className="cart-priceItem-label">
-                            <span data-test="cart-price-label">
-                                { label }
-                                { '  ' }
-                            </span>
                             { currencyCode && <span className="cart-priceItem-currencyCode">
                                 { `(${currencyCode}) ` }
                             </span> }

@@ -7,7 +7,7 @@ import OrderSummaryDiscount from './OrderSummaryDiscount';
 import OrderSummaryPrice from './OrderSummaryPrice';
 
 export interface OrderSummarySubtotalsProps {
-    coupons: Coupon[];
+    coupons?: Coupon[];
     giftCertificates?: GiftCertificate[];
     discountAmount?: number;
     taxes?: Tax[];
@@ -22,16 +22,12 @@ export interface OrderSummarySubtotalsProps {
 
 const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     discountAmount,
-    giftCertificates,
     taxes,
     giftWrappingAmount,
     shippingAmount,
     subtotalAmount,
     handlingAmount,
     storeCreditAmount,
-    coupons,
-    onRemovedGiftCertificate,
-    onRemovedCoupon,
 }) => {
     return (<Fragment>
         <OrderSummaryPrice
@@ -41,36 +37,11 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-subtotal"
         />
 
-        { (coupons || [])
-            .map((coupon, index) =>
-                <OrderSummaryDiscount
-                    amount={ coupon.discountedAmount }
-                    code={ coupon.code }
-                    key={ index }
-                    label={ coupon.displayName }
-                    onRemoved={ onRemovedCoupon }
-                    testId="cart-coupon"
-                />
-        ) }
-
         { !!discountAmount && <OrderSummaryDiscount
             amount={ discountAmount }
             label={ <TranslatedString id="cart.discount_text" /> }
             testId="cart-discount"
         /> }
-
-        { (giftCertificates || [])
-            .map((giftCertificate, index) =>
-                <OrderSummaryDiscount
-                    amount={ giftCertificate.used }
-                    code={ giftCertificate.code }
-                    key={ index }
-                    label={ <TranslatedString id="cart.gift_certificate_text" /> }
-                    onRemoved={ onRemovedGiftCertificate }
-                    remaining={ giftCertificate.remaining }
-                    testId="cart-gift-certificate"
-                />
-        ) }
 
         { !!giftWrappingAmount && <OrderSummaryPrice
             amount={ giftWrappingAmount }
