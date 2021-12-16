@@ -81,6 +81,7 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                         aria-live="polite"
                         className={ classNames(
                             'cart-priceItem',
+                            'coupon-container',
                             'optimizedCheckout-contentPrimary',
                             className
                         ) }
@@ -91,6 +92,7 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                             </span> }
                             { onActionTriggered && actionLabel && <span className="cart-priceItem-link">
                                 <a
+                                    className="cart-price-action"
                                     data-test="cart-price-callback"
                                     href="#"
                                     onClick={ preventDefault(onActionTriggered) }
@@ -101,7 +103,7 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                         </span>
 
                         <span className="cart-priceItem-value">
-                            <span data-test="cart-price-value">
+                            <span className="cart-price-value" data-test="cart-price-value">
                                 { isNumberValue(displayValue) ?
                                     <ShopperCurrency amount={ displayValue } /> :
                                     displayValue }

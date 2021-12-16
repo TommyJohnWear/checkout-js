@@ -1,4 +1,4 @@
-import { CheckoutSelectors, RequestError, Coupon, GiftCertificate } from '@bigcommerce/checkout-sdk';
+import { CheckoutSelectors, Coupon, GiftCertificate, RequestError } from '@bigcommerce/checkout-sdk';
 import { memoizeOne } from '@bigcommerce/memoize';
 import { withFormik, FieldProps, FormikProps } from 'formik';
 import { noop } from 'lodash';
@@ -10,8 +10,8 @@ import { withLanguage, TranslatedString, WithLanguageProps } from '../locale';
 import { Alert, AlertType } from '../ui/alert';
 import { Button, ButtonVariant } from '../ui/button';
 import { FormContextType, FormField, FormProvider, Label, TextInput } from '../ui/form';
-import { Toggle } from '../ui/toggle';
 import OrderSummaryDiscount from '../order/OrderSummaryDiscount';
+import { Toggle } from '../ui/toggle';
 
 import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 
@@ -136,7 +136,7 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                     { renderErrorMessage(appliedRedeemableError.errors[0].code) }
                 </Alert> }
 
-            <div className="form-prefixPostfix">
+            <div className="form-prefixPostfix coupon-input">
                 <TextInput
                     { ...field }
                     aria-label={ language.translate('redeemable.code_label') }
@@ -151,7 +151,7 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                     isLoading={ isApplyingRedeemable }
                     onClick={ handleSubmit(setSubmitted) }
                     testId="redeemableEntry-submit"
-                    variant={ ButtonVariant.Secondary }
+                    variant={ ButtonVariant.Primary }
                 >
                     <TranslatedString id="redeemable.apply_action" />
                 </Button>

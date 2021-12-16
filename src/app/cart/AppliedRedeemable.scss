@@ -32,7 +32,7 @@
 }
 
 .redeemable-entry {
-    margin-top: spacing("half");
+    margin-top: 8px;
 }
 
 .redeemable-info-header {
@@ -63,6 +63,8 @@
 }
 
 .redeemable-label {
+    color: $color-darkGrey;
+    font-size: 14px;
     margin-top: spacing("base");
 }
 

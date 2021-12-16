@@ -91,6 +91,45 @@
     width: 100%;
 }
 
+.couponHeading {
+    color: $color-primary;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.cart-priceItem.coupon-container {
+    display: flex;
+    justify-content: space-between;
+
+    .cart-priceItem-postFix {
+        color: $color-lightGrey;
+        font-size: 14px;
+        order: 1;
+    }
+
+    .cart-priceItem-label {
+        order: 2;
+
+        .cart-price-action {
+            border-bottom: 1px solid $color-primary;
+            color: $color-primary;
+            font-size: 12px;
+            font-weight: 700;
+            padding-bottom: 2px;
+            text-transform: capitalize;
+        }
+    }
+
+    .cart-priceItem-value {
+        order: 3;
+
+        .cart-price-value {
+            color: $color-darkGrey;
+            font-size: 14px;
+        }
+    }
+}
+
 .cart-priceItem-label,
 .cart-priceItem-value {
     display: table-cell;
