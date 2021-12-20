@@ -66,6 +66,12 @@
     color: $color-darkGrey;
     font-size: 14px;
     margin-top: spacing("base");
+    padding-bottom: 8px;
+}
+
+.erroredLabel {
+    color: $color-error;
+    font-weight: 400;
 }
 
 .redeemable-payments {

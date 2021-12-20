@@ -58,6 +58,17 @@
         height: 50px;
         margin-left: 16px;
         text-transform: capitalize;
+
+        &:hover,
+        &:active {
+            background-color: $button-primary;
+        }
+    }
+}
+
+.coupon-input.erroredInput {
+    .optimizedCheckout-form-input {
+        border: 1px solid $button-primary;
     }
 }
 

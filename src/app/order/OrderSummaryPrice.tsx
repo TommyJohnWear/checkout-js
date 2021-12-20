@@ -90,6 +90,9 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                             { currencyCode && <span className="cart-priceItem-currencyCode">
                                 { `(${currencyCode}) ` }
                             </span> }
+                            { <span className="totalText cart-subtotal">
+                              Total
+                            </span> }
                             { onActionTriggered && actionLabel && <span className="cart-priceItem-link">
                                 <a
                                     className="cart-price-action"
@@ -102,8 +105,8 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                             </span> }
                         </span>
 
-                        <span className="cart-priceItem-value">
-                            <span className="cart-price-value" data-test="cart-price-value">
+                        <span className="cart-priceItem-value cart-subtotal-container">
+                            <span className="cart-price-value cart-subtotal-value cart-summary-total" data-test="cart-price-value">
                                 { isNumberValue(displayValue) ?
                                     <ShopperCurrency amount={ displayValue } /> :
                                     displayValue }

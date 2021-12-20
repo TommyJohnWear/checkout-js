@@ -7,10 +7,10 @@ import { object, string } from 'yup';
 
 import { preventDefault } from '../common/dom';
 import { withLanguage, TranslatedString, WithLanguageProps } from '../locale';
+import OrderSummaryDiscount from '../order/OrderSummaryDiscount';
 import { Alert, AlertType } from '../ui/alert';
 import { Button, ButtonVariant } from '../ui/button';
 import { FormContextType, FormField, FormProvider, Label, TextInput } from '../ui/form';
-import OrderSummaryDiscount from '../order/OrderSummaryDiscount';
 import { Toggle } from '../ui/toggle';
 
 import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
@@ -54,14 +54,14 @@ const Redeemable: FunctionComponent<RedeemableProps & WithLanguageProps & Formik
         { ({ toggle, isOpen }) => (
             <Fragment>
                 { shouldCollapseCouponCode && <a
-                    className="redeemable-label"
+                    className="redeemable-label hiddenLabel"
                     data-test="redeemable-label"
                     href="#"
                     onClick={ preventDefault(toggle) }
                 >
                     <TranslatedString id="redeemable.toggle_action" />
                 </a> }
-                { !shouldCollapseCouponCode && <div className="redeemable-label">
+                { !shouldCollapseCouponCode && <div className="redeemable-label hiddenLabel">
                     <TranslatedString id="redeemable.toggle_action" />
                 </div> }
                 { (isOpen || !shouldCollapseCouponCode) && <div data-test="redeemable-collapsable">
@@ -131,12 +131,14 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
 
     const renderInput = useCallback((setSubmitted: FormContextType['setSubmitted']) => ({ field }: FieldProps) => (
         <Fragment>
-            { appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] &&
-                <Alert type={ AlertType.Error }>
-                    { renderErrorMessage(appliedRedeemableError.errors[0].code) }
-                </Alert> }
 
-            <div className="form-prefixPostfix coupon-input">
+            <Fragment>
+                { <div className={"redeemable-label " + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredLabel' : 'noErrors')}>
+                    <TranslatedString id="redeemable.toggle_action" />
+                </div> }
+            </Fragment>
+
+            <div className={"form-prefixPostfix coupon-input " + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredInput' : 'noErrors')}>
                 <TextInput
                     { ...field }
                     aria-label={ language.translate('redeemable.code_label') }
@@ -157,8 +159,16 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                 </Button>
             </div>
 
+            { appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] &&
+            <span className="couponErrors">
+                <Alert type={ AlertType.Error }>
+                    { renderErrorMessage(appliedRedeemableError.errors[0].code) }
+                </Alert>
+            </span> }
+
             <div className="couponContainer">
-                <p className="couponHeading"> Discount Code Applied </p>
+
+              { coupons?.length ? (<p className="couponHeading">Discount Code Applied</p>) : (<></>) }
 
                 { (coupons || [])
                     .map((coupon, index) =>
@@ -186,7 +196,7 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
                 ) }
             </div>
         </Fragment>
-    ), [appliedRedeemableError, handleKeyDown, handleSubmit, isApplyingRedeemable, language, renderErrorMessage]);
+    ), [appliedRedeemableError, coupons, giftCertificates, handleKeyDown, handleSubmit, isApplyingRedeemable, language, onRemovedCoupon, onRemovedGiftCertificate, renderErrorMessage]);
 
     const renderContent = useCallback(memoizeOne(({ setSubmitted }: FormContextType) => (
         <FormField

@@ -97,6 +97,32 @@
     margin-bottom: 8px;
 }
 
+.totalText,
+.hiddenLabel {
+    display: none;
+}
+
+.couponErrors {
+    .alertBox-icon {
+        padding: 0;
+    }
+
+    .alertBox-message {
+        font-size: 14px;
+    }
+
+    .alertBox--error {
+        background-color: transparent;
+        color: $button-primary;
+        margin-top: -18px;
+        padding: 0;
+    }
+
+    .icon {
+        display: none;
+    }
+}
+
 .cart-priceItem.coupon-container {
     display: flex;
     justify-content: space-between;
@@ -108,6 +134,7 @@
     }
 
     .cart-priceItem-label {
+        margin: auto 0;
         order: 2;
 
         .cart-price-action {
@@ -157,6 +184,18 @@
         font-size: fontSize("larger");
         font-weight: fontWeight("bold");
         line-height: 1.2;
+    }
+
+    .cart-subtotal {
+        display: block;
+        font-size: 16px;
+    }
+
+    .cart-subtotal-container {
+        .cart-subtotal-value.cart-summary-total {
+            color: $color-blue;
+            font-size: 32px;
+        }
     }
 }
 

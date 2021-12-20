@@ -377,7 +377,7 @@
             "apply_action": "Apply",
             "apply_store_credit_after_action": "store credit to order",
             "apply_store_credit_before_action": "Apply",
-            "code_invalid_error": "The gift certificate or coupon code is invalid",
+            "code_invalid_error": "Invalid discount code.",
             "code_label": "Gift Certificate or Coupon Code",
             "code_required_error": "Please enter a gift certificate or coupon code",
             "coupon_location_error": "Your shipping address doesn't meet the location requirements for the coupon code you entered.",
