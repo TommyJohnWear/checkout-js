@@ -50,7 +50,6 @@
                     "**/cart/CartSummaryDrawer.tsx",
                     "**/customer/Customer.tsx",
                     "**/order/OrderSummary.tsx",
-                    "**/order/OrderSummaryDiscount.tsx",
                     "**/order/OrderSummaryDrawer.tsx",
                     "**/payment/Payment.tsx",
                     "**/shipping/Shipping.tsx"

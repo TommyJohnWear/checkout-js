@@ -3,7 +3,6 @@ import { memoizeOne } from '@bigcommerce/memoize';
 import { withFormik, FieldProps, FormikProps } from 'formik';
 import { noop } from 'lodash';
 import React, { memo, useCallback, Fragment, FunctionComponent, KeyboardEvent } from 'react';
-// import { lazily } from 'react-lazily';
 import { object, string } from 'yup';
 
 import { preventDefault } from '../common/dom';
@@ -16,7 +15,6 @@ import { Toggle } from '../ui/toggle';
 
 import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 
-// const { OrderSummaryDiscount } = lazily(() => import('../order/OrderSummaryDiscount'))
 export interface RedeemableFormValues {
     redeemableCode: string;
     coupons?: Coupon[];

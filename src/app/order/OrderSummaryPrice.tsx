@@ -90,8 +90,8 @@ class OrderSummaryPrice extends Component<OrderSummaryPriceProps, OrderSummaryPr
                             { currencyCode && <span className="cart-priceItem-currencyCode">
                                 { `(${currencyCode}) ` }
                             </span> }
-                            { <span className="totalText cart-subtotal">
-                              Total
+                            { <span className="totalText cart-subtotal" data-test="cart-price-label">
+                                Total
                             </span> }
                             { onActionTriggered && actionLabel && <span className="cart-priceItem-link">
                                 <a
