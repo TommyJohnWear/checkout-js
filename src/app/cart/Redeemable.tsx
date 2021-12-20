@@ -3,6 +3,7 @@ import { memoizeOne } from '@bigcommerce/memoize';
 import { withFormik, FieldProps, FormikProps } from 'formik';
 import { noop } from 'lodash';
 import React, { memo, useCallback, Fragment, FunctionComponent, KeyboardEvent } from 'react';
+// import { lazily } from 'react-lazily';
 import { object, string } from 'yup';
 
 import { preventDefault } from '../common/dom';
@@ -15,6 +16,7 @@ import { Toggle } from '../ui/toggle';
 
 import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 
+// const { OrderSummaryDiscount } = lazily(() => import('../order/OrderSummaryDiscount'))
 export interface RedeemableFormValues {
     redeemableCode: string;
     coupons?: Coupon[];
@@ -133,12 +135,12 @@ const RedeemableForm: FunctionComponent<Partial<RedeemableProps> & FormikProps<R
         <Fragment>
 
             <Fragment>
-                { <div className={"redeemable-label " + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredLabel' : 'noErrors')}>
+                { <div className={ 'redeemable-label ' + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredLabel' : 'noErrors') }>
                     <TranslatedString id="redeemable.toggle_action" />
                 </div> }
             </Fragment>
 
-            <div className={"form-prefixPostfix coupon-input " + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredInput' : 'noErrors')}>
+            <div className={ 'form-prefixPostfix coupon-input ' + (appliedRedeemableError && appliedRedeemableError.errors && appliedRedeemableError.errors[0] ? 'erroredInput' : 'noErrors') }>
                 <TextInput
                     { ...field }
                     aria-label={ language.translate('redeemable.code_label') }
