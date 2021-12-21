@@ -3,22 +3,22 @@
 // =============================================================================
 
 .cart {
-    border: container("border");
-    border-radius: $checkoutCart-borderRadius;
-    box-shadow: container("dropShadow");
-    display: none;
-    margin: spacing("double") 0 spacing("single");
-    min-height: $checkoutCart-minHeight;
+  border: container("border");
+  border-radius: $checkoutCart-borderRadius;
+  box-shadow: container("dropShadow");
+  display: none;
+  margin: spacing("double") 0 spacing("single");
+  min-height: $checkoutCart-minHeight;
 
-    @include breakpoint("large") {
-        display: block;
-    }
+  @include breakpoint("large") {
+    display: block;
+  }
 }
 
 .cart-note {
-    color: color("greys");
-    font-size: fontSize("smallest");
-    padding-left: $checkoutCart-padding;
+  color: color("greys");
+  font-size: fontSize("smallest");
+  padding-left: $checkoutCart-padding;
 }
 
 // Cart Header
@@ -29,29 +29,29 @@
 // -----------------------------------------------------------------------------
 
 .cart-header {
-    display: table;
-    padding: $checkoutCart-padding;
-    width: 100%;
+  display: table;
+  padding: $checkoutCart-padding;
+  width: 100%;
 }
 
 .cart-title {
-    display: table-cell;
-    margin-bottom: 0;
-    vertical-align: middle;
+  display: table-cell;
+  margin-bottom: 0;
+  vertical-align: middle;
 }
 
 .cart-header-link {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
 
-    .icon {
-        margin: -2px 3px 0 0;
-    }
+  .icon {
+    margin: -2px 3px 0 0;
+  }
 
-    svg {
-        fill: currentColor;
-    }
+  svg {
+    fill: currentColor;
+  }
 }
 
 //
@@ -59,23 +59,23 @@
 // -----------------------------------------------------------------------------
 
 .cart-section {
-    border-top: container("border");
-    padding: $checkoutCart-padding;
+  border-top: container("border");
+  padding: $checkoutCart-padding;
 }
 
 .cart-section-heading {
-    @include headingStyle("h5");
+  @include headingStyle("h5");
 
-    margin-bottom: spacing("single");
+  margin-bottom: spacing("single");
 }
 
 .cart-actions {
-    margin-top: spacing("half");
-    text-align: center;
+  margin-top: spacing("half");
+  text-align: center;
 
-    .button {
-        margin-bottom: 0;
-    }
+  .button {
+    margin-bottom: 0;
+  }
 }
 
 // Cart Price Item
@@ -86,135 +86,135 @@
 // -----------------------------------------------------------------------------
 
 .cart-priceItem {
-    display: table;
-    margin-bottom: spacing("half");
-    width: 100%;
+  display: table;
+  margin-bottom: spacing("half");
+  width: 100%;
 }
 
 .couponHeading {
-    color: $color-primary;
-    font-size: 14px;
-    margin-bottom: 8px;
+  color: $color-primary;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .totalText,
 .hiddenLabel {
-    display: none;
+  display: none;
 }
 
 .couponErrors {
-    .alertBox-icon {
-        padding: 0;
-    }
+  .alertBox-icon {
+    padding: 0;
+  }
 
-    .alertBox-message {
-        font-size: 14px;
-    }
+  .alertBox-message {
+    font-size: 14px;
+  }
 
-    .alertBox--error {
-        background-color: transparent;
-        color: $button-primary;
-        margin-top: -18px;
-        padding: 0;
-    }
+  .alertBox--error {
+    background-color: transparent;
+    color: $button-primary;
+    margin-top: -18px;
+    padding: 0;
+  }
 
-    .icon {
-        display: none;
-    }
+  .icon {
+    display: none;
+  }
 }
 
 .cart-priceItem.coupon-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    .cart-priceItem-postFix {
-        color: $color-lightGrey;
-        font-size: 14px;
-        order: 1;
+  .cart-priceItem-postFix {
+    color: $color-lightGrey;
+    font-size: 14px;
+    order: 1;
+  }
+
+  .cart-priceItem-label {
+    margin: auto 0;
+    order: 2;
+
+    .cart-price-action {
+      border-bottom: 1px solid $color-primary;
+      color: $color-primary;
+      font-size: 12px;
+      font-weight: 700;
+      padding-bottom: 2px;
+      text-transform: capitalize;
     }
+  }
 
-    .cart-priceItem-label {
-        margin: auto 0;
-        order: 2;
+  .cart-priceItem-value {
+    order: 3;
 
-        .cart-price-action {
-            border-bottom: 1px solid $color-primary;
-            color: $color-primary;
-            font-size: 12px;
-            font-weight: 700;
-            padding-bottom: 2px;
-            text-transform: capitalize;
-        }
+    .cart-price-value {
+      color: $color-greyDark;
+      font-size: 14px;
     }
-
-    .cart-priceItem-value {
-        order: 3;
-
-        .cart-price-value {
-            color: $color-darkGrey;
-            font-size: 14px;
-        }
-    }
+  }
 }
 
 .cart-priceItem-label,
 .cart-priceItem-value {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .cart-priceItem-value {
-    text-align: right;
+  text-align: right;
 }
 
 .cart-priceItem-postFix {
-    color: color("greys");
-    display: table-row;
-    font-size: fontSize("smallest");
+  color: color("greys");
+  display: table-row;
+  font-size: fontSize("smallest");
 }
 
 .cart-priceItem--total {
-    margin-bottom: 0;
+  margin-bottom: 0;
 
-    .cart-priceItem-label {
-        font-size: fontSize("smaller");
-    }
+  .cart-priceItem-label {
+    font-size: fontSize("smaller");
+  }
 
-    .cart-priceItem-value {
-        font-size: fontSize("larger");
-        font-weight: fontWeight("bold");
-        line-height: 1.2;
-    }
+  .cart-priceItem-value {
+    font-size: fontSize("larger");
+    font-weight: fontWeight("bold");
+    line-height: 1.2;
+  }
 
-    .cart-subtotal {
-        display: block;
-        font-size: 16px;
-    }
+  .cart-subtotal {
+    display: block;
+    font-size: 16px;
+  }
 
-    .cart-subtotal-container {
-        .cart-subtotal-value.cart-summary-total {
-            color: $color-blue;
-            font-size: 32px;
-        }
+  .cart-subtotal-container {
+    .cart-subtotal-value.cart-summary-total {
+      color: $color-blue;
+      font-size: 32px;
     }
+  }
 }
 
 .cart-priceItem--subtotal {
-    font-weight: fontWeight("semibold");
+  font-weight: fontWeight("semibold");
 }
 
 @media print {
-    .cart {
-        background-color: color("whites", "bright");
-        display: block;
-    }
+  .cart {
+    background-color: color("whites", "bright");
+    display: block;
+  }
 
-    .cart-header-link {
-        display: none;
-    }
+  .cart-header-link {
+    display: none;
+  }
 }
 
 .cart-priceItem--totalNote {
-    margin-bottom: 0;
-    margin-top: spacing("half");
+  margin-bottom: 0;
+  margin-top: spacing("half");
 }

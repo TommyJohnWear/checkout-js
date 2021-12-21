@@ -2,7 +2,7 @@ module.exports = {
     extends: 'stylelint-config-standard',
     plugins: ['stylelint-order'],
     rules: {
-        indentation: 4,
+        indentation: 2,
         'order/properties-alphabetical-order': true,
         'function-name-case': null,
         'at-rule-no-unknown': null,
