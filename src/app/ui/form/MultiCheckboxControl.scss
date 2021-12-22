@@ -1,12 +1,12 @@
 @import '../../ui/Base';
 
 .multiCheckbox--controls {
-    list-style: none;
-    margin: 0 0 spacing("half");
-    padding: 0;
+  list-style: none;
+  margin: 0 0 spacing("half");
+  padding: 0;
 }
 
 .multiCheckbox--control {
-    display: inline-block;
-    margin-right: spacing("quarter");
+  display: inline-block;
+  margin-right: spacing("quarter");
 }

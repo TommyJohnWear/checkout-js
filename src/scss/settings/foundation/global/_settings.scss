@@ -55,12 +55,12 @@ $text-direction:              ltr;
 $default-float:               left;
 $opposite-direction:          right;
 @if $text-direction == ltr {
-    $default-float:           left;
-    $opposite-direction:      right;
+  $default-float:           left;
+  $opposite-direction:      right;
 }
 @else {
-    $default-float:           right;
-    $opposite-direction:      left;
+  $default-float:           right;
+  $opposite-direction:      left;
 }
 
 // We use these to make sure border radius matches unless we want it different.

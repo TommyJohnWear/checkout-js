@@ -16,20 +16,20 @@
 
 .form-checkbox + .form-label,
 .form-radio + .form-label {
-    color: inherit;
+  color: inherit;
 }
 
 .form-checkbox:checked + .form-label::before,
 .form-radio:checked + .form-label::before {
-    background-color: color("highlight");
-    border-color: color("highlight");
+  background-color: color("highlight");
+  border-color: color("highlight");
 }
 
 .form-radio:checked + .form-label::after {
-    border: none;
-    transform: scale(0.5);
+  border: none;
+  transform: scale(0.5);
 }
 
 .formField--helpText {
-    color: color("greys");
+  color: color("greys");
 }

@@ -3,37 +3,37 @@
 // =============================================================================
 
 .cart-modal-body {
-    padding: 0 (spacing("single") + spacing("quarter"));
+  padding: 0 (spacing("single") + spacing("quarter"));
 }
 
 .cart-modal-header {
-    border-bottom: 0;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
+  border-bottom: 0;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .cart-modal-close,
 .cart-modal-link,
 .cart-modal-title {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .cart-modal-title {
-    padding-right: 0;
-    text-align: center;
-    width: 50%;
+  padding-right: 0;
+  text-align: center;
+  width: 50%;
 }
 
 .cart-modal-close {
-    text-align: left;
+  text-align: left;
 }
 
 .cart-modal-link {
-    text-align: right;
+  text-align: right;
 
-    svg {
-        fill: currentColor;
-    }
+  svg {
+    fill: currentColor;
+  }
 }

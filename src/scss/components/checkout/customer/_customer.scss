@@ -6,35 +6,35 @@
 //
 // -----------------------------------------------------------------------------
 .customerEmail-container {
-    @include grid-row;
+  @include grid-row;
 
-    margin-bottom: spacing("single");
+  margin-bottom: spacing("single");
 }
 
 .customerEmail-action {
-    @include grid-column($collapse: true, $columns: $total-columns);
+  @include grid-column($collapse: true, $columns: $total-columns);
 
-    margin-bottom: spacing("single");
-    padding: 0;
+  margin-bottom: spacing("single");
+  padding: 0;
 
-    @include breakpoint("small") {
-        margin: $customerEmail-action-margin;
-        padding-left: spacing("single");
-        width: grid-calc(5, $total-columns);
-    }
+  @include breakpoint("small") {
+    margin: $customerEmail-action-margin;
+    padding-left: spacing("single");
+    width: grid-calc(5, $total-columns);
+  }
 }
 
 .customerEmail-body {
-    @include grid-column($collapse: true, $columns: $total-columns);
+  @include grid-column($collapse: true, $columns: $total-columns);
 
-    @include breakpoint("small") {
-        width: grid-calc(7, $total-columns);
-    }
+  @include breakpoint("small") {
+    width: grid-calc(7, $total-columns);
+  }
 }
 
 .customerEmail-button {
-    padding: $customerEmail-button-padding;
-    width: 100%;
+  padding: $customerEmail-button-padding;
+  width: 100%;
 }
 
 // Customer header
@@ -42,35 +42,35 @@
 // -----------------------------------------------------------------------------
 .customerHeader,
 .checkout-step--customer {
-    .stepHeader-body {
-        overflow: visible;
-    }
+  .stepHeader-body {
+    overflow: visible;
+  }
 }
 
 // Customer view
 //
 // -----------------------------------------------------------------------------
 .customerView {
-    align-items: top;
-    display: flex;
+  align-items: top;
+  display: flex;
 }
 
 .customerView-actions {
-    margin-top: $customerView-actions-marginTop--large;
-    white-space: nowrap;
+  margin-top: $customerView-actions-marginTop--large;
+  white-space: nowrap;
 
-    @include breakpoint("small") {
-        margin-top: $customerView-actions-marginTop;
-    }
+  @include breakpoint("small") {
+    margin-top: $customerView-actions-marginTop;
+  }
 
-    .button {
-        margin-bottom: 0;
-    }
+  .button {
+    margin-bottom: 0;
+  }
 }
 
 .customerView-body {
-    @include textTruncateMultiline;
+  @include textTruncateMultiline;
 
-    margin-right: spacing("single");
-    width: 100%;
+  margin-right: spacing("single");
+  width: 100%;
 }
