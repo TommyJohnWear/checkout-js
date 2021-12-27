@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.188.2-alpha.1640638479789](https://github.com/bigcommerce/checkout-js/compare/v1.184.3-alpha.1639157046562...v1.188.2-alpha.1640638479789) (2021-12-27)
+
+
+### Features
+
+* **checkout:** CHECKOUT-6059 Add and update language translations ([#768](https://github.com/bigcommerce/checkout-js/issues/768)) ([abee757](https://github.com/bigcommerce/checkout-js/commit/abee7573271b5d85be83bffe93289c831ac86470))
+* **checkout:** CHECKOUT-6248 Display Error When Tax Service Unavailable ([#761](https://github.com/bigcommerce/checkout-js/issues/761)) ([a076d3d](https://github.com/bigcommerce/checkout-js/commit/a076d3d75a9975780399052dd8073aa3a6d3d613)), closes [#722](https://github.com/bigcommerce/checkout-js/issues/722) [#764](https://github.com/bigcommerce/checkout-js/issues/764) [#762](https://github.com/bigcommerce/checkout-js/issues/762) [#768](https://github.com/bigcommerce/checkout-js/issues/768)
+* **payment:** INT-4893 Add translations for errors from execute step ([27abc6d](https://github.com/bigcommerce/checkout-js/commit/27abc6d0ea15f8f2d7575c74f5e43b4490038958))
+* **payment:** INT-5000 Adding DigitalRiver custom error for translations ([2324d58](https://github.com/bigcommerce/checkout-js/commit/2324d58a644ea419fe1db0393201b28e6d07d5a2))
+* **payment:** INT-5000 Populate onUnhandledError correctly ([92dcc49](https://github.com/bigcommerce/checkout-js/commit/92dcc49c22ff295f5d05666286ccee565b187418))
+
+
+### Bug Fixes
+
+* **payment:** INT-5153 added card code validation ([be3b723](https://github.com/bigcommerce/checkout-js/commit/be3b723c186c33d30910a073e2209eacf2c592ac))
+
+
+### Code Refactoring
+
+* **payment:** INT-1866 Update Visa Checkout to Visa SRC ([#762](https://github.com/bigcommerce/checkout-js/issues/762)) ([814b461](https://github.com/bigcommerce/checkout-js/commit/814b4613f5fe3557d89c11cefe1e9fb4b703ae24))
+
 ### [1.188.1](https://github.com/bigcommerce/checkout-js/compare/v1.188.0...v1.188.1) (2021-12-22)
 
 

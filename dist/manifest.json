@@ -1,28 +1,28 @@
 {
   "version": 2,
-  "appVersion": "1.188.1",
+  "appVersion": "1.188.2-alpha.1640638479789",
   "dynamicChunks": {
     "css": [
       "billing-e15e5dfa.css",
-      "cart-summary~cart-summary-drawer-ad2d875f.css",
+      "cart-summary~cart-summary-drawer-4e921de3.css",
       "customer-1f3cba72.css",
-      "payment-8cbc3fde.css",
+      "payment-c90b291a.css",
       "shipping-44002772.css"
     ],
     "js": [
-      "billing-f0b4f9ae.js",
-      "cart-summary-drawer-fbcd26cb.js",
-      "cart-summary-152f9193.js",
-      "cart-summary~cart-summary-drawer-f5d264e8.js",
-      "customer-294ca627.js",
-      "order-summary-drawer-ec5ce446.js",
-      "order-summary-2312b725.js",
-      "payment-06cacab1.js",
-      "shipping-d24985ce.js",
-      "vendors~billing~customer~payment~shipping-b0289de4.js",
-      "vendors~billing~customer~shipping-6d2a7ade.js",
-      "vendors~billing~payment~shipping-3f138c91.js",
-      "vendors~billing~shipping-9dab61b7.js"
+      "billing-8419976d.js",
+      "cart-summary-drawer-a5e561bf.js",
+      "cart-summary-8cb193d0.js",
+      "cart-summary~cart-summary-drawer-6e25fd55.js",
+      "customer-35bcd07c.js",
+      "order-summary-drawer-ff6b97e0.js",
+      "order-summary-c95fc2e6.js",
+      "payment-16d72a02.js",
+      "shipping-5d3610e2.js",
+      "vendors~billing~customer~payment~shipping-b18df8e5.js",
+      "vendors~billing~customer~shipping-7f5c14a1.js",
+      "vendors~billing~payment~shipping-683739ff.js",
+      "vendors~billing~shipping-878febed.js"
     ],
     "svg": [
       "static/card-abef8595.svg"
@@ -32,14 +32,14 @@
     ]
   },
   "js": [
-    "runtime-92121174.js",
+    "runtime-72394f81.js",
     "polyfill~checkout-adab894f.js",
-    "transients~checkout-ef55876f.js",
+    "transients~checkout-6367276c.js",
     "sentry~checkout-558e85f1.js",
-    "vendors~checkout-e1dae4e3.js",
-    "checkout-80c2241c.js"
+    "vendors~checkout-e5723fd7.js",
+    "checkout-a2ca297d.js"
   ],
   "css": [
-    "checkout-f12f958b.css"
+    "checkout-8e765e1f.css"
   ]
 }
