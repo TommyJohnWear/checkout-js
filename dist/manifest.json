@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "appVersion": "1.188.1",
+=======
+  "appVersion": "1.184.3-alpha.1640603036019",
+>>>>>>> 511ccaa0 ("chore(release): 1.184.3-alpha.1640603036019 [skip ci]")
   "dynamicChunks": {
     "css": [
       "billing-e15e5dfa.css",
