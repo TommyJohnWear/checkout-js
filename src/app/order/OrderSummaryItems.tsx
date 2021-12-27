@@ -34,6 +34,8 @@ class OrderSummaryItems extends React.Component<OrderSummaryItemsProps, OrderSum
         const { items } = this.props;
         const { isExpanded } = this.state;
 
+        (window as any).utag_data.cart_total_items = getItemsCount(items);
+
         return (<Fragment>
             <h3
                 className="cart-section-heading optimizedCheckout-contentPrimary"

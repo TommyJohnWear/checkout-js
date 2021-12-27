@@ -187,6 +187,8 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
         const { error } = this.state;
         let errorModal = null;
 
+        (window as any).utag_data.page_name = 'checkout';
+
         if (error) {
             if (isCustomError(error)) {
                 errorModal = <ErrorModal error={ error } onClose={ this.handleCloseErrorModal } title={ error.title } />;
@@ -469,6 +471,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
     };
 
     private navigateToNextIncompleteStep: (options?: { isDefault?: boolean }) => void = options => {
+        (window as any).utag_data.customer_logged_in = 'false';
         const { steps } = this.props;
         const activeStepIndex = findIndex(steps, { isActive: true });
         const activeStep = activeStepIndex >= 0 && steps[activeStepIndex];
