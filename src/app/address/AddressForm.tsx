@@ -90,6 +90,8 @@ class AddressForm extends Component<AddressFormProps & WithLanguageProps> {
             shouldShowSaveAddress,
         } = this.props;
 
+        (window as any).utag_data.country_code = countryCode || '';
+
         return (<>
             <Fieldset>
                 <div className="checkout-address" ref={ this.containerRef as RefObject<HTMLDivElement> }>

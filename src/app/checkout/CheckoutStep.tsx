@@ -149,6 +149,8 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
             const position = this.getScrollPosition();
             const { type, onExpanded = noop } = this.props;
 
+            (window as any).utag_data.site_section = type || '';
+
             if (input) {
                 input.focus();
             }

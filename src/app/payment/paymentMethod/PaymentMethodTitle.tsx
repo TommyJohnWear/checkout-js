@@ -188,6 +188,8 @@ const PaymentMethodTitle: FunctionComponent<PaymentMethodTitleProps & WithLangua
             return;
         }
 
+        (window as any).utag_data.payment_method = methodName || '';
+
         if ('hostedForm' in values && 'cardType' in values.hostedForm && values.hostedForm.cardType) {
             return values.hostedForm.cardType;
         }

@@ -34,6 +34,13 @@ const StaticAddress: FunctionComponent<StaticAddressEditableProps & WithCheckout
         fields.filter(field => !field.custom)
     );
 
+    (window as any).utag_data.customer_first_name = address.firstName || '';
+    (window as any).utag_data.customer_last_name = address.lastName || '';
+    (window as any).utag_data.country_code = address.countryCode || '';
+    (window as any).utag_data.customer_city = address.city || '';
+    (window as any).utag_data.customer_state = address.stateOrProvince || '';
+    (window as any).utag_data.customer_zip = address.postalCode || '';
+
     return !isValid ? null : <div className="vcard checkout-address--static">
         {
             (address.firstName || address.lastName) &&

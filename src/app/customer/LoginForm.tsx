@@ -189,6 +189,7 @@ export default withLanguage(withFormik<LoginFormProps & WithLanguageProps, Login
         password: '',
     }),
     handleSubmit: (values, { props: { onSignIn } }) => {
+        (window as any).utag_data.customer_logged_in = 'true';
         onSignIn(values);
     },
     validationSchema: ({ language }: LoginFormProps & WithLanguageProps) =>
