@@ -1,0 +1,11 @@
+.button--primary {
+  background-color: green;
+  border-color: transparent;
+  border-radius: 4px;
+  font-weight: fontWeight("semibold");
+
+  &:hover {
+    background-color: rgba($button-primary, 0.85);
+    border-color: transparent;
+  }
+}

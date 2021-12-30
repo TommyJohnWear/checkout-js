@@ -193,7 +193,7 @@ const RedeemableForm: FunctionComponent<
               />
 
               <Button
-                  className="form-prefixPostfix-button--postfix"
+                  className="form-prefixPostfix-button--postfix testing-random-123"
                   id="applyRedeemableButton"
                   isLoading={ isApplyingRedeemable }
                   onClick={ handleSubmit(setSubmitted) }
@@ -201,6 +201,7 @@ const RedeemableForm: FunctionComponent<
                   variant={ ButtonVariant.Primary }
               >
                 <TranslatedString id="redeemable.apply_action" />
+                RANDOM TEST 2
               </Button>
             </div>
 

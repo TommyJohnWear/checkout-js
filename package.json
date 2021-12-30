@@ -94,7 +94,7 @@
     "circular-dependency-plugin": "^5.2.0",
     "conventional-recommended-bump": "^6.0.0",
     "core-js": "^3.1.4",
-    "css-loader": "^3.1.0",
+    "css-loader": "^3.6.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
@@ -106,10 +106,10 @@
     "http-server": "^0.11.1",
     "image-webpack-loader": "^5.0.0",
     "jest": "^24.8.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.14.1",
+    "mini-css-extract-plugin": "^1.4.1",
+    "node-sass": "^5.0.0",
     "react-test-renderer": "^16.8.6",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^10.2.0",
     "semver": "^6.3.0",
     "source-map-loader": "^0.2.4",
     "standard-version": "^8.0.1",
@@ -135,5 +135,9 @@
     "scripts": {
       "prebump": "./scripts/standard-version/prebump.js"
     }
+  },
+  "volta": {
+    "node": "14.18.2",
+    "npm": "6.14.15"
   }
 }
