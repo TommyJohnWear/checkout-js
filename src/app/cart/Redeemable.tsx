@@ -222,17 +222,6 @@ const RedeemableForm: FunctionComponent<
                 <></>
               ) }
 
-              { (coupons || []).map((coupon, index) => (
-                <OrderSummaryDiscount
-                    amount={ coupon.discountedAmount }
-                    code={ coupon.code }
-                    key={ index }
-                    label={ coupon.displayName }
-                    onRemoved={ onRemovedCoupon }
-                    testId="cart-coupon"
-                />
-              )) }
-
               { (giftCertificates || []).map((giftCertificate, index) => (
                 <OrderSummaryDiscount
                     amount={ giftCertificate.used }
@@ -244,21 +233,21 @@ const RedeemableForm: FunctionComponent<
                     testId="cart-gift-certificate"
                 />
               )) }
+
+                <Button
+                    className="form-prefixPostfix-button--postfix"
+                    id="applyRedeemableButton"
+                    isLoading={ isApplyingRedeemable }
+                    onClick={ handleSubmit(setSubmitted) }
+                    testId="redeemableEntry-submit"
+                    variant={ ButtonVariant.Primary }
+                >
+                    <TranslatedString id="redeemable.apply_action" />
+                </Button>
             </div>
           </Fragment>
         ),
-    [
-      appliedRedeemableError,
-      coupons,
-      giftCertificates,
-      handleKeyDown,
-      handleSubmit,
-      isApplyingRedeemable,
-      language,
-      onRemovedCoupon,
-      onRemovedGiftCertificate,
-      renderErrorMessage,
-    ]
+    [appliedRedeemableError, coupons, giftCertificates, handleKeyDown, handleSubmit, isApplyingRedeemable, language, onRemovedGiftCertificate, renderErrorMessage]
   );
 
   const renderContent = useCallback(

@@ -13,6 +13,7 @@ export enum ButtonVariant {
     Primary = 'primary',
     Secondary = 'secondary',
     Action = 'action',
+    Red = 'red',
 }
 
 export enum ButtonSize {

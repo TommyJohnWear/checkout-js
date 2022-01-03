@@ -84,7 +84,9 @@ const renderHeader: FunctionComponent<{
         <TranslatedString id="cart.cart_heading" />
     </ModalHeader>
 
-    { headerLink }
+    <div className="cart-modal-link">
+        { headerLink }
+    </div>
 </Fragment>);
 
 export default OrderSummaryModal;

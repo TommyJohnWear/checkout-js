@@ -103,7 +103,7 @@ const OrderSummaryDrawer: FunctionComponent<OrderSummaryDrawerProps & OrderSumma
                         id="cart.item_count_text"
                     />
                 </h3>
-                <a>
+                <a className="black-link">
                     <TranslatedString id="cart.show_details_action" />
                 </a>
             </div>

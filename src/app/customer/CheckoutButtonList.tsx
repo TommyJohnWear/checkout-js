@@ -1,7 +1,7 @@
 import { CustomerInitializeOptions, CustomerRequestOptions } from '@bigcommerce/checkout-sdk';
 import React, { memo, Fragment, FunctionComponent } from 'react';
 
-import { TranslatedString } from '../locale';
+/* import { TranslatedString } from '../locale'; */
 
 import CheckoutButton from './CheckoutButton';
 
@@ -60,7 +60,7 @@ const CheckoutButtonList: FunctionComponent<CheckoutButtonListProps> = ({
 
     return (
         <Fragment>
-            { !isInitializing && <p><TranslatedString id="remote.continue_with_text" /></p> }
+            { /* { !isInitializing && <p><TranslatedString id="remote.continue_with_text" /></p> } */ }
 
             <div className="checkoutRemote">
                 { supportedMethodIds.map(methodId =>

@@ -45,23 +45,24 @@
     &.form-input--withIcon {
       padding-right: #{$input-formIcon-width + spacing("single")};
     }
-  }
 
-  .form-input-icon {
-    height: $input-formIcon-width;
-    position: absolute;
-    right: spacing("half");
-    top: 50%;
-    transform: translateY(-50%);
-    width: $input-formIcon-width;
-  }
+    .form-checklist {
+        overflow: hidden;
+    }
 
-  .form-actions {
-    margin: #{spacing("single") + spacing("half")} 0;
-    padding: 0;
+    .form-field--error {
+        .form-input,
+        .form-select {
+            // background-color: $color-errorLighter;
+            background-color: $white;
+            transition: background-color 0.8s ease-out;
+        }
 
-    .button:first-child {
-      margin-left: 0;
+        .form-label,
+        .form-inlineMessage {
+            // color: color("error");
+            color: $red-dark;
+        }
     }
   }
 
@@ -71,11 +72,36 @@
     position: relative;
   }
 
-  .form-field--error {
-    .form-input,
-    .form-select {
-      background-color: $color-errorLighter;
-      transition: background-color 0.8s ease-out;
+    .form-legend-container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .form-legend {
+        @include headingStyle("h3");
+
+        background-color: $legend-bg;
+        color: $header-font-color;
+        font-weight: $legend-font-weight;
+        // padding: spacing("half") 0;
+        padding-bottom: 1rem;
+        width: auto;
+    }
+
+    .form-toggle {
+        background-color: $legend-bg;
+        color: $header-font-color;
+        font-weight: $legend-font-weight;
+    }
+
+    .form-toggle-password {
+        border-bottom: none;
+
+        @include breakpoint("large") {
+            display: none;
+        }
     }
 
     .form-label {

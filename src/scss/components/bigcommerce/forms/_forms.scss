@@ -16,7 +16,8 @@
 
 .form-checkbox + .form-label,
 .form-radio + .form-label {
-  color: inherit;
+    color: inherit;
+    width: auto;
 }
 
 .form-checkbox:checked + .form-label::before,
@@ -25,9 +26,42 @@
   border-color: color("highlight");
 }
 
+// errors
+.form-field--error {
+    .form-input,
+    .form-input:focus() .form-checkbox + .form-label::before,
+    .form-checkbox:focus + .form-label::before {
+        border-color: $red-dark;
+    }
+}
+
+// Radio
 .form-radio:checked + .form-label::after {
   border: none;
   transform: scale(0.5);
+}
+
+$border: 1px solid $grey;
+// Checkbox {
+.form-checkbox + .form-label::before,
+.form-checkbox:checked + .form-label::before {
+    background-color: $white;
+    border: $border;
+    border-radius: 2px;
+}
+
+.form-checkbox:focus + .form-label::before {
+    border: $border;
+    box-shadow: $outline-shadow;
+    outline: $outline-fallback;
+}
+
+.form-checkbox:checked:focus + .form-label::before {
+    box-shadow: $outline-shadow;
+}
+
+.form-checkbox:checked + .form-label::after {
+    color: $blue;
 }
 
 .formField--helpText {

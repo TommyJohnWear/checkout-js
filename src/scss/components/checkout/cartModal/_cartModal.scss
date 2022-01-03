@@ -27,7 +27,9 @@
 }
 
 .cart-modal-close {
-  text-align: left;
+    border-bottom: none;
+    color: $blue;
+    text-align: left;
 }
 
 .cart-modal-link {

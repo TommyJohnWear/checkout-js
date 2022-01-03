@@ -29,25 +29,22 @@
 // -----------------------------------------------------------------------------
 
 .cart-header {
-  display: table;
-  padding: $checkoutCart-padding;
-  width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: $checkoutCart-padding;
+    width: 100%;
 }
 
 .cart-title {
-  display: table-cell;
-  margin-bottom: 0;
-  vertical-align: middle;
+    margin-bottom: 0;
+    vertical-align: middle;
 }
 
 .cart-header-link {
-  display: table-cell;
-  text-align: right;
-  vertical-align: middle;
-
-  .icon {
-    margin: -2px 3px 0 0;
-  }
+    .icon {
+        margin: -2px 3px 0 0;
+    }
 
   svg {
     fill: currentColor;
@@ -164,7 +161,8 @@
 }
 
 .cart-priceItem-value {
-  text-align: right;
+    font-weight: normal;
+    text-align: right;
 }
 
 .cart-priceItem-postFix {
@@ -174,27 +172,18 @@
 }
 
 .cart-priceItem--total {
-  margin-bottom: 0;
+    margin-bottom: 0;
 
-  .cart-priceItem-label {
-    font-size: fontSize("smaller");
-  }
+    .cart-priceItem-label {
+        font-size: fontSize("smaller");
+    }
 
-  .cart-priceItem-value {
-    font-size: fontSize("larger");
-    font-weight: fontWeight("bold");
-    line-height: 1.2;
-  }
-
-  .cart-subtotal {
-    display: block;
-    font-size: 16px;
-  }
-
-  .cart-subtotal-container {
-    .cart-subtotal-value.cart-summary-total {
-      color: $color-blue;
-      font-size: 32px;
+    .cart-priceItem-value {
+        color: $blue;
+        font-size: fontSize("larger");
+        font-weight: inherit;
+        // font-weight: fontWeight("bold");
+        line-height: 1.2;
     }
   }
 }
