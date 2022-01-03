@@ -33,6 +33,19 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     onRemovedGiftCertificate,
     onRemovedCoupon,
 }) => {
+
+    let taxAmount = 0;
+    if (taxes?.length) {
+      for (const taxObj of taxes) {
+          taxAmount += taxObj.amount;
+      }
+    }
+
+    (window as any).utag_data.checkcout_tax_amount = taxAmount || '';
+    (window as any).utag_data.checkcout_shipping_amount = shippingAmount || '';
+    (window as any).utag_data.checkout_sub_total = subtotalAmount || '';
+    (window as any).utag_data.checkcout_discount_amount = discountAmount || '';
+
     return (<Fragment>
         <OrderSummaryPrice
             amount={ subtotalAmount }

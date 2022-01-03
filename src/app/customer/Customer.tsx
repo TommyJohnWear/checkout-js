@@ -304,6 +304,8 @@ class Customer extends Component<CustomerProps & WithCheckoutCustomerProps, Cust
             onContinueAsGuestError = noop,
         } = this.props;
 
+        (window as any).utag_data.customer_logged_in = 'false';
+
         const email = formValues.email.trim();
         try {
             const { data } = await continueAsGuest({
@@ -456,6 +458,10 @@ export function mapToWithCheckoutCustomerProps(
             isAccountCreationEnabled,
         },
     } = config as StoreConfig & { checkoutSettings: { isAccountCreationEnabled: boolean } };
+
+    (window as any).utag_data.customer_email = customer?.email || '';
+    (window as any).utag_data.customer_first_name = customer?.firstName || '';
+    (window as any).utag_data.customer_last_name = customer?.lastName || '';
 
     return {
         customerAccountFields: getCustomerAccountFields(),

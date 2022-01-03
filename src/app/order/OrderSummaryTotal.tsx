@@ -16,6 +16,8 @@ const OrderSummaryTotal: FunctionComponent<OrderSummaryTotalProps & WithCurrency
     orderAmount,
     currency,
 }) => {
+    (window as any).utag_data.shop_curreny = shopperCurrencyCode || '';
+    (window as any).utag_data.checkout_order_total = orderAmount || '';
 
     const hasDifferentCurrency = shopperCurrencyCode !== storeCurrencyCode;
     const label = <Fragment>
