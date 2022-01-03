@@ -32,12 +32,10 @@ export interface RedeemableFormValues {
   giftCertificates?: GiftCertificate[];
   discountAmount?: number;
   onRemovedGiftCertificate?(code: string): void;
-  onRemovedCoupon?(code: string): void;
 }
 
 export type ReedemableChildrenProps = Pick<
   RedeemableProps,
-  | 'onRemovedCoupon'
   | 'onRemovedGiftCertificate'
   | 'isRemovingGiftCertificate'
   | 'isRemovingCoupon'
@@ -100,7 +98,6 @@ const RedeemableForm: FunctionComponent<
   submitForm,
   language,
   coupons,
-  onRemovedCoupon,
   onRemovedGiftCertificate,
   giftCertificates,
 }) => {
