@@ -10,6 +10,7 @@ export interface OrderSummaryTotalProps {
   storeCurrencyCode: string;
 }
 
+<<<<<<< HEAD
 const OrderSummaryTotal: FunctionComponent<
   OrderSummaryTotalProps & WithCurrencyProps
 > = ({ shopperCurrencyCode, storeCurrencyCode, orderAmount, currency }) => {
@@ -24,6 +25,16 @@ const OrderSummaryTotal: FunctionComponent<
       { ` (${shopperCurrencyCode})` }
     </Fragment>
   );
+=======
+const OrderSummaryTotal: FunctionComponent<OrderSummaryTotalProps & WithCurrencyProps> = ({
+    shopperCurrencyCode,
+    storeCurrencyCode,
+    orderAmount,
+    currency,
+}) => {
+    (window as any).utag_data.shop_curreny = shopperCurrencyCode || '';
+    (window as any).utag_data.checkout_order_total = orderAmount || '';
+>>>>>>> head-1176/new
 
   return (
     <Fragment>

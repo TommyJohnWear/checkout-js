@@ -124,6 +124,7 @@ export default withLanguage(withFormik<GuestFormProps & WithLanguageProps, Guest
         privacyPolicy: false,
     }),
     handleSubmit: (values, { props: { onContinueAsGuest } }) => {
+        (window as any).utag_data.customer_logged_in = 'false';
         onContinueAsGuest(values);
     },
     validationSchema: ({ language, privacyPolicyUrl }: GuestFormProps & WithLanguageProps) => {
