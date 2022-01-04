@@ -1,5 +1,5 @@
 import { Coupon, GiftCertificate, Tax } from '@bigcommerce/checkout-sdk';
-import React, { memo, Fragment, FunctionComponent } from 'react';
+import React, { memo, useEffect, Fragment, FunctionComponent } from 'react';
 
 import { TranslatedString } from '../locale';
 
@@ -29,18 +29,15 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     handlingAmount,
     storeCreditAmount,
 }) => {
+    useEffect(() => {
+        (window as any).utag_data.tax_amount = taxes?.reduce((sum, { amount }) => sum + amount, 0) ?? 0;
+    }, [taxes]);
 
-    let taxAmount = 0;
-    if (taxes?.length) {
-      for (const taxObj of taxes) {
-          taxAmount += taxObj.amount;
-      }
-    }
-
-    (window as any).utag_data.checkcout_tax_amount = taxAmount || '';
-    (window as any).utag_data.checkcout_shipping_amount = shippingAmount || '';
-    (window as any).utag_data.checkout_sub_total = subtotalAmount || '';
-    (window as any).utag_data.checkcout_discount_amount = discountAmount || '';
+    useEffect(() => {
+        (window as any).utag_data.shipping_amount = shippingAmount || 0;
+        (window as any).utag_data.sub_total = subtotalAmount || 0;
+        (window as any).utag_data.discount_amount = discountAmount || 0;
+    }, [subtotalAmount, shippingAmount, discountAmount]);
 
     return (<Fragment>
         <OrderSummaryPrice
