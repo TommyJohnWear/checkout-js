@@ -43,6 +43,7 @@ const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerIn
             } else {
                 await signOut();
                 onSignOut({ isCartEmpty: false });
+                (window as any).utag_data.checkout_type = 'guest';
             }
         } catch (error) {
             if (error.type === 'checkout_not_available') {
@@ -52,6 +53,11 @@ const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerIn
             }
         }
     };
+
+    if  (isSignedIn) {
+        (window as any).utag_data.checkout_type = 'loggedIn';
+    }
+    (window as any).utag_data.customer_email = email || '';
 
     return (
         <div
