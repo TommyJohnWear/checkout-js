@@ -74,13 +74,13 @@ export interface AccountCreationValues {
 }
 
 const HowHeard: FunctionComponent = () => {
-    let inputVal;
-    const [selected, setSelected] = React.useState('');
+    const [selected, setSelected] = useState('');
     const options = ['Option 1', 'Option 2'];
-    const handleChange = (val: any) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const val = e.target.value;
       localStorage.setItem('selectHowHeard', val);
       setSelected(val);
-      inputVal = 'How Heard ' + selected;
     };
 
     useEffect(() => {
@@ -98,7 +98,7 @@ const HowHeard: FunctionComponent = () => {
         <div className="how-heard-wrapper">
             <h3 className="how-heard-title">How did you hear about us?</h3>
             <p className="how-heard-subtitle">We&apos;ll owe you one! (of no dollar value)</p>
-            <select className="how-heard-select" name="orderComment" onChange={ e  => handleChange(e.target.value) } value ={ inputVal }>
+            <select className="how-heard-select" name="orderComment" onChange={ handleChange } value ={ selected }>
                 <option disabled hidden value="">Make a selection</option>
                 { options.map(option => <option key={ option } value={ option }>{ option }</option>) }
             </select>
