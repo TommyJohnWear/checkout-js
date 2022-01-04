@@ -71,11 +71,6 @@ const Redeemable: FunctionComponent<
             <TranslatedString id="redeemable.toggle_action" />
           </a>
         ) }
-        { !shouldCollapseCouponCode && (
-          <div className="redeemable-label hiddenLabel">
-            <TranslatedString id="redeemable.toggle_action" />
-          </div>
-        ) }
         { (isOpen || !shouldCollapseCouponCode) && (
           <div data-test="redeemable-collapsable">
             <RedeemableForm { ...formProps } />
@@ -198,7 +193,6 @@ const RedeemableForm: FunctionComponent<
                   variant={ ButtonVariant.Primary }
               >
                 <TranslatedString id="redeemable.apply_action" />
-                RANDOM TEST 2
               </Button>
             </div>
 
@@ -230,17 +224,6 @@ const RedeemableForm: FunctionComponent<
                     testId="cart-gift-certificate"
                 />
               )) }
-
-                <Button
-                    className="form-prefixPostfix-button--postfix"
-                    id="applyRedeemableButton"
-                    isLoading={ isApplyingRedeemable }
-                    onClick={ handleSubmit(setSubmitted) }
-                    testId="redeemableEntry-submit"
-                    variant={ ButtonVariant.Primary }
-                >
-                    <TranslatedString id="redeemable.apply_action" />
-                </Button>
             </div>
           </Fragment>
         ),

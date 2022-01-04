@@ -67,6 +67,7 @@ class OrderSummaryPrice extends Component<
   render(): ReactNode {
     const {
       amount,
+      label,
       actionLabel,
       onActionTriggered,
       children,
@@ -98,19 +99,13 @@ class OrderSummaryPrice extends Component<
             ) }
           >
             <span className="cart-priceItem-label">
-              { currencyCode && (
-                <span className="cart-priceItem-currencyCode">
-                  { `(${currencyCode}) ` }
-                </span>
-              ) }
-              {
-                <span
-                    className="totalText cart-subtotal"
-                    data-test="cart-price-label"
-                >
-                  Total
-                </span>
-              }
+            <span data-test="cart-price-label">
+              { label }
+              { '  ' }
+            </span>
+            { currencyCode && <span className="cart-priceItem-currencyCode">
+                { `(${currencyCode}) ` }
+            </span> }
               { onActionTriggered && actionLabel && (
                 <span className="cart-priceItem-link">
                   <a
