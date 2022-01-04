@@ -1,7 +1,8 @@
 import { PaymentMethod } from '@bigcommerce/checkout-sdk';
+import currency from 'currency.js';
 import { withFormik, FormikProps, WithFormikConfig } from 'formik';
 import { isNil, noop, omitBy } from 'lodash';
-import React, { memo, useCallback, useContext, useMemo, FunctionComponent } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo, useState, FunctionComponent } from 'react';
 import { ObjectSchema } from 'yup';
 
 import { withLanguage, WithLanguageProps } from '../locale';
@@ -76,40 +77,65 @@ const HowHeard: FunctionComponent = () => {
     let inputVal;
     const [selected, setSelected] = React.useState('');
     const options = ['Option 1', 'Option 2'];
-    const handleChange = (val:any) => {
-      localStorage.setItem('selectHowHeard',val)
+    const handleChange = (val: any) => {
+      localStorage.setItem('selectHowHeard', val);
       setSelected(val);
-      inputVal = "How Heard " + selected;
-    }
-    React.useEffect(() => {
+      inputVal = 'How Heard ' + selected;
+    };
+
+    useEffect(() => {
       try {
-        const lastSelected = localStorage.getItem('selectHowHeard')
-      if(lastSelected) {
-        setSelected(lastSelected)
+        const lastSelected = localStorage.getItem('selectHowHeard');
+        if (lastSelected) {
+            setSelected(lastSelected);
+        }
+      } catch  (e) {
+        setSelected('');
       }
-      } catch(e) {
-        setSelected('')
-      }
-    },[])
+    }, []);
 
     return(
         <div className="how-heard-wrapper">
             <h3 className="how-heard-title">How did you hear about us?</h3>
             <p className="how-heard-subtitle">We&apos;ll owe you one! (of no dollar value)</p>
-            <select name="orderComment" className="how-heard-select" onChange={e=>handleChange(e.target.value)} value={inputVal}>
-                <option disabled hidden value=''>Make a selection</option>
-                { options.map(option => <option key={ option } value={option}>{ option }</option>) }
+            <select className="how-heard-select" name="orderComment" onChange={ e  => handleChange(e.target.value) } value ={ inputVal }>
+                <option disabled hidden value="">Make a selection</option>
+                { options.map(option => <option key={ option } value={ option }>{ option }</option>) }
             </select>
         </div>
     );
 };
 
 const PayPalComponent: FunctionComponent = () => {
+    const [total, setTotal] = useState<number | null>(null);
+
+    useEffect(() => {
+        const observer = new MutationObserver(mutations => mutations.forEach(mutation => {
+            const node = mutation?.addedNodes[0].textContent;
+            setTotal(node ? currency(node).value : null);
+        }));
+        const el = document.getElementsByClassName('cart-priceItem--total')[0]?.lastChild;
+        if (el) {
+            const text = el.textContent;
+            if (text) {
+                setTotal(currency(text).value);
+            }
+
+            observer.observe(el, { childList: true, subtree: true });
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
     return(
-        <div
-            data-pp-message
-            data-pp-amount="100.00">
-        </div>
+        <>
+            { total && total > 35 ? <div
+                data-pp-amount={ total }
+                data-pp-message
+            /> : null }
+        </>
     );
 };
 
