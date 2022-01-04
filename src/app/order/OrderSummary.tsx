@@ -1,5 +1,5 @@
 import { LineItemMap, ShopperCurrency, StoreCurrency } from '@bigcommerce/checkout-sdk';
-import React, { useMemo, FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, useMemo, FunctionComponent, ReactNode } from 'react';
 
 import removeBundledItems from './removeBundledItems';
 import OrderSummaryHeader from './OrderSummaryHeader';
@@ -29,6 +29,10 @@ const OrderSummary: FunctionComponent<OrderSummaryProps & OrderSummarySubtotalsP
     const nonBundledLineItems = useMemo(() => (
         removeBundledItems(lineItems)
     ), [lineItems]);
+
+    useEffect(() => {
+        (window as any).utag_data.line_items = lineItems;
+    }, [lineItems]);
 
     return <article className="cart optimizedCheckout-orderSummary" data-test="cart">
         <OrderSummaryHeader>
