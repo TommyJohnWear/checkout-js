@@ -21,6 +21,7 @@ export interface OrderSummarySubtotalsProps {
 }
 
 const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
+    coupons,
     discountAmount,
     taxes,
     giftWrappingAmount,
@@ -28,6 +29,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     subtotalAmount,
     handlingAmount,
     storeCreditAmount,
+    onRemovedCoupon,
 }) => {
     useEffect(() => {
         (window as any).utag_data.tax_amount = taxes?.reduce((sum, { amount }) => sum + amount, 0) ?? 0;
@@ -39,6 +41,10 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
         (window as any).utag_data.discount_amount = discountAmount || 0;
     }, [subtotalAmount, shippingAmount, discountAmount]);
 
+    useEffect(() => {
+        (window as any).utag_data.coupons = coupons;
+    }, [coupons]);
+
     return (<Fragment>
         <OrderSummaryPrice
             amount={ subtotalAmount }
@@ -46,6 +52,18 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             label={ <TranslatedString id="cart.subtotal_text" /> }
             testId="cart-subtotal"
         />
+
+        { (coupons || [])
+            .map((coupon, index) =>
+                <OrderSummaryDiscount
+                    amount={ coupon.discountedAmount }
+                    code={ coupon.code }
+                    key={ index }
+                    label={ coupon.displayName }
+                    onRemoved={ onRemovedCoupon }
+                    testId="cart-coupon"
+                />
+        ) }
 
         { !!discountAmount && <OrderSummaryDiscount
             amount={ discountAmount }
