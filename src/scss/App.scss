@@ -32,8 +32,6 @@
 //
 // -----------------------------------------------------------------------------
 
-@import "theme";
-
 // global app defined settings must be set first
 @import "settings/global/global"; // 1
 
@@ -57,9 +55,6 @@
 
 @import "tools/toolkit";
 
-// Fonts
-@import "fonts/fonts";
-
 // Components
 // -----------------------------------------------------------------------------
 //
@@ -80,4 +75,4 @@
 
 @import "layouts/layouts";
 
-@import "tj";
+@import "tj"

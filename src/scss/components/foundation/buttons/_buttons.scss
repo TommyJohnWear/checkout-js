@@ -11,7 +11,6 @@
 @use "sass:color" as scolor;
 
 @if $exportCSS--buttons { // 1
-
     .button {
         border-radius: 4px;
         text-transform: capitalize;
@@ -46,7 +45,6 @@
             }
         }
         // scss-lint:enable NestingDepth
-    }
 
     &:focus {
       border-color: color("highlight");
@@ -73,6 +71,7 @@
         border-color: color("whites") color("whites") color("greys") color("greys");
       }
     }
+}
 
     .button--primary {
         background-color: $red;

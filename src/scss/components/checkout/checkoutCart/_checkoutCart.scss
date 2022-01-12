@@ -172,21 +172,21 @@
 }
 
 .cart-priceItem--total {
-    margin-bottom: 0;
+  margin-bottom: 0;
 
-    .cart-priceItem-label {
-        font-size: fontSize("smaller");
-    }
+  .cart-priceItem-label {
+      font-size: fontSize("smaller");
+  }
 
-    .cart-priceItem-value {
-        color: $blue;
-        font-size: fontSize("larger");
-        font-weight: inherit;
-        // font-weight: fontWeight("bold");
-        line-height: 1.2;
-    }
+  .cart-priceItem-value {
+      color: $blue;
+      font-size: fontSize("larger");
+      font-weight: inherit;
+      // font-weight: fontWeight("bold");
+      line-height: 1.2;
   }
 }
+
 
 .cart-priceItem--subtotal {
   font-weight: fontWeight("semibold");
