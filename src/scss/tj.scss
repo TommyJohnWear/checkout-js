@@ -48,6 +48,17 @@
   box-shadow: none;
 }
 
+.optimizedCheckout-form-checklist-checkbox + .optimizedCheckout-form-label {
+  &::before {
+    border-radius: 50%;
+  }
+
+  &::after {
+    border-radius: 50%;
+    background-color: white;
+  }
+}
+
 .form-field--error {
   .optimizedCheckout-form-label, .form-inlineMessage {
     color: #9b2e29;
