@@ -1,11 +1,63 @@
-.button--primary {
-  background-color: green;
-  border-color: transparent;
-  border-radius: 4px;
-  font-weight: fontWeight("semibold");
+// Buttons
+.button--tertiary {
+  $color: #333;
+
+  border: 1px solid $color;
+  color: $color;
+  font-weight: bold;
 
   &:hover {
-    background-color: rgba($button-primary, 0.85);
-    border-color: transparent;
+    color: $color;
   }
+}
+
+// Links
+.cart-header-link {
+  $color: #333;
+
+  color: $color;
+  border-bottom: 1px solid $color;
+
+  &:hover {
+    border-bottom: 1px solid transparent;
+  }
+}
+  
+// Step Styles
+.checkout-steps {
+  @media only screen and (min-width: 64rem) {
+    width: 34rem;
+  }
+
+  @media only screen and (min-width: 80rem) {
+    width: 44rem;
+  }
+}
+
+.stepHeader-title {
+  color: #00424a;
+}
+
+.stepHeader-counter {
+  background-color: #00424a;
+}
+
+// Form Styles  
+.form-input.optimizedCheckout-form-input {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.form-field--error {
+  .optimizedCheckout-form-label, .form-inlineMessage {
+    color: #9b2e29;
+  }
+
+  .optimizedCheckout-form-input {
+    box-shadow: none;
+  }
+}
+
+.redeemable-label.error {
+  color: #9b2e29;
 }
