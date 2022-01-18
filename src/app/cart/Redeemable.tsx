@@ -154,11 +154,7 @@ const RedeemableForm: FunctionComponent<
                 <div
                     className={
                     'redeemable-label ' +
-                    (appliedRedeemableError &&
-                    appliedRedeemableError.errors &&
-                    appliedRedeemableError.errors[0]
-                      ? 'erroredLabel'
-                      : 'noErrors')
+                    (appliedRedeemableError?.errors?.[0] ? 'error' : null)
                   }
                 >
                   <TranslatedString id="redeemable.toggle_action" />
