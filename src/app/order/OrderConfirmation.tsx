@@ -107,10 +107,11 @@ class OrderConfirmation extends Component<
                 storePhoneNumber,
             },
             shopperConfig,
-            links: {
+            /* links: {
                 siteLink,
-            },
+            }, */
         } = config;
+        const siteLink = 'https://beta.tommyjohn.io';
 
         return (
             <div className={ classNames(
