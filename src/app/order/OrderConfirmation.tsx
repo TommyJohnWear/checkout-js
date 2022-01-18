@@ -74,8 +74,9 @@ class OrderConfirmation extends Component<
         } = this.props;
 
         loadOrder(orderId)
-            .then(({ data }) => {
-                const { links: { siteLink = '' } = {} } = data.getConfig() || {};
+            .then(() => { // { data }
+                // const { links: { siteLink = '' } = {} } = data.getConfig() || {};
+                const siteLink = 'https://beta.tommyjohn.io';
                 const messenger = createEmbeddedMessenger({ parentOrigin: siteLink });
 
                 this.embeddedMessenger = messenger;
