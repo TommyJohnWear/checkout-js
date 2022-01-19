@@ -36,14 +36,9 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     const zonosAmountsAtom = useStore(zonosAmounts);
 
     useEffect(() => {
-        (window as any).utag_data.tax_amount = taxes?.reduce((sum, { amount }) => sum + amount, 0) ?? 0;
-    }, [taxes]);
-
-    useEffect(() => {
-        (window as any).utag_data.shipping_amount = shippingAmount || 0;
         (window as any).utag_data.sub_total = subtotalAmount || 0;
         (window as any).utag_data.discount_amount = discountAmount || 0;
-    }, [subtotalAmount, shippingAmount, discountAmount]);
+    }, [subtotalAmount, discountAmount]);
 
     useEffect(() => {
         (window as any).utag_data.coupons = coupons;

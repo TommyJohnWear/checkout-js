@@ -34,7 +34,7 @@ const OrderSummary: FunctionComponent<OrderSummaryProps & OrderSummarySubtotalsP
     ), [lineItems]);
 
     const shippingAddressAtom = useStore(shippingAddress);
-    const { subtotalAmount } = orderSummarySubtotalsProps;
+    const { subtotalAmount, taxes } = orderSummarySubtotalsProps;
 
     useEffect(() => {
         // TODO: use wretch
@@ -73,6 +73,13 @@ const OrderSummary: FunctionComponent<OrderSummaryProps & OrderSummarySubtotalsP
             } catch (error) {
                 // console.error('Failed to get Zonos data');
                 zonosAmounts.set(null);
+            } finally {
+                console.log('zonosAmount', zonosAmounts);
+
+                (window as any).utag_data.shipping = zonosAmounts.get()?.[0]?.amount ?? null;
+                (window as any).utag_data.duty_amount = zonosAmounts.get()?.[1]?.amount ?? null;
+                (window as any).utag_data.fees_amount = zonosAmounts.get()?.[2]?.amount ?? null;
+                (window as any).utag_data.tax_amount = zonosAmounts.get()?.[3]?.amount ?? null;
             }
         };
 
@@ -81,8 +88,14 @@ const OrderSummary: FunctionComponent<OrderSummaryProps & OrderSummarySubtotalsP
         const countryCode = shippingAddressAtom?.countryCode;
         if (subtotalAmount > 40 && countryCode && countryCode !== 'US') {
             fetchZonos(lineItems?.physicalItems ?? []).catch(console.error);
+        } else {
+            zonosAmounts.set(null);
+            (window as any).utag_data.shipping_amount = shippingAmount;
+            (window as any).utag_data.tax_amount = taxes?.reduce((sum, { amount }) => sum + amount, 0) ?? 0;
+            (window as any).utag_data.duty_amount = undefined;
+            (window as any).utag_data.fees_amount = undefined;
         }
-    }, [lineItems, shippingAddressAtom, shippingAmount, subtotalAmount]);
+    }, [lineItems, shippingAddressAtom, shippingAmount, subtotalAmount, taxes]);
 
     return <article className="cart optimizedCheckout-orderSummary" data-test="cart">
         <OrderSummaryHeader>
