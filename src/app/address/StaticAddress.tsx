@@ -1,7 +1,8 @@
 import { Address, CheckoutSelectors, Country, FormField, ShippingInitializeOptions } from '@bigcommerce/checkout-sdk';
 import { isEmpty } from 'lodash';
-import React, { memo, FunctionComponent } from 'react';
+import React, { memo, useEffect, FunctionComponent } from 'react';
 
+import { shippingAddress } from '../../store';
 import { withCheckout, CheckoutContextProps } from '../checkout';
 
 import isValidAddress from './isValidAddress';
@@ -34,12 +35,16 @@ const StaticAddress: FunctionComponent<StaticAddressEditableProps & WithCheckout
         fields.filter(field => !field.custom)
     );
 
-    (window as any).utag_data.customer_first_name = address.firstName || '';
-    (window as any).utag_data.customer_last_name = address.lastName || '';
-    (window as any).utag_data.country_code = address.countryCode || '';
-    (window as any).utag_data.customer_city = address.city || '';
-    (window as any).utag_data.customer_state = address.stateOrProvince || '';
-    (window as any).utag_data.customer_zip = address.postalCode || '';
+    useEffect(() => {
+        shippingAddress.set(addressWithoutLocalization);
+
+        (window as any).utag_data.customer_first_name = address.firstName || '';
+        (window as any).utag_data.customer_last_name = address.lastName || '';
+        (window as any).utag_data.country_code = address.countryCode || '';
+        (window as any).utag_data.customer_city = address.city || '';
+        (window as any).utag_data.customer_state = address.stateOrProvince || '';
+        (window as any).utag_data.customer_zip = address.postalCode || '';
+    }, [address, addressWithoutLocalization]);
 
     return !isValid ? null : <div className="vcard checkout-address--static">
         {

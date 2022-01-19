@@ -1,6 +1,8 @@
 import { Coupon, GiftCertificate, Tax } from '@bigcommerce/checkout-sdk';
+import { useStore } from '@nanostores/react';
 import React, { memo, useEffect, Fragment, FunctionComponent } from 'react';
 
+import { zonosAmounts } from '../../store';
 import { TranslatedString } from '../locale';
 
 import OrderSummaryDiscount from './OrderSummaryDiscount';
@@ -31,6 +33,8 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     storeCreditAmount,
     onRemovedCoupon,
 }) => {
+    const zonosAmountsAtom = useStore(zonosAmounts);
+
     useEffect(() => {
         (window as any).utag_data.tax_amount = taxes?.reduce((sum, { amount }) => sum + amount, 0) ?? 0;
     }, [taxes]);
@@ -44,6 +48,8 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     useEffect(() => {
         (window as any).utag_data.coupons = coupons;
     }, [coupons]);
+
+    // console.log(zonosAmountsAtom);
 
     return (<Fragment>
         <OrderSummaryPrice
@@ -77,12 +83,12 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-gift-wrapping"
         /> }
 
-        <OrderSummaryPrice
+        { !zonosAmountsAtom?.length ? <OrderSummaryPrice
             amount={ shippingAmount }
             label={ <TranslatedString id="cart.shipping_text" /> }
             testId="cart-shipping"
             zeroLabel={ <TranslatedString id="cart.free_text" /> }
-        />
+        /> : null }
 
         { !!handlingAmount && <OrderSummaryPrice
             amount={ handlingAmount }
@@ -90,12 +96,12 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-handling"
         /> }
 
-        { (taxes || [])
-            .map((tax, index) =>
+        { (zonosAmountsAtom || taxes || [])
+            .map(({ name, amount }, index) =>
                 <OrderSummaryPrice
-                    amount={ tax.amount }
+                    amount={ amount }
                     key={ index }
-                    label={ tax.name }
+                    label={ name }
                     testId="cart-taxes"
                 />
          ) }

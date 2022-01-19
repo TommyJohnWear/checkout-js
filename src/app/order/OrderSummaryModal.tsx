@@ -35,33 +35,38 @@ const OrderSummaryModal: FunctionComponent<OrderSummaryDrawerProps & OrderSummar
     lineItems,
     total,
     ...orderSummarySubtotalsProps
-}) => (
-<Modal
-    additionalBodyClassName="cart-modal-body optimizedCheckout-orderSummary"
-    additionalHeaderClassName="cart-modal-header optimizedCheckout-orderSummary"
-    header={ renderHeader({ headerLink, onRequestClose }) }
-    isOpen={ isOpen }
-    onAfterOpen={ onAfterOpen }
-    onRequestClose={ onRequestClose }
->
-    <OrderSummarySection>
-        <OrderSummaryItems items={ lineItems } />
-    </OrderSummarySection>
-    <OrderSummarySection>
-        <OrderSummarySubtotals
-            { ...orderSummarySubtotalsProps }
-        />
-        { additionalLineItems }
-    </OrderSummarySection>
-    <OrderSummarySection>
-        <OrderSummaryTotal
-            orderAmount={ total }
-            shopperCurrencyCode={ shopperCurrency.code }
-            storeCurrencyCode={ storeCurrency.code }
-        />
-    </OrderSummarySection>
-</Modal>
-);
+}) => {
+    const { subtotalAmount } = orderSummarySubtotalsProps;
+
+    return (
+    <Modal
+        additionalBodyClassName="cart-modal-body optimizedCheckout-orderSummary"
+        additionalHeaderClassName="cart-modal-header optimizedCheckout-orderSummary"
+        header={ renderHeader({ headerLink, onRequestClose }) }
+        isOpen={ isOpen }
+        onAfterOpen={ onAfterOpen }
+        onRequestClose={ onRequestClose }
+    >
+        <OrderSummarySection>
+            <OrderSummaryItems items={ lineItems } />
+        </OrderSummarySection>
+        <OrderSummarySection>
+            <OrderSummarySubtotals
+                { ...orderSummarySubtotalsProps }
+            />
+            { additionalLineItems }
+        </OrderSummarySection>
+        <OrderSummarySection>
+            <OrderSummaryTotal
+                orderAmount={ total }
+                orderSubAmount={ subtotalAmount }
+                shopperCurrencyCode={ shopperCurrency.code }
+                storeCurrencyCode={ storeCurrency.code }
+            />
+        </OrderSummarySection>
+    </Modal>
+    );
+};
 
 const renderHeader: FunctionComponent<{
     headerLink: ReactNode;
