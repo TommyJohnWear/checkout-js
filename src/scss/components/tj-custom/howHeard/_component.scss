@@ -1,41 +1,98 @@
-.how-heard-wrapper {
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    color: #00424a;
+#how-heard {
     font-family: "Basetica";
-    padding: 16px;
-    @media screen and (max-width: $screen-medium-large) and (min-width: $screen-medium-small) {
-        margin: 42px 0;
-    }
-
-    & > :not(:last-child) {
-        margin-bottom: 16px;
-    }
-}
-
-.how-heard-title {
-    color: inherit;
-    font-family: "Basetica";
-    font-size: 16px;
     font-weight: normal;
-}
+    color: #4D4D4D;
 
-.how-heard-subtitle {
-    font-size: 14px;
-}
+    & > .title {
+        margin-bottom: 1rem;
 
-.how-heard-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('../static/svg/icon-chevron-down.svg');
-    background-position: calc(100% - 18px) 50%;
-    background-repeat: no-repeat;
-    border: 1px solid #c8c8c8;
-    border-radius: 4px;
-    color: #4d4d4d;
-    font-family: "Basetica";
-    font-size: 14px;
-    height: 50px;
-    padding: 0.75rem;
+        font-size: 1rem;
+        font-family: "Basetica";
+        font-weight: normal;
+        color: #4D4D4D;
+
+        @media screen and (min-width: 48rem) {
+            font-size: 1.125rem;
+        }
+
+        & > .line {
+            white-space: nowrap;
+        }
+    }
+
+    & > .field-wrapper {
+        @media screen and (min-width: 48rem) {
+            display: flex;
+            flex-direction: row;
+        }
+
+        & > :first-child {
+            margin-bottom: 1rem;
+
+            @media screen and (min-width: 48rem) {
+                margin-bottom: 0;
+                margin-right: 2rem;
+            }
+
+            @media screen and (min-width: 80rem) {
+                margin-right: 1rem;
+            }
+        }
+
+        
+        & > .select {
+            $spacing: 0.5rem;
+
+            min-height: 50px;
+
+            padding-left: $spacing;
+            padding-right: $spacing;
+
+            font-size: 0.875rem;
+            color: #737373;
+
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('../static/svg/chevron-down.svg');
+            background-repeat: no-repeat;
+            background-position: calc(100% - #{$spacing});
+            background-size: 1rem;
+            border: 1px solid #C8C8C8;
+            border-radius: 0;
+
+            @media screen and (min-width: 48rem) {
+                $spacing: 1rem;
+
+                flex: 1;
+
+                padding-left: $spacing;
+                padding-right: $spacing;
+                background-position: calc(100% - #{$spacing});
+            }
+        }
+        
+
+        & > .submit {
+            min-height: 50px;
+            width: 100%;
+           
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+
+            font-family: 'Basetica Bold';
+            font-weight: bold;
+            color: #fff;
+
+            background-color: #9B2E29;
+            border-radius: 4px;
+
+            @media screen and (min-width: 48rem) {
+                width: auto;
+                min-width: 6.25rem;
+
+                font-size: 0.875rem;
+            }
+        }
+    }
 }

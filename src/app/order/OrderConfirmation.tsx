@@ -11,6 +11,7 @@ import { isEmbedded, EmbeddedCheckoutStylesheet } from '../embeddedCheckout';
 import { CreatedCustomer, GuestSignUpForm, PasswordSavedSuccessAlert, SignedUpSuccessAlert, SignUpFormValues } from '../guestSignup';
 import { AccountCreationFailedError, AccountCreationRequirementsError } from '../guestSignup/errors';
 import { TranslatedString } from '../locale';
+import { HowHeard } from '../tj/HowHeard';
 import { Button, ButtonVariant } from '../ui/button';
 import { LazyContainer, LoadingSpinner } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
@@ -143,6 +144,8 @@ class OrderConfirmation extends Component<
                             customerCanBeCreated: !order.customerId,
                             shopperConfig,
                         }) }
+
+                        <HowHeard />
 
                         <div className="continueButtonContainer">
                             <a href={ siteLink } target="_top">

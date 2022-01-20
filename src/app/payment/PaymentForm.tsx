@@ -73,39 +73,6 @@ export interface AccountCreationValues {
     shouldCreateAccount: boolean;
 }
 
-const HowHeard: FunctionComponent = () => {
-    const [selected, setSelected] = useState('');
-    const options = ['Option 1', 'Option 2'];
-
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const val = e.target.value;
-      localStorage.setItem('selectHowHeard', val);
-      setSelected(val);
-    };
-
-    useEffect(() => {
-      try {
-        const lastSelected = localStorage.getItem('selectHowHeard');
-        if (lastSelected) {
-            setSelected(lastSelected);
-        }
-      } catch  (e) {
-        setSelected('');
-      }
-    }, []);
-
-    return(
-        <div className="how-heard-wrapper">
-            <h3 className="how-heard-title">How did you hear about us?</h3>
-            <p className="how-heard-subtitle">We&apos;ll owe you one! (of no dollar value)</p>
-            <select className="how-heard-select" name="orderComment" onChange={ handleChange } value ={ selected }>
-                <option disabled hidden value="">Make a selection</option>
-                { options.map(option => <option key={ option } value={ option }>{ option }</option>) }
-            </select>
-        </div>
-    );
-};
-
 const PayPalComponent: FunctionComponent = () => {
     const [total, setTotal] = useState<number | null>(null);
 
@@ -216,8 +183,6 @@ const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormV
             <PayPalComponent />
 
             <PaymentRedeemables />
-
-            <HowHeard />
 
             { isTermsConditionsRequired && <TermsConditions
                 termsConditionsText={ termsConditionsText }

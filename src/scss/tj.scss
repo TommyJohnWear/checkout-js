@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "Basetica";
+  font-weight: normal;
+  src: url('//d2jj063hrlzfd9.cloudfront.net/static/fonts/basetica-regular.woff') format("woff");
+}
+
+@font-face {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+  src: url('//d2jj063hrlzfd9.cloudfront.net/static/fonts/basetica-bold.woff') format("woff");
+}
+
+// Default
+html {
+  font-size: 16px;
+}
+
 // Buttons
 .button--tertiary {
   $color: #333;
@@ -38,7 +55,7 @@
   color: #00424a;
 }
 
-.stepHeader-counter {
+.optimizedCheckout-step {
   background-color: #00424a;
 }
 
@@ -72,3 +89,5 @@
 .redeemable-label.error {
   color: #9b2e29;
 }
+
+@import "./components/tj-custom/howHeard/_component.scss"
