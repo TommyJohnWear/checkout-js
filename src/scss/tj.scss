@@ -13,15 +13,48 @@
 // Default
 html {
   font-size: 16px;
+  color: #4d4d4d;
+}
+
+p {
+  font-size: inherit;
+}
+
+// Font
+.optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary {
+  font-family: "Basetica";
+}
+
+.button {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+// headings
+.cart-title, .cart-section-heading {
+  font-family: "Basetica Bold";
 }
 
 // Buttons
+.button--primary {
+  $color: #9b2e29;
+
+  color: #fff;
+
+  background-color: $color;
+  border: none;
+
+  &:hover {
+    background-color: rgb($color, 0.85);
+  }
+}
+
 .button--tertiary {
   $color: #333;
 
   border: 1px solid $color;
   color: $color;
-  font-weight: bold;
 
   &:hover {
     color: $color;
@@ -29,37 +62,158 @@ html {
 }
 
 // Links
-.cart-header-link {
+.cart-header-link, .checkout-customer-login {
   $color: #333;
 
+  position: relative;
+  display: inline-block;
+
   color: $color;
-  border-bottom: 1px solid $color;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 1px;
+    background-color: $color;
+    transform: scaleX(1);
+    transform-origin: top left;
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
-    border-bottom: 1px solid transparent;
+    color: $color;
+
+    &::before {
+      transform: scaleX(0);
+    }
   }
 }
-  
-// Step Styles
-.checkout-steps {
+
+// Layout
+.layout-main {
+  padding-left: 0;
+  padding-right: 0;
+
   @media only screen and (min-width: 64rem) {
     width: 34rem;
+    margin-right: 5rem;
   }
 
   @media only screen and (min-width: 80rem) {
     width: 44rem;
+    margin-right: 6.5rem;
   }
 }
 
+.checkout-steps {
+  padding-right: 0;
+}
+
+.layout-cart {
+  padding-left: 0;
+  padding-right: 0;
+}
+  
+// *** Step Styles ***
 .stepHeader-title {
+  color: #00424a;
+  font-size: 1.75rem;
+  font-family: 'Basetica Bold';
+  font-weight: bold;
+}
+
+.optimizedCheckout-headingSecondary {
+  font-size: 1rem;
+  font-family: "Basetica Bold";
+  font-weight: bold;
   color: #00424a;
 }
 
 .optimizedCheckout-step {
   background-color: #00424a;
+  
+  &:not(.stepHeader-counter--complete) {
+    $size: 2.125rem;
+
+    height: $size;
+    width: $size;
+  
+    &::before {
+      height: $size;
+      width: $size;
+    }
+  }
 }
 
-// Form Styles  
+.stepHeader-body {
+  font-size: .875rem;
+}
+
+// Shipping Step
+
+.shippingOption > :is(.shippingOption-desc, .shippingOption-price) {
+  font-size: inherit;
+}
+
+.shippingOption-price {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+}
+
+// *** Desktop Order Summary ***
+.cart-title {
+  font-size: 1rem;
+}
+
+.cart-header {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-section-heading {
+  font-family: "Basetica";
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.product-title {
+  font-size: 14px;
+  color: #00424a;
+}
+
+.product-price, .cart-priceItem-label, .cart-price-value {
+  font-family: "Basetica";
+  font-weight: normal;
+  font-size: .875rem;
+  color: #4d4d4d;
+}
+
+.cart-priceItem--total  {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.cart-priceItem--total {
+  & > .cart-priceItem-label {
+    font-size: 1rem;
+    color: #333;
+  }
+
+  & > .cart-priceItem-value > .cart-price-value {
+    font-size: 2rem;
+    color: #00424a;
+  }
+}
+
+// *** Form Styles ***
 .form-input.optimizedCheckout-form-input {
   border-radius: 0;
   box-shadow: none;

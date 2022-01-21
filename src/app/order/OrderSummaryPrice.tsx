@@ -120,9 +120,9 @@ class OrderSummaryPrice extends Component<
               ) }
             </span>
 
-            <span className="cart-priceItem-value cart-subtotal-container">
+            <span className="cart-priceItem-value">
               <span
-                  className="cart-price-value cart-subtotal-value cart-summary-total"
+                  className="cart-price-value"
                   data-test="cart-price-value"
               >
                 { isNumberValue(displayValue) ? (
