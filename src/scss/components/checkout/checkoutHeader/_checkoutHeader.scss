@@ -3,33 +3,33 @@
 // =============================================================================
 
 .checkoutHeader {
-  background-color: container("fill", "dark");
-  border-bottom: container("border");
-  text-align: center;
+    background-color: container("fill", "dark");
+    border-bottom: container("border");
+    text-align: center;
 
-  @include breakpoint("small") {
-    min-height: remCalc(120px);
-  }
+    @include breakpoint("small") {
+        min-height: remCalc(120px);
+    }
 
-  @include breakpoint("medium") {
-    text-align: left;
-  }
+    @include breakpoint("medium") {
+        text-align: left;
+    }
 }
 
 .checkoutHeader-content {
-  @include grid-row;
+    @include grid-row;
 
-  padding: spacing("single");
+    padding: spacing("single");
 
-  @include breakpoint("small") {
-    padding: spacing("double");
-  }
+    @include breakpoint("small") {
+        padding: spacing("double");
+    }
 }
 
 .checkoutHeader-heading {
-  @include headingStyle("h1");
+    @include headingStyle("h1");
 
-  color: inherit;
-  margin-bottom: 0;
-  word-wrap: break-word;
+    color: inherit;
+    margin-bottom: 0;
+    word-wrap: break-word;
 }

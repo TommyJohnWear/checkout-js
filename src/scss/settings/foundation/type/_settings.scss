@@ -12,8 +12,6 @@
 //
 // -----------------------------------------------------------------------------
 
-@import "../../../theme.scss";
-
 // We use these to define default font stacks
 $font-family-sans-serif:               fontFamily("sans");
 $font-family-serif:                    fontFamily("serif");
@@ -37,7 +35,7 @@ $font-smoothing:                       antialiased;
 $header-font-family:                   fontFamily("headingSans");
 $header-font-weight:                   $font-weight-normal;
 $header-font-style:                    normal;
-$header-font-color:                    $blue; //color("greys", "darkest");
+$header-font-color:                    color("greys", "darkest");
 $header-line-height:                   lineHeight("small");
 $header-top-margin:                    0;
 $header-bottom-margin:                 spacing("double");

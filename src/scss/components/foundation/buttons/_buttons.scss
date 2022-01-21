@@ -8,20 +8,16 @@
 // 1. If set to false, there is no outputted CSS for this component.
 //
 // -----------------------------------------------------------------------------
-@use "sass:color" as scolor;
 
 @if $exportCSS--buttons { // 1
+
     .button {
-        border-radius: 4px;
-        text-transform: capitalize;
-        transition-duration: 200ms;
-        transition-property: box-shadow, opacity, background-color;
+        text-transform: uppercase;
+        transition: all 100ms ease-out;
 
         &:focus {
-            box-shadow: $outline-shadow;
-            // border-color: color("highlight");
-            // box-shadow: 0 0 3px 1px rgba(color("highlight"), 0.6);
-            outline: $outline-fallback;
+            border-color: color("highlight");
+            box-shadow: 0 0 3px 1px rgba(color("highlight"), 0.6);
         }
 
         // scss-lint:disable NestingDepth
@@ -29,7 +25,7 @@
             color: color("whites");
 
             &.button--primary {
-                // color: color("greys", "darker");
+                color: color("greys", "darker");
             }
 
             &[disabled] {
@@ -45,74 +41,23 @@
             }
         }
         // scss-lint:enable NestingDepth
-
-    &:focus {
-      border-color: color("highlight");
-      box-shadow: 0 0 3px 1px rgba(color("highlight"), 0.6);
     }
 
-    // scss-lint:disable NestingDepth
-    &.is-loading {
-      color: color("whites");
-
-      &.button--primary {
-        color: color("greys", "darker");
-      }
-
-      &[disabled] {
-        color: color("greys", "light");
-      }
-
-      &::before {
-        @include loadingOverlay-spinner();
-        @include square(30px);
-
-        animation: spin $loadingOverlay-spinner-duration infinite $loadingOverlay-spinner-easing;
-        border-color: color("whites") color("whites") color("greys") color("greys");
-      }
-    }
-}
-
-    .button--primary {
-        background-color: $red;
-        border: none;
-        color: $white;
-        font-weight: bold;
-
-        &:active,
-        &:hover,
-        &:focus {
-            background-color: $red;
-            border: none;
-        }
-
-        &:hover {
-            background-color: rgba($red, 0.85);
-        }
+    .button--primary,
+    .button--action {
+        font-weight: fontWeight("semibold");
     }
 
-    .button--tertiary {
-        $border: 1px solid $black;
+    .button--small,
+    .button--tiny {
+        text-transform: none;
+    }
 
-        border: $border;
-        color: $black;
-        font-weight: bold;
+    .button--small {
+        line-height: 1;
+    }
 
-        &:active,
-        &:hover,
-        &:focus {
-            border: $border;
-            color: inherit;
-        }
-
-        &:hover {
-            $shadow: inset 0 0 0 1px $black;
-
-            box-shadow: $shadow;
-
-            &:focus {
-                box-shadow: $shadow, $outline-shadow;
-            }
-        }
+    .button--slab {
+        width: 100%;
     }
 }

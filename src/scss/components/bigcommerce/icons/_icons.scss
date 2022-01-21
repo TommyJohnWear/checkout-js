@@ -14,19 +14,19 @@
 // -----------------------------------------------------------------------------
 
 @if $exportCSS--icons {
-  .icon--small {
-    @include square($icon-size * 1.5);
-  }
+    .icon--small {
+        @include square($icon-size * 1.5);
+    }
 
-  .icon--medium {
-    @include square($icon-size * 2);
-  }
+    .icon--medium {
+        @include square($icon-size * 2);
+    }
 
-  .icon--large {
-    @include square($icon-size * 3);
-  }
+    .icon--large {
+        @include square($icon-size * 3);
+    }
 
-  .icon--error svg {
-    fill: color("error");
-  }
+    .icon--error svg {
+        fill: color("error");
+    }
 }

@@ -6,7 +6,6 @@
 }
 
 .dropdown-toggle--select {
-    border: 1px solid $grey;
     border-radius: 0;
     color: $input-font-color;
     margin-bottom: 0;
@@ -16,17 +15,9 @@
     text-transform: none;
     width: 100%;
 
-    /* &:focus,
+    &:focus,
     &:hover {
         border-color: $select-focus-borderColor;
-    } */
-
-    &:hover {
-        border: 1px solid $grey;
-    }
-
-    &:focus {
-        border: 1px solid $black;
     }
 }
 
