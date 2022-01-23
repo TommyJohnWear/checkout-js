@@ -44,8 +44,24 @@ export const HowHeard: FunctionComponent = () => {
     setSelected(val);
   };
 
+  const handleSubmit = async () => {
+    try {
+      await fetch('https://56bfdc2e7a2cbe18178a2c1a1d7cce00.m.pipedream.net',  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            selected,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return(
-      <form id="how-heard">
+      <form id="how-heard" onSubmit={ handleSubmit }>
           <h3 className="title">
             Before you go &mdash;
             <span className="line">how did you hear about Tommy John?</span>
