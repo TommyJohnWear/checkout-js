@@ -64,7 +64,7 @@ const LoginForm: FunctionComponent<LoginFormProps & WithLanguageProps & FormikPr
         }
 
         return (
-            <p className="optimizedCheckout-contentSecondary">
+            <p className="optimizedCheckout-contentSecondary change-email-text">
                 <TranslatedLink
                     data={ { email } }
                     id="customer.guest_could_login_change_email"

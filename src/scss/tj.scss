@@ -16,19 +16,45 @@ html {
   color: #4d4d4d;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+}
+
 p {
   font-size: inherit;
 }
 
 // Font
-.optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary {
-  font-family: "Basetica";
+.optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary, .optimizedCheckout-contentSecondary {
+  font-family: "Basetica" !important;
+  font-weight: normal;
+}
+
+.optimizedCheckout-contentSecondary {
+  color: #4d4d4d; 
 }
 
 .button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 50px;
+  width: auto;
+
+  padding: 0 1.5rem;
+
   font-family: "Basetica Bold";
   font-weight: bold;
+  font-size: 1rem;
   text-transform: capitalize;
+}
+
+a.button {
+  &::before {
+    display: none;
+  }
 }
 
 // headings
@@ -45,29 +71,35 @@ p {
   background-color: $color;
   border: none;
 
-  &:hover {
+  &:is(:hover, :focus, :active) {
     background-color: rgb($color, 0.85);
+    box-shadow: none;
   }
 }
 
-.button--tertiary {
+.button--tertiary, #checkout-guest-continue {
   $color: #333;
 
-  border: 1px solid $color;
   color: $color;
+  border: 1px solid $color;
 
-  &:hover {
+  &:is(:hover, :focus, :active) {
     color: $color;
+    border: 1px solid $color;
+    box-shadow: none;
   }
 }
 
 // Links
-.cart-header-link, .checkout-customer-login {
+a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   $color: #333;
 
   position: relative;
   display: inline-block;
 
+  font-family: "Basetica Bold";
+  font-weight: bold;
+  font-size: .75rem;
   color: $color;
 
   &::before {
@@ -121,11 +153,19 @@ p {
 }
   
 // *** Step Styles ***
+.stepHeader::before {
+  display: none;
+}
+
 .stepHeader-title {
   color: #00424a;
   font-size: 1.75rem;
   font-family: 'Basetica Bold';
   font-weight: bold;
+}
+
+.button.button--tiny {
+  min-width: 100px;
 }
 
 .optimizedCheckout-headingSecondary {
@@ -155,7 +195,24 @@ p {
   font-size: .875rem;
 }
 
-// Shipping Step
+// Customer Step
+#checkout-customer-login {
+  font-size: .75rem;
+}
+
+#checkout-customer-login-text {
+  font-size: .75rem;
+}
+
+.forgot-password-link {
+  margin-top: 0.5rem;
+}
+
+.change-email-text {
+  font-size: 12px;
+}
+
+// Shipping & Billing Steps
 
 .shippingOption > :is(.shippingOption-desc, .shippingOption-price) {
   font-size: inherit;
@@ -164,6 +221,46 @@ p {
 .shippingOption-price {
   font-family: "Basetica Bold";
   font-weight: bold;
+}
+
+// Shipping Subscribe
+#subscribe-to-text-wrapper {
+  background-color: #f5f5f5;
+  padding: 1.5rem 1rem;
+
+  & .form-field .form-label > div {
+      & > :not(:last-child) {
+          margin-bottom: 0.25rem;
+      }
+
+      & > :last-child {
+          margin-bottom: 0;
+      }
+  }
+
+  .subscribe-heading {
+      color: #4d4d4d;
+      font-size: 0.875rem;
+      font-weight: bold;
+  }
+
+  .subscribe-subheading {
+      font-size: 0.75rem;
+  }
+
+  .subscribe-text {
+      font-size: 0.625rem;
+  }
+}
+
+
+// Payment Step
+.form-checklist-item:hover, .form-checklist-item--selected {
+  background-color: transparent
+}
+
+.checkout-payment-continue {
+  min-width: 14rem;
 }
 
 // *** Desktop Order Summary ***
@@ -184,6 +281,8 @@ p {
 }
 
 .product-title {
+  font-family: "Basetica";
+  font-weight: normal;
   font-size: 14px;
   color: #00424a;
 }
@@ -213,10 +312,149 @@ p {
   }
 }
 
+.redeemable-label {
+  color: #4d4d4d !important;
+}
+
+.couponHeading {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+
+  font-size: .875rem;
+}
+
+.cart-priceItem-postFix {
+  font-size: .875rem;
+  color: #737373;
+}
+
+// Errors
+// .form-field--error
+.alertBox--error {
+  padding: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+
+  font-size: .875rem;
+  color: #9B2E29;
+
+  background-color: transparent;
+}
+
+.alertBox-icon {
+  display: none;
+}
+
 // *** Form Styles ***
-.form-input.optimizedCheckout-form-input {
+
+// Input
+.form-input {
+  font-size: .875rem;
+
+  border: 1px solid #c8c8c8;
   border-radius: 0;
   box-shadow: none;
+
+  &:focus {
+    border-color:#333;
+    box-shadow: none;
+  }
+
+  &.form-field--error {
+    background-color: transparent;
+  }
+}
+
+.form-field.form-field--error > .form-input {
+  background-color: transparent;
+}
+
+.form-field-error > .form-inlineMessage {
+  font-size: .875rem;
+}
+
+.erroredInput > .form-input {
+  border-color: #9b2e29;
+}
+
+.form-label, .form-checkbox + .form-label {
+  margin-bottom: 0.5rem;
+
+  color: #4d4d4d;
+  font-size: .875rem;
+}
+
+.form-label > small {
+  font-family: "Basetica";
+  font-weight: normal;
+  font-size: 14px;
+  color: #979797;
+}
+
+// Checkbox
+.form-checkbox + .form-label {
+  &::before {
+    border-color: #c8c8c8;
+  }
+
+  // TODO: need to set blue checkbox
+}
+
+.form-checkbox:focus + .form-label {
+  &::before {
+    border-color: #c8c8c8;
+    box-shadow: none;
+    // TODO: add outline
+  }
+}
+
+.form-checkbox:checked + .form-label {
+  &::before {
+    background-color: transparent;
+    border-color: #c8c8c8;
+  }
+}
+
+.form-checklist-checkbox ~ .form-label {
+  &::before {
+    height: 1rem;
+    width: 1rem;
+
+    border-color: #c8c8c8;
+  }
+
+  &::after {
+    visibility: hidden;
+  }
+}
+
+.form-checklist-checkbox:checked ~ .form-label {
+    &::before {
+      border: none;
+      background-color: #00424a;
+      height: 1rem;
+      width: 1rem;
+    }
+  
+    &::after {
+      visibility: visible;
+
+      top: 0;
+      left: calc(2rem - 3px);
+  
+      height: 6px;
+      width: 6px;
+  
+      background-color: #fff;
+    }
+}
+
+// Select
+.form-select {
+  &:focus {
+    border-color: initial;
+    box-shadow: none;
+  }
 }
 
 .optimizedCheckout-form-checklist-checkbox + .optimizedCheckout-form-label {

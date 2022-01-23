@@ -41,6 +41,7 @@ const PasswordField: FunctionComponent<PasswordFieldProps> = ({
         }
 
         return <a
+            className="forgot-password-link"
             data-test="forgot-password-link"
             href={ forgotPasswordUrl }
             rel="noopener noreferrer"

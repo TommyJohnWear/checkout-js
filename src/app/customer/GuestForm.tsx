@@ -94,7 +94,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                 </div>
 
                 {
-                    !isLoading && <p>
+                    !isLoading && <p id="checkout-customer-login-text">
                         <TranslatedString id="customer.login_text" />
                         { ' ' }
                         <a
