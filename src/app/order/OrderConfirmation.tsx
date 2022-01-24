@@ -145,7 +145,7 @@ class OrderConfirmation extends Component<
                             shopperConfig,
                         }) }
 
-                        <HowHeard />
+                        <HowHeard order={ order } />
 
                         <div className="continueButtonContainer">
                             <a href={ siteLink } target="_top">

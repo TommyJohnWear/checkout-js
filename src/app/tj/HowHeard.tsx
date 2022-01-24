@@ -1,3 +1,4 @@
+import { Order } from '@bigcommerce/checkout-sdk';
 import React, { useEffect, useState, FunctionComponent } from 'react';
 
 const options = [
@@ -30,8 +31,17 @@ const options = [
   { name: 'YouTube Influencer', value: 'YouTube Influencer' },
 ];
 
-export const HowHeard: FunctionComponent = () => {
+interface HowHeardProps {
+  order: Order;
+}
+
+export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   const [selected, setSelected] = useState('');
+  const dateFormat =  new Intl.DateTimeFormat('default', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
   useEffect(() => {
     const lastSelected = localStorage?.getItem('selectHowHeard');
@@ -44,7 +54,8 @@ export const HowHeard: FunctionComponent = () => {
     setSelected(val);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     try {
       await fetch('https://56bfdc2e7a2cbe18178a2c1a1d7cce00.m.pipedream.net',  {
         method: 'POST',
@@ -53,6 +64,8 @@ export const HowHeard: FunctionComponent = () => {
         },
         body: JSON.stringify({
             selected,
+            orderId: order.orderId,
+            date: dateFormat.format(new Date()),
         }),
       });
     } catch (error) {

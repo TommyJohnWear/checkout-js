@@ -127,6 +127,11 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
+// Page Heading
+.checkoutHeader-link::before {
+  display: none;
+}
+
 // Layout
 .layout-main {
   padding-left: 0;
@@ -255,12 +260,46 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 
 // Payment Step
+.checkout-form {
+  margin-left: 4.5rem;
+}
+
 .form-checklist-item:hover, .form-checklist-item--selected {
   background-color: transparent
 }
 
 .checkout-payment-continue {
   min-width: 14rem;
+}
+
+.form-ccFields {
+  & > .form-field {
+    padding: 0;
+    
+    &:nth-child(odd) {
+      margin-right: 0.5rem;
+    }
+
+    &:nth-child(even) {
+      min-width: 11rem;
+    }
+
+    &.form-field--error > .form-input {
+      border-color: #9b2e29;
+    }
+
+    .form-input {
+      height: 50px;
+
+      font-family: 'Basetica';
+      font-weight: normal;
+      font-size: .875rem;
+
+      &.has-icon + .icon {
+        height: 50px;
+      }
+    }
+  }
 }
 
 // *** Desktop Order Summary ***
@@ -313,7 +352,7 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 .redeemable-label {
-  color: #4d4d4d !important;
+  color: #4d4d4d;
 }
 
 .couponHeading {
@@ -365,8 +404,13 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
-.form-field.form-field--error > .form-input {
+.form-field.form-field--error .form-input {
   background-color: transparent;
+  border-color: #9b2e29;
+}
+
+.form-field.form-field--error .redeemable-label {
+  color: #9b2e29;
 }
 
 .form-field-error > .form-inlineMessage {
@@ -457,6 +501,14 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
+.dropdown-button {
+  font-family: 'Basetica';
+  font-weight: normal;
+  font-size: .875rem;
+  color: #4d4d4d;
+}
+
+// Checkbox
 .optimizedCheckout-form-checklist-checkbox + .optimizedCheckout-form-label {
   &::before {
     border-radius: 50%;
