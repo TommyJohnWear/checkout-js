@@ -46,8 +46,8 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   });
 
   useEffect(() => {
-    const lastSelected = localStorage?.getItem('selectHowHeard');
-    lastSelected ? setSelected(lastSelected) : setSelected('');
+    /* const lastSelected = localStorage?.getItem('selectHowHeard');
+    lastSelected ? setSelected(lastSelected) : setSelected(''); */
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -92,7 +92,7 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
           { options.map(({ name, value }) => <option key={ value } value={ value }>{ name }</option>) }
         </select>
 
-        <button className="submit">Submit</button>
+        <button className="submit" disabled={ !selected }>Submit</button>
       </div>
     </form>
   );
