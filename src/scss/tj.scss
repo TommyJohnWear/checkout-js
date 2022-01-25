@@ -310,6 +310,77 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
+// *** Mobile Cart Drawer Order Summary ***
+
+// Preview
+.cartDrawer {
+  padding: 1.5rem 2rem;
+  margin: 0;
+
+  box-shadow: 0 6px 20px #f4f4f4;
+
+  @media only screen and (min-width: 48rem) {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.cartDrawer-items, .cartDrawer-total {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+}
+
+.cartDrawer-body {
+  padding-left: 0;
+  margin-left: 1rem;
+
+  & > .cartDrawer-items {
+    font-size: 1.25rem;
+    color: #4d4d4d;
+  }
+}
+
+.cartDrawer-actions {
+  flex: unset;
+
+  & > .cartDrawer-total {
+    font-size: 1.75rem;
+    color: #00424a;
+  }
+}
+
+// Modal
+
+.cart-modal-header {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.cart-modal-header {
+  display: flex;
+  flex-direction: row;
+
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+
+  & > :is(:first-child, .cart-modal-link) {
+    flex: 1;
+  }
+
+  & > :first-child {
+    margin-right: auto;
+  }
+
+  & > .cart-modal-link {
+    margin-left: auto;
+
+    & > .modal-header-link {
+      display: inline-block;
+    }
+  }
+}
+
 // *** Desktop Order Summary ***
 .cart-title {
   font-size: 1rem;
