@@ -141,6 +141,10 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 // Layout
+.layout {
+  max-width: 80rem;
+}
+
 .layout-main {
   padding-left: 0;
   padding-right: 0;
@@ -351,8 +355,31 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 // Modal
+.modalOverlay.modalOverlay--afterOpen {
+  background-color: rgb(#F5F5F5, 0.95);
+}
 
-.cart-modal-header {
+.modal.modal--afterOpen {
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: min-content;
+  min-height: unset;
+  width: calc(100% - 2rem);
+  max-width: 29.5rem;
+
+  border-radius: 10px;
+  box-shadow: none;
+
+  @media only screen and (min-width: 48rem) {
+    top: 7rem;
+
+    width: 29.5rem;
+  }
+}
+
+.cart-modal-header, .cart-modal-body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -360,9 +387,12 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 .cart-modal-header {
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
+
+  box-shadow: none;
 
   & > :is(:first-child, .cart-modal-link) {
     flex: 1;
@@ -372,11 +402,53 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
     margin-right: auto;
   }
 
+  & > .cart-modal-close {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 30px;
+    width: 30px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  & > .modal-header-title {
+    font-size: 1rem;
+    color: #4d4d4d;
+  }
+
   & > .cart-modal-link {
     margin-left: auto;
 
     & > .modal-header-link {
       display: inline-block;
+    }
+  }
+}
+
+.cart-modal-body {
+  & > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .product {
+    flex-wrap: nowrap;
+
+    & > * {
+      align-self: unset;
+    }
+
+    & > :first-child {
+      padding-right: 0;
+      margin-right: 0.5rem;
+    }
+
+    & > :last-child {
+      margin-right: 1rem;
     }
   }
 }
@@ -645,10 +717,10 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
   & > .layout-cart {
     width: auto;
-    min-width: 20rem;
+    flex: 0 1 20rem;
 
     @media only screen and (min-width: 80rem) {
-      min-width: 379px;
+      flex-basis: 23.5rem;
     }
   }
 }

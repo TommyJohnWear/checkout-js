@@ -39,7 +39,7 @@ const OrderSummaryTotal: FunctionComponent<
       ) : (
         <TranslatedString id="cart.estimated_total_text" />
       ) }
-      { ` (${shopperCurrencyCode})` }
+      { /* { ` (${shopperCurrencyCode})` } */ }
     </Fragment>
   );
 
