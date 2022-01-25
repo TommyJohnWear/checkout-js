@@ -37,6 +37,8 @@ interface HowHeardProps {
 
 export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   const [selected, setSelected] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const dateFormat =  new Intl.DateTimeFormat('default', {
     month: 'short',
     day: 'numeric',
@@ -68,26 +70,30 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
             date: dateFormat.format(new Date()),
         }),
       });
+
+      setIsSubmitted(true);
     } catch (error) {
       console.error(error);
     }
   };
 
-  return(
-      <form id="how-heard" onSubmit={ handleSubmit }>
-          <h3 className="title">
-            Before you go &mdash;
-            <span className="line">how did you hear about Tommy John?</span>
-          </h3>
+  return isSubmitted ? (
+    <p className="how-heard-submitted-text">Thank you for your submission.</p>
+  ) : (
+    <form id="how-heard" onSubmit={ handleSubmit }>
+      <h3 className="title">
+        Before you go &mdash;
+        <span className="line">how did you hear about Tommy John?</span>
+      </h3>
 
-          <div className="field-wrapper">
-            <select className="select" name="orderComment" onChange={ handleChange } value ={ selected }>
-                <option disabled hidden value="">Source</option>
-                { options.map(({ name, value }) => <option key={ value } value={ value }>{ name }</option>) }
-            </select>
+      <div className="field-wrapper">
+        <select className="select" name="orderComment" onChange={ handleChange } value ={ selected }>
+          <option disabled hidden value="">Source</option>
+          { options.map(({ name, value }) => <option key={ value } value={ value }>{ name }</option>) }
+        </select>
 
-            <button className="submit">Submit</button>
-          </div>
-      </form>
+        <button className="submit">Submit</button>
+      </div>
+    </form>
   );
 };
