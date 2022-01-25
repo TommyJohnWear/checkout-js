@@ -12,7 +12,6 @@ import { CreatedCustomer, GuestSignUpForm, PasswordSavedSuccessAlert, SignedUpSu
 import { AccountCreationFailedError, AccountCreationRequirementsError } from '../guestSignup/errors';
 import { TranslatedString } from '../locale';
 import { HowHeard } from '../tj/HowHeard';
-import { Button, ButtonVariant } from '../ui/button';
 import { LazyContainer, LoadingSpinner } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
 
@@ -149,9 +148,7 @@ class OrderConfirmation extends Component<
 
                         <div className="continueButtonContainer">
                             <a href={ siteLink } target="_top">
-                                <Button variant={ ButtonVariant.Secondary }>
-                                    <TranslatedString id="order_confirmation.continue_shopping" />
-                                </Button>
+                                <TranslatedString id="order_confirmation.continue_shopping" />
                             </a>
                         </div>
                     </div>

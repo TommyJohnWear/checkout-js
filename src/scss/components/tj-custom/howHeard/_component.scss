@@ -31,7 +31,7 @@
 
             @media screen and (min-width: 48rem) {
                 margin-bottom: 0;
-                margin-right: 2rem;
+                margin-right: 1.5rem;
             }
 
             @media screen and (min-width: 80rem) {
@@ -64,7 +64,7 @@
             @media screen and (min-width: 48rem) {
                 $spacing: 1rem;
 
-                flex: 1;
+                flex-basis: 24rem;
 
                 padding-left: $spacing;
                 padding-right: $spacing;

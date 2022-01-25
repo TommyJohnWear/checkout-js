@@ -13,8 +13,8 @@ export interface OrderStatusProps {
 
 const OrderStatus: FunctionComponent<OrderStatusProps> = ({
     order,
-    supportEmail,
-    supportPhoneNumber,
+    // supportEmail,
+    // supportPhoneNumber,
 }) => {
 
     const getMandateProvider = useCallback(() => {
@@ -34,7 +34,18 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
     }, [order]);
 
     return <OrderConfirmationSection>
-        { order.orderId &&
+        <p className="order-confirmation-order-status-text">
+            You will receive an email shortly.
+            { ' ' }
+            { order.orderId ? <span>
+                The order confirmation number is
+                <strong>
+                    { ' ' }
+                    { order.orderId }
+                </strong>
+            </span> : undefined }
+        </p>
+        { /* { order.orderId &&
         <p data-test="order-confirmation-order-number-text">
             <TranslatedHtml
                 data={ { orderNumber: order.orderId } }
@@ -49,7 +60,7 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
                 supportEmail={ supportEmail }
                 supportPhoneNumber={ supportPhoneNumber }
             />
-        </p>
+        </p> */ }
 
         { order.mandateUrl && <a data-test="order-confirmation-mandate-link-text" href={ order.mandateUrl } rel="noopener noreferrer" target="_blank">
                 <TranslatedString
@@ -69,7 +80,7 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
     </OrderConfirmationSection>;
 };
 
-interface OrderStatusMessageProps {
+/* interface OrderStatusMessageProps {
     orderNumber: number;
     orderStatus: string;
     supportEmail?: string;
@@ -109,6 +120,6 @@ const OrderStatusMessage: FunctionComponent<OrderStatusMessageProps> = ({
                 'order_confirmation.order_without_support_number_text' }
         />;
     }
-};
+}; */
 
 export default memo(OrderStatus);

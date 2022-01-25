@@ -461,7 +461,7 @@
             "order_without_support_number_text": "An email will be sent containing information about your purchase. If you have any questions about your purchase, email us at <a href=\"mailto:{supportEmail}?Subject=Order {orderNumber}\" target=\"_top\">{supportEmail}</a>.",
             "thank_you_customer_heading": "Thank you {name}!",
             "thank_you_heading": "Thank you!",
-            "continue_shopping": "Continue Shopping »",
+            "continue_shopping": "Continue Shopping",
             "order_status_update_facebook_messenger_heading": "Get instant updates of your order to Messenger",
             "mandate_link_text": "{provider} Mandate",
             "boleto_link_text": "Boleto Bancário Ticket",

@@ -21,13 +21,21 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+strong {
+  font-family: "Basetica Bold";
+  font-weight: bold;
+}
+
 p {
+  font-family: "Basetica";
+  font-weight: normal;
   font-size: inherit;
+  color: inherit;
 }
 
 // Font
 .optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary, .optimizedCheckout-contentSecondary {
-  font-family: "Basetica" !important;
+  font-family: "Basetica"; // no important
   font-weight: normal;
 }
 
@@ -532,6 +540,93 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 .redeemable-label.error {
   color: #9b2e29;
+}
+
+
+
+// ******** Order Confirmation ********
+
+#checkout-app > .layout {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media only screen and (min-width: 48rem) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media only screen and (min-width: 64rem) {
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media only screen and (min-width: 80rem) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  & > .layout-main {
+    margin-right: auto;
+  }
+
+  & > .layout-cart {
+    width: auto;
+    min-width: 20rem;
+
+    @media only screen and (min-width: 80rem) {
+      min-width: 379px;
+    }
+  }
+}
+
+.orderConfirmation-section {
+  padding: 0;
+  margin: 0 0 2rem;
+
+  border: none;
+
+  @media only screen and (min-width: 48rem) {
+    margin-bottom: 4rem;
+  }
+}
+
+.orderConfirmation > .optimizedCheckout-headingPrimary {
+  margin-bottom: 1rem;
+
+  font-size: 1.75rem;
+  font-family: 'Basetica Bold';
+  font-weight: bold;
+  color: #00424a;
+
+  @media only screen and (min-width: 48rem) {
+    margin-bottom: 2rem;
+  }
+}
+
+.order-confirmation-order-status-text {
+  font-size: .875rem;
+  color: #4d4d4d;
+}
+
+.continueButtonContainer {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 2rem ;
+  margin-bottom: 0;
+
+  @media only screen and (min-width: 48rem) {
+    display: block;
+
+    margin-top: 3rem;
+  }
+
+  & > a {
+    font-size: 1rem;
+  }
 }
 
 @import "./components/tj-custom/howHeard/_component.scss"
