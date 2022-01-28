@@ -23,14 +23,13 @@ const OrderSummary: FunctionComponent<OrderSummaryProps & OrderSummarySubtotalsP
     additionalLineItems,
     lineItems,
     total,
-    shippingAmount,
     ...orderSummarySubtotalsProps
 }) => {
     const nonBundledLineItems = useMemo(() => (
         removeBundledItems(lineItems)
     ), [lineItems]);
 
-    const { subtotalAmount, taxes } = orderSummarySubtotalsProps;
+    const { shippingAmount, subtotalAmount, taxes } = orderSummarySubtotalsProps;
 
     useEffect(() => {
             (window as any).utag_data.shipping_amount = shippingAmount;
