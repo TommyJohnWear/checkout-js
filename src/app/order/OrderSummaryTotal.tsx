@@ -1,7 +1,5 @@
-import { useStore } from '@nanostores/react';
-import React, { useEffect, useState, Fragment, FunctionComponent } from 'react';
+import React, { useEffect, Fragment, FunctionComponent } from 'react';
 
-import { zonosAmounts } from '../../store';
 import { withCurrency, TranslatedString, WithCurrencyProps } from '../locale';
 
 import OrderSummaryPrice from './OrderSummaryPrice';
@@ -15,19 +13,10 @@ export interface OrderSummaryTotalProps {
 
 const OrderSummaryTotal: FunctionComponent<
   OrderSummaryTotalProps & WithCurrencyProps
-> = ({ shopperCurrencyCode, storeCurrencyCode, orderAmount, orderSubAmount, currency }) => {
-  const zonosAmountsAtom = useStore(zonosAmounts);
-
-  const [zonosTotal, setZonosTotal] = useState<null | number>(null);
-
+> = ({ shopperCurrencyCode, storeCurrencyCode, orderAmount, currency }) => {
   useEffect(() => {
-    const total = zonosAmountsAtom?.length ? orderSubAmount + zonosAmountsAtom?.reduce((sum, { amount: val }) => sum + val, 0) : null;
-    setZonosTotal(total);
-  }, [zonosAmountsAtom, orderSubAmount]);
-
-  useEffect(() => {
-    (window as any).utag_data.checkout_order_total = zonosTotal || orderAmount || '';
-  }, [zonosTotal, orderAmount]);
+    (window as any).utag_data.checkout_order_total = orderAmount || '';
+  }, [orderAmount]);
 
   (window as any).utag_data.shop_curreny = shopperCurrencyCode || '';
 
@@ -46,7 +35,7 @@ const OrderSummaryTotal: FunctionComponent<
   return (
     <Fragment>
       <OrderSummaryPrice
-          amount={ zonosTotal || orderAmount }
+          amount={ orderAmount }
           className="cart-priceItem--total"
           label={ label }
           superscript={ hasDifferentCurrency ? '*' : undefined }

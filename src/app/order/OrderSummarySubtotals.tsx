@@ -1,8 +1,6 @@
 import { Coupon, GiftCertificate, Tax } from '@bigcommerce/checkout-sdk';
-import { useStore } from '@nanostores/react';
 import React, { memo, useEffect, Fragment, FunctionComponent } from 'react';
 
-import { zonosAmounts } from '../../store';
 import { TranslatedString } from '../locale';
 
 import OrderSummaryDiscount from './OrderSummaryDiscount';
@@ -33,8 +31,6 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     storeCreditAmount,
     onRemovedCoupon,
 }) => {
-    const zonosAmountsAtom = useStore(zonosAmounts);
-
     useEffect(() => {
         (window as any).utag_data.sub_total = subtotalAmount || 0;
         (window as any).utag_data.discount_amount = discountAmount || 0;
@@ -43,8 +39,6 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     useEffect(() => {
         (window as any).utag_data.coupons = coupons;
     }, [coupons]);
-
-    // console.log(zonosAmountsAtom);
 
     return (<Fragment>
         <OrderSummaryPrice
@@ -78,12 +72,12 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-gift-wrapping"
         /> }
 
-        { !zonosAmountsAtom?.length ? <OrderSummaryPrice
+        <OrderSummaryPrice
             amount={ shippingAmount }
             label={ <TranslatedString id="cart.shipping_text" /> }
             testId="cart-shipping"
             zeroLabel={ <TranslatedString id="cart.free_text" /> }
-        /> : null }
+        />
 
         { !!handlingAmount && <OrderSummaryPrice
             amount={ handlingAmount }
@@ -91,7 +85,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-handling"
         /> }
 
-        { (zonosAmountsAtom || taxes || [])
+        { (taxes || [])
             .map(({ name, amount }, index) =>
                 <OrderSummaryPrice
                     amount={ amount }
