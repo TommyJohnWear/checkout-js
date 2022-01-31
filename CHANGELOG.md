@@ -2,6 +2,70 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.193.0](https://github.com/bigcommerce/checkout-js/compare/v1.192.0...v1.193.0) (2022-01-27)
+
+
+### Features
+
+* **payment:** INT-5460 Add translations ([aa5dafb](https://github.com/bigcommerce/checkout-js/commit/aa5dafb0084109d72127da858ce6ab7ef0411c5c))
+* **payment:** INT-5460 Remove the word Payment from error title ([86ba865](https://github.com/bigcommerce/checkout-js/commit/86ba865df03019e65e024fb91725e4a4458fbca3))
+
+## [1.192.0](https://github.com/bigcommerce/checkout-js/compare/v1.191.0...v1.192.0) (2022-01-24)
+
+
+### Features
+
+* **payment:** CHECKOUT-6070 Add applepay button component ([#778](https://github.com/bigcommerce/checkout-js/issues/778)) ([a7fa190](https://github.com/bigcommerce/checkout-js/commit/a7fa190d45b55500eeacb7d7c837f5b771578d85))
+
+## [1.191.0](https://github.com/bigcommerce/checkout-js/compare/v1.190.0...v1.191.0) (2022-01-22)
+
+
+### Features
+
+* **payment:** INT-5031 Stripe: Deleted everything not needed for upe ([925537f](https://github.com/bigcommerce/checkout-js/commit/925537f16f8cd6d9016dbf53879030aba190deaf))
+* **payment:** INT-5031 Stripe: Deleted everything not needed for upe ([4bc61a7](https://github.com/bigcommerce/checkout-js/commit/4bc61a72b6db9e105654e1dd99be73c15492426e))
+* **payment:** INT-5031 Stripe: PR feedback ([0e0f15e](https://github.com/bigcommerce/checkout-js/commit/0e0f15e39561cff9f069d3d47396ce2f327995a0))
+* **payment:** INT-5031 Stripe: Stripe UPE boilerplate ([0e83acc](https://github.com/bigcommerce/checkout-js/commit/0e83acccfdcad55a10d7987fe25b48c7b6c63512))
+
+
+### Bug Fixes
+
+* **payment:** INT-4674 added onPaymentSelect to expected object in test ([f0e48be](https://github.com/bigcommerce/checkout-js/commit/f0e48bef0e8d7bef35a4d725fde01b12693e8f5f))
+* **payment:** INT-4674 added unit test for reinitialization ([ab81b2a](https://github.com/bigcommerce/checkout-js/commit/ab81b2a47399874f095d36191ff47bba7212848d))
+* **payment:** INT-4674 reinitialize payment on payment select ([9696b00](https://github.com/bigcommerce/checkout-js/commit/9696b005cf3de63d42129e7425ded4b36b2e128a))
+
+## [1.190.0](https://github.com/bigcommerce/checkout-js/compare/v1.189.1...v1.190.0) (2022-01-18)
+
+
+### Features
+
+* **payment:** BOLT-135 multi-field component ([3bf3a27](https://github.com/bigcommerce/checkout-js/commit/3bf3a27c073aefacfdc7d03798996c328de7216e))
+* **payment:** BOLT-135 multi-field component ([e490beb](https://github.com/bigcommerce/checkout-js/commit/e490beb8181d207399a659f153b24320eb37d2ed))
+
+### [1.189.1](https://github.com/bigcommerce/checkout-js/compare/v1.189.0...v1.189.1) (2022-01-17)
+
+## [1.189.0](https://github.com/bigcommerce/checkout-js/compare/v1.188.3...v1.189.0) (2022-01-13)
+
+
+### Features
+
+* **payment:** INT-5331 Remove validation for Amazon Pay and all the time show an specific label ([#781](https://github.com/bigcommerce/checkout-js/issues/781)) ([7cdab30](https://github.com/bigcommerce/checkout-js/commit/7cdab3040975d61b2bdd3443a30bec99e9881088))
+* **payment:** PAYPAL-1257 replaced paypal credit logo ([#782](https://github.com/bigcommerce/checkout-js/issues/782)) ([6db9206](https://github.com/bigcommerce/checkout-js/commit/6db92068491003bb03508f02b00aeffb7af36db7))
+
+### [1.188.3](https://github.com/bigcommerce/checkout-js/compare/v1.188.2...v1.188.3) (2022-01-11)
+
+
+### Bug Fixes
+
+* **payment:** ADYEN-373 fix iDEAL payment ([c32f234](https://github.com/bigcommerce/checkout-js/commit/c32f2345e02334269db71cb806373bae30806abc))
+
+### [1.188.2](https://github.com/bigcommerce/checkout-js/compare/v1.188.1...v1.188.2) (2022-01-04)
+
+
+### Bug Fixes
+
+* **payment:** ADYEN-296 Card fields validation ([5a88768](https://github.com/bigcommerce/checkout-js/commit/5a8876862f4c8b9711da14750e6ed061de2c511b))
+
 ### [1.188.1](https://github.com/bigcommerce/checkout-js/compare/v1.188.0...v1.188.1) (2021-12-22)
 
 
