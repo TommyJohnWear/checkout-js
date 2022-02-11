@@ -1,5 +1,5 @@
 import { Coupon, GiftCertificate, Tax } from '@bigcommerce/checkout-sdk';
-import React, { memo, useEffect, Fragment, FunctionComponent } from 'react';
+import React, { memo, Fragment, FunctionComponent } from 'react';
 
 import { TranslatedString } from '../locale';
 
@@ -7,7 +7,7 @@ import OrderSummaryDiscount from './OrderSummaryDiscount';
 import OrderSummaryPrice from './OrderSummaryPrice';
 
 export interface OrderSummarySubtotalsProps {
-    coupons?: Coupon[];
+    coupons: Coupon[];
     giftCertificates?: GiftCertificate[];
     discountAmount?: number;
     taxes?: Tax[];
@@ -21,25 +21,18 @@ export interface OrderSummarySubtotalsProps {
 }
 
 const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
-    coupons,
     discountAmount,
+    giftCertificates,
     taxes,
     giftWrappingAmount,
     shippingAmount,
     subtotalAmount,
     handlingAmount,
     storeCreditAmount,
+    coupons,
+    onRemovedGiftCertificate,
     onRemovedCoupon,
 }) => {
-    useEffect(() => {
-        (window as any).utag_data.sub_total = subtotalAmount || 0;
-        (window as any).utag_data.discount_amount = discountAmount || 0;
-    }, [subtotalAmount, discountAmount]);
-
-    useEffect(() => {
-        (window as any).utag_data.coupons = coupons;
-    }, [coupons]);
-
     return (<Fragment>
         <OrderSummaryPrice
             amount={ subtotalAmount }
@@ -66,6 +59,19 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-discount"
         /> }
 
+        { (giftCertificates || [])
+            .map((giftCertificate, index) =>
+                <OrderSummaryDiscount
+                    amount={ giftCertificate.used }
+                    code={ giftCertificate.code }
+                    key={ index }
+                    label={ <TranslatedString id="cart.gift_certificate_text" /> }
+                    onRemoved={ onRemovedGiftCertificate }
+                    remaining={ giftCertificate.remaining }
+                    testId="cart-gift-certificate"
+                />
+        ) }
+
         { !!giftWrappingAmount && <OrderSummaryPrice
             amount={ giftWrappingAmount }
             label={ <TranslatedString id="cart.gift_wrapping_text" /> }
@@ -86,11 +92,11 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
         /> }
 
         { (taxes || [])
-            .map(({ name, amount }, index) =>
+            .map((tax, index) =>
                 <OrderSummaryPrice
-                    amount={ amount }
+                    amount={ tax.amount }
                     key={ index }
-                    label={ name }
+                    label={ tax.name }
                     testId="cart-taxes"
                 />
          ) }
