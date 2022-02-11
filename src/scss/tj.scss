@@ -1,3 +1,5 @@
+$outline: 2px solid #f7b9a1;
+
 @font-face {
   font-family: "Basetica";
   font-weight: normal;
@@ -143,6 +145,13 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 // Layout
 .layout {
   max-width: 80rem;
+
+  & > div {
+    @media only screen and (min-width: 64rem) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 
 .layout-main {
@@ -227,6 +236,10 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 .change-email-text {
   font-size: 12px;
+}
+
+#checkout-customer-continue {
+  white-space: nowrap;
 }
 
 // Shipping & Billing Steps
@@ -450,6 +463,11 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
     & > :last-child {
       margin-right: 1rem;
     }
+
+    .product-options {
+      display: flex;
+      white-space: nowrap;
+    }
   }
 }
 
@@ -577,6 +595,17 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
   color: #4d4d4d;
   font-size: .875rem;
+
+  &::before {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.form-checkbox[type='checkbox'] + .form-label {
+  &::after {
+    display: none;
+  }
 }
 
 .form-label > small {
@@ -592,14 +621,16 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
     border-color: #c8c8c8;
   }
 
-  // TODO: need to set blue checkbox
+  & > .icon {
+    display: none;
+  }
 }
 
 .form-checkbox:focus + .form-label {
   &::before {
     border-color: #c8c8c8;
-    box-shadow: none;
-    // TODO: add outline
+    box-shadow: none !important;
+    outline: $outline;
   }
 }
 
@@ -607,6 +638,18 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   &::before {
     background-color: transparent;
     border-color: #c8c8c8;
+  }
+
+  & > .icon {
+    display: block;
+    position: absolute;
+
+    top: 1px;
+    left: 1px;
+
+    color: #00424a;
+
+    pointer-events: none;
   }
 }
 
