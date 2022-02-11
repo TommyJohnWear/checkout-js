@@ -99,7 +99,7 @@
             "show_more": "Show more"
         },
         "customer": {
-            "checkout_as_guest_text": "Checking out as a <strong>Guest</strong>? You'll be able to save your details to create an account with us later.",
+            "checkout_as_guest_text": "<strong>Checking out as a Guest?</strong> You'll be able to save your details to create an account with us later.",
             "continue_as_guest_action": "Continue as guest",
             "create_account_action": "Create Account",
             "continue": "Continue",
@@ -143,7 +143,7 @@
             "password_over_maximum_length_error": "Password is too long",
             "password_required_error": "Password is required",
             "password_under_minimum_length_error": "Password is too short",
-            "reset_password_before_login_error": "Sign-in is currently unavailable. You will receive an e-mail in the next 5 minutes with instructions for resetting your password. If you don't receive this e-mail, please check your junk mail folder or contact us for further assistance.",
+            "reset_password_before_login_error": "Your password has expired. Please check your email for instructions on how to reset your password.",
             "returning_customer_text": "Returning Customer",
             "sign_in_action": "Sign In",
             "sign_in_error": "The email or password you entered is not valid.",
