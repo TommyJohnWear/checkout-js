@@ -18,6 +18,9 @@ html {
   color: #4d4d4d;
 }
 
+// Only focus for keyboard
+:focus:not(:focus-visible) { outline: none };
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Basetica Bold";
   font-weight: bold;
@@ -728,6 +731,24 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   color: #9b2e29;
 }
 
+// Dropdown
+.dropdown-button {
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:focus, &:hover {
+    border-color: #999;
+  }
+}
+
+.dropdown-menu a {
+  color: #4d4d4d;
+
+  &::before {
+    display: none;
+  }
+}
 
 
 // ******** Order Confirmation ********
