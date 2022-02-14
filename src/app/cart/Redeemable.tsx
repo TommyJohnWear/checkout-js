@@ -24,7 +24,8 @@ import { FormContextType,
   TextInput } from '../ui/form';
 import { Toggle } from '../ui/toggle';
 
-import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
+// import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
+import { AppliedRedeemablesProps } from './AppliedRedeemables';
 
 export interface RedeemableFormValues {
   redeemableCode: string;
