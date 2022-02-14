@@ -539,6 +539,14 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   color: #737373;
 }
 
+.coupon-container {
+  .cart-price-code {
+    margin-right: 0.5rem;
+
+    color: #737373;
+  }
+}
+
 // Errors
 // .form-field--error
 .alertBox--error {

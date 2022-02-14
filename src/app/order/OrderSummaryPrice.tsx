@@ -6,7 +6,7 @@ import { preventDefault } from '../common/dom';
 import { ShopperCurrency } from '../currency';
 
 export interface OrderSummaryPriceProps {
-  label: ReactNode;
+  label?: ReactNode;
   amount?: number | null;
   zeroLabel?: ReactNode;
   className?: string;

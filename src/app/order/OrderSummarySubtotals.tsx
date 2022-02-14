@@ -22,16 +22,16 @@ export interface OrderSummarySubtotalsProps {
 
 const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
     discountAmount,
-    giftCertificates,
+    // giftCertificates,
     taxes,
     giftWrappingAmount,
     shippingAmount,
     subtotalAmount,
     handlingAmount,
     storeCreditAmount,
-    coupons,
-    onRemovedGiftCertificate,
-    onRemovedCoupon,
+    // coupons,
+    // onRemovedGiftCertificate,
+    // onRemovedCoupon,
 }) => {
     return (<Fragment>
         <OrderSummaryPrice
@@ -41,7 +41,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-subtotal"
         />
 
-        { (coupons || [])
+        { /* (coupons || [])
             .map((coupon, index) =>
                 <OrderSummaryDiscount
                     amount={ coupon.discountedAmount }
@@ -51,7 +51,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
                     onRemoved={ onRemovedCoupon }
                     testId="cart-coupon"
                 />
-        ) }
+        ) */ }
 
         { !!discountAmount && <OrderSummaryDiscount
             amount={ discountAmount }
@@ -59,7 +59,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
             testId="cart-discount"
         /> }
 
-        { (giftCertificates || [])
+        { /* (giftCertificates || [])
             .map((giftCertificate, index) =>
                 <OrderSummaryDiscount
                     amount={ giftCertificate.used }
@@ -70,7 +70,7 @@ const OrderSummarySubtotals: FunctionComponent<OrderSummarySubtotalsProps> = ({
                     remaining={ giftCertificate.remaining }
                     testId="cart-gift-certificate"
                 />
-        ) }
+        ) */ }
 
         { !!giftWrappingAmount && <OrderSummaryPrice
             amount={ giftWrappingAmount }

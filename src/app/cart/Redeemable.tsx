@@ -93,8 +93,9 @@ const RedeemableForm: FunctionComponent<
   submitForm,
   language,
   coupons,
-  onRemovedGiftCertificate,
+  onRemovedCoupon,
   giftCertificates,
+  onRemovedGiftCertificate,
 }) => {
   const handleKeyDown = useCallback(
     memoizeOne(
@@ -209,12 +210,21 @@ const RedeemableForm: FunctionComponent<
                 <></>
               ) }
 
+              { (coupons || []).map((coupon, index) =>
+                <OrderSummaryDiscount
+                    amount={ coupon.discountedAmount }
+                    code={ coupon.code }
+                    key={ index }
+                    onRemoved={ onRemovedCoupon }
+                    testId="cart-coupon"
+                />
+              ) }
+
               { (giftCertificates || []).map((giftCertificate, index) => (
                 <OrderSummaryDiscount
                     amount={ giftCertificate.used }
                     code={ giftCertificate.code }
                     key={ index }
-                    label={ <TranslatedString id="cart.gift_certificate_text" /> }
                     onRemoved={ onRemovedGiftCertificate }
                     remaining={ giftCertificate.remaining }
                     testId="cart-gift-certificate"
@@ -223,7 +233,7 @@ const RedeemableForm: FunctionComponent<
             </div>
           </Fragment>
         ),
-    [appliedRedeemableError, coupons, giftCertificates, handleKeyDown, handleSubmit, isApplyingRedeemable, language, onRemovedGiftCertificate, renderErrorMessage]
+    [appliedRedeemableError, coupons, giftCertificates, handleKeyDown, handleSubmit, isApplyingRedeemable, language, onRemovedCoupon, onRemovedGiftCertificate, renderErrorMessage]
   );
 
   const renderContent = useCallback(
