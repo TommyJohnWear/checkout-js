@@ -35,7 +35,7 @@ const CheckboxInput = forwardRef((
 
         <Label htmlFor={ id }>
             <BsCheck2 className="icon" />
-            { label }
+            <span className="label-text">{ label }</span>
         </Label>
     </>
 ));

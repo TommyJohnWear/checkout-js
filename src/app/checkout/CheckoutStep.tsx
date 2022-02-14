@@ -82,7 +82,7 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
                 className={ classNames(
                     'checkout-step',
                     'optimizedCheckout-checkoutStep',
-                    { [`checkout-step--${type}`]: !!type }
+                    { [`checkout-step--${type}`]: !!type, active: isActive }
                 ) }
                 ref={ this.containerRef }
             >
