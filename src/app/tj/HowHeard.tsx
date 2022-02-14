@@ -38,8 +38,8 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   });
 
   useEffect(() => {
-    /* const lastSelected = localStorage?.getItem('selectHowHeard');
-    lastSelected ? setSelected(lastSelected) : setSelected(''); */
+    const lastSelected = localStorage?.getItem('selectHowHeard');
+    lastSelected ? setSelected(lastSelected) : setSelected('');
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
