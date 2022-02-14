@@ -246,6 +246,16 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
+#checkout-shipping-continue,
+#checkout-billing-continue,
+#checkout-payment-continue {
+  width: 100%;
+
+  @media screen and (min-width: 80rem) {
+    max-width: 14rem;
+  }
+}
+
 // Customer Step
 #checkout-customer-login {
   font-size: .75rem;
@@ -276,14 +286,6 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 .shippingOption-price {
   font-family: "Basetica Bold";
   font-weight: bold;
-}
-
-#checkout-shipping-continue, #checkout-billing-continue {
-  width: 100%;
-
-  @media screen and (min-width: 80rem) {
-    max-width: 14rem;
-  }
 }
 
 // Shipping Subscribe
