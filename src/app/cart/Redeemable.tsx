@@ -74,7 +74,7 @@ const Redeemable: FunctionComponent<
         { (isOpen || !shouldCollapseCouponCode) && (
           <div data-test="redeemable-collapsable">
             <RedeemableForm { ...formProps } />
-            { showAppliedRedeemables && <AppliedRedeemables { ...formProps } /> }
+            { /* showAppliedRedeemables && <AppliedRedeemables { ...formProps } /> */ }
           </div>
         ) }
       </Fragment>
