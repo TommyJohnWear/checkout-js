@@ -334,13 +334,79 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 // Shipping & Billing Steps
 
-.shippingOption > :is(.shippingOption-desc, .shippingOption-price) {
-  font-size: inherit;
+// hide shipping option since it's not in mock
+.staticConsignment .shippingOption {
+  & > :is(.shippingOption-desc, .shippingOption-price) {
+    font-size: inherit;
+  }
+
+  & > .shippingOption-desc {
+    padding-right: 0.5rem;
+  }
+
+  & > .shippingOption-price {
+    padding-left: 0;
+
+    font-weight: inherit;
+  }
 }
 
-.shippingOption-price {
-  font-family: "Basetica Bold";
-  font-weight: bold;
+#checkout-shipping-options {
+  .form-checklist-item {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+
+    @media only screen and (min-width: 48rem) {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    @media only screen and (min-width: 64rem) {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+    @media only screen and (min-width: 80rem) {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+  }
+
+  .form-checklist-checkbox ~ .form-label {
+    padding-left: 2rem;
+    padding-right: 0;
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      left: calc(0.5rem - 3px);
+    }
+  }
+}
+
+.shippingOptionLabel {
+  width: 100%;
+
+  & > .shippingOption {
+    width: 100%;
+
+    font-weight: normal;
+    font-family: "Basetica";
+    font-size: .875rem;
+    color: #4d4d4d;
+  
+    & > :is(.shippingOption-desc, .shippingOption-price) {
+      font-weight: inherit;
+      font-family: inherit;
+      font-size: inherit;
+    }
+  
+    & > .shippingOption-price {
+      margin-left: auto;
+    }
+  }
 }
 
 // Shipping Subscribe
