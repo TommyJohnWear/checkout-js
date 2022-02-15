@@ -145,10 +145,65 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   display: none;
 }
 
+// Header
+.checkoutHeader  {
+  height: 6.25rem;
+  max-height: 6.25rem;
+  min-height: unset;
+
+  & > .checkoutHeader-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    height: 100%;
+    max-height: 100%;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    & > .checkoutHeader-heading {
+      height: 60px;
+      max-height: 100%;
+
+      & > .checkoutHeader-link {
+        height: 100%;
+
+        & > .checkoutHeader-logo {
+          max-height: 100%;
+        }
+      }
+    } 
+  }
+}
+
+.checkoutHeader-content, .layout {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media only screen and (min-width: 48rem) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media only screen and (min-width: 64rem) {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  @media only screen and (min-width: 80rem) {
+    max-width: 80rem;
+
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
 // Layout
 .layout {
-  max-width: 80rem;
-
   & > div {
     @media only screen and (min-width: 64rem) {
       display: flex;
@@ -158,8 +213,8 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 .layout-main {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   @media only screen and (min-width: 64rem) {
     width: 34rem;
@@ -486,27 +541,29 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
     padding-left: 0;
     padding-right: 0;
   }
+}
 
-  .product {
-    flex-wrap: nowrap;
+.productList-item .product {
+  flex-wrap: nowrap;
 
-    & > * {
-      align-self: unset;
-    }
+  & > * {
+    align-self: unset;
+  }
 
-    & > :first-child {
-      padding-right: 0;
-      margin-right: 0.5rem;
-    }
+  & > :first-child {
+    padding-right: 0;
+    margin-right: 0.5rem;
+  }
 
-    & > :last-child {
-      margin-right: 1rem;
-    }
+  & > :last-child {
+    margin-right: 1rem;
+  }
 
-    .product-options {
-      display: flex;
-      white-space: nowrap;
-    }
+  .product-options {
+    display: flex;
+    white-space: nowrap;
+
+    color: #808080;
   }
 }
 
@@ -563,11 +620,16 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   color: #4d4d4d;
 }
 
-.couponHeading {
+.couponContainer {
   margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
 
-  font-size: .875rem;
+  & > .couponHeading {
+    font-size: .875rem;
+  }
+
+  & > :not(:first-child) {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .cart-priceItem-postFix {
@@ -577,6 +639,8 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 .coupon-container {
   .cart-price-code {
+    width: 14.5ch;
+
     margin-right: 0.5rem;
 
     color: #737373;
