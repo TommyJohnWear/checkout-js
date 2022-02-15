@@ -891,20 +891,72 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 // Select
-.form-select {
-  &:focus {
-    border-color: initial;
-    box-shadow: none;
+.select-field-wrapper {
+  position: relative;
+
+  & > .form-select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    &:focus {
+      border-color: initial;
+      box-shadow: none;
+    }
+  }
+
+  & > .icon {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+
+    height: 1rem;
+    width: 1rem;
+
+    transform: translateY(-50%);
   }
 }
 
-.dropdown-button {
+// Dropdown
+.dropdownTrigger {
+  & > .icon {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+
+    height: 1rem;
+    width: 1rem;
+
+    transform: translateY(-50%);
+  }
+}
+
+.dropdown-button.dropdown-toggle--select {
   justify-content: flex-start;
 
   font-family: 'Basetica';
   font-weight: normal;
   font-size: .875rem;
   color: #4d4d4d;
+
+  &::after {
+    display: none;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &:focus, &:hover {
+    border-color: #999;
+  }
+}
+
+.dropdown-menu a {
+  color: #4d4d4d;
+
+  &::before {
+    display: none;
+  }
 }
 
 // Checkbox
@@ -932,26 +984,6 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 .redeemable-label.error {
   color: #9b2e29;
 }
-
-// Dropdown
-.dropdown-button {
-  &:focus {
-    box-shadow: none;
-  }
-
-  &:focus, &:hover {
-    border-color: #999;
-  }
-}
-
-.dropdown-menu a {
-  color: #4d4d4d;
-
-  &::before {
-    display: none;
-  }
-}
-
 
 // ******** Order Confirmation ********
 

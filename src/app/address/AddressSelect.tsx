@@ -1,5 +1,6 @@
 import { Address, CustomerAddress } from '@bigcommerce/checkout-sdk';
 import React, { memo, FunctionComponent, PureComponent, ReactNode } from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 
 import { preventDefault } from '../common/dom';
 import { TranslatedString } from '../locale';
@@ -40,6 +41,7 @@ class AddressSelect extends PureComponent<AddressSelectProps> {
                             addresses={ addresses }
                             selectedAddress={ selectedAddress }
                         />
+                        <HiChevronDown className="icon" />
                     </DropdownTrigger>
                 </div>
             </div>
