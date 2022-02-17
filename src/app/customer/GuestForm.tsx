@@ -68,18 +68,9 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                 <div className="customerEmail-container">
                     <div className="customerEmail-body">
                         <EmailField onChange={ onChangeEmail } />
-
-                        { (canSubscribe || requiresMarketingConsent) && <BasicFormField
-                            name="shouldSubscribe"
-                            render={ renderField }
-                        /> }
-
-                        { privacyPolicyUrl && <PrivacyPolicyField
-                            url={ privacyPolicyUrl }
-                        /> }
                     </div>
 
-                    <div className="form-actions customerEmail-action">
+                    <div className="form-actions customerEmail-action desktop">
                         <Button
                             className="customerEmail-button"
                             id="checkout-customer-continue"
@@ -91,6 +82,17 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                             <TranslatedString id={ continueAsGuestButtonLabelId } />
                         </Button>
                     </div>
+                </div>
+
+                <div className="subscribe-fields">
+                    { (canSubscribe || requiresMarketingConsent) && <BasicFormField
+                        name="shouldSubscribe"
+                        render={ renderField }
+                    /> }
+
+                    { privacyPolicyUrl && <PrivacyPolicyField
+                        url={ privacyPolicyUrl }
+                    /> }
                 </div>
 
                 {
@@ -106,6 +108,19 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                         </a>
                     </p>
                 }
+
+                <div className="form-actions customerEmail-action mobile">
+                    <Button
+                        className="customerEmail-button"
+                        id="checkout-customer-continue"
+                        isLoading={ isLoading }
+                        testId="customer-continue-as-guest-button"
+                        type="submit"
+                        variant={ ButtonVariant.Primary }
+                    >
+                        <TranslatedString id={ continueAsGuestButtonLabelId } />
+                    </Button>
+                </div>
 
                 { checkoutButtons }
             </Fieldset>
