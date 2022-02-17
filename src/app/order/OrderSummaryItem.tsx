@@ -51,7 +51,7 @@ const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps> = ({
                         data-test={ option.testId }
                         key={ index }
                     >
-                        { index < ((productOptions?.length ?? 0) - 1) ? `${option.content} / ` : option.content }
+                        { index < ((productOptions?.length ?? 0) - 1) ? `${option.content}, ` : option.content }
                     </li>
                 ) }
             </ul>

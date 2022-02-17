@@ -206,7 +206,7 @@ const RedeemableForm: FunctionComponent<
 
             <div className="couponContainer">
               { coupons?.length ? (
-                <p className="couponHeading">Discount Code Applied</p>
+                <p className="couponHeading">Code Applied</p>
               ) : (
                 <></>
               ) }
