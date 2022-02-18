@@ -208,8 +208,8 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 .layout-main {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0;
+  padding-right: 0;
 
   @media only screen and (min-width: 64rem) {
     width: 34rem;
@@ -407,6 +407,29 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
+// Sign in or continue as customer state
+#checkout-customer-returning {
+  .alertBox-message {
+    display: block;
+  }
+
+  .form-actions {
+    & > #checkout-customer-continue {
+      margin-right: 1rem;
+    }
+
+    & > .optimizedCheckout-buttonSecondary {
+      margin-left: 0;
+    }
+  }
+
+  #form-toggle-password {
+    &:before {
+      display: none;
+    }
+  }
+}
+
 // Shipping & Billing Steps
 
 // hide shipping option since it's not in mock
@@ -458,6 +481,13 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
     &::after {
       left: calc(0.5rem - 3px);
     }
+  }
+
+  .form-checklist-checkbox + .form-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
   }
 }
 
@@ -553,6 +583,18 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
         height: 50px;
       }
     }
+  }
+}
+
+.redeemable-payments {
+  @media only screen and (min-width: 64rem) {
+    display: none;
+  }
+}
+
+.checkout-terms {
+  .label-text a {
+    color: #00424a;
   }
 }
 
@@ -823,7 +865,11 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
   margin-left: 1rem;
 
-  border-radius: 3px;
+  border-radius: 2px;
+
+  @media only screen and (min-width: 48rem) {
+    border-radius: 4px;
+  }
 }
 
 // Errors
@@ -988,11 +1034,6 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
 // Radio Lists
 .form-checklist-checkbox + .form-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: baseline;
-
   &::before {
     height: 1rem;
     width: 1rem;
