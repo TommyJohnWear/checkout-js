@@ -1,12 +1,13 @@
 import { CheckoutSelectors, CustomerRequestOptions, CustomError } from '@bigcommerce/checkout-sdk';
-import { noop } from 'lodash';
+// import { noop } from 'lodash';
 import React, { FunctionComponent } from 'react';
 
 import { withCheckout, CheckoutContextProps } from '../checkout';
-import { TranslatedString } from '../locale';
-import { Button, ButtonSize, ButtonVariant } from '../ui/button';
+// import { TranslatedString } from '../locale';
+// import { Button, ButtonSize, ButtonVariant } from '../ui/button';
 
-import canSignOut, { isSupportedSignoutMethod } from './canSignOut';
+// import canSignOut, { isSupportedSignoutMethod } from './canSignOut';
+import canSignOut from './canSignOut';
 
 export interface CustomerInfoProps {
     onSignOut?(event: CustomerSignOutEvent): void;
@@ -27,14 +28,14 @@ interface WithCheckoutCustomerInfoProps {
 
 const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerInfoProps> = ({
     email,
-    methodId,
+    // methodId,
     isSignedIn,
-    isSigningOut,
+    /* isSigningOut,
     onSignOut = noop,
     onSignOutError = noop,
-    signOut,
+    signOut, */
 }) => {
-    const handleSignOut: () => Promise<void> = async () => {
+    /* const handleSignOut: () => Promise<void> = async () => {
         try {
             if (isSupportedSignoutMethod(methodId)) {
                 await signOut({ methodId });
@@ -52,7 +53,7 @@ const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerIn
                 onSignOutError(error);
             }
         }
-    };
+    }; */
 
     if  (isSignedIn) {
         (window as any).utag_data.checkout_type = 'loggedIn';
@@ -71,7 +72,7 @@ const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerIn
                 { email }
             </div>
 
-            <div className="customerView-actions">
+            { /* <div className="customerView-actions">
                 { isSignedIn && <Button
                     isLoading={ isSigningOut }
                     onClick={ handleSignOut }
@@ -81,7 +82,7 @@ const CustomerInfo: FunctionComponent<CustomerInfoProps & WithCheckoutCustomerIn
                 >
                     <TranslatedString id="customer.sign_out_action" />
                 </Button> }
-            </div>
+            </div> */ }
         </div>
     );
 };

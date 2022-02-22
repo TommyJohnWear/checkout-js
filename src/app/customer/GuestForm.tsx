@@ -35,7 +35,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
     continueAsGuestButtonLabelId,
     isLoading,
     onChangeEmail,
-    onShowLogin,
+    // onShowLogin,
     privacyPolicyUrl,
     requiresMarketingConsent,
 }) => {
@@ -101,8 +101,8 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                         { ' ' }
                         <a
                             data-test="customer-continue-button"
+                            href="https://beta.tommyjohn.io/account/login"
                             id="checkout-customer-login"
-                            onClick={ onShowLogin }
                         >
                             <TranslatedString id="customer.login_action" />
                         </a>
