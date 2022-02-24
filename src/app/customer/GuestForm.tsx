@@ -101,7 +101,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                         { ' ' }
                         <a
                             data-test="customer-continue-button"
-                            href="https://beta.tommyjohn.io/account/login"
+                            href="https://www.tommyjohn.com/account/login"
                             id="checkout-customer-login"
                         >
                             <TranslatedString id="customer.login_action" />

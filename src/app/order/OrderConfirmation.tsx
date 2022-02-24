@@ -76,7 +76,7 @@ class OrderConfirmation extends Component<
         loadOrder(orderId)
             .then(() => { // { data }
                 // const { links: { siteLink = '' } = {} } = data.getConfig() || {};
-                const siteLink = 'https://beta.tommyjohn.io';
+                const siteLink = 'https://www.tommyjohn.com';
                 const messenger = createEmbeddedMessenger({ parentOrigin: siteLink });
 
                 this.embeddedMessenger = messenger;
@@ -111,7 +111,7 @@ class OrderConfirmation extends Component<
                 siteLink,
             }, */
         } = config;
-        const siteLink = 'https://beta.tommyjohn.io';
+        const siteLink = 'https://www.tommyjohn.com';
 
         return (
             <div className={ classNames(
