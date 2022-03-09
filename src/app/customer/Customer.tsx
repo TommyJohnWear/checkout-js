@@ -304,6 +304,8 @@ class Customer extends Component<CustomerProps & WithCheckoutCustomerProps, Cust
             onContinueAsGuestError = noop,
         } = this.props;
 
+        (window as any).utag_data.customer_logged_in = 'false';
+
         const email = formValues.email.trim();
         try {
             const { data } = await continueAsGuest({

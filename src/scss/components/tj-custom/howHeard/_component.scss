@@ -1,0 +1,109 @@
+#how-heard {
+    font-family: "Basetica";
+    font-weight: normal;
+    color: #4D4D4D;
+
+    & > .title {
+        margin-bottom: 1rem;
+
+        font-size: 1rem;
+        font-family: "Basetica";
+        font-weight: normal;
+        color: #4D4D4D;
+
+        @media screen and (min-width: 48rem) {
+            font-size: 1.125rem;
+        }
+
+        & > .line {
+            white-space: nowrap;
+        }
+    }
+
+    & > .field-wrapper {
+        @media screen and (min-width: 48rem) {
+            display: flex;
+            flex-direction: row;
+        }
+
+        & > :first-child {
+            margin-bottom: 1rem;
+
+            @media screen and (min-width: 48rem) {
+                margin-bottom: 0;
+                margin-right: 1.5rem;
+            }
+
+            @media screen and (min-width: 80rem) {
+                margin-right: 1rem;
+            }
+        }
+
+        
+        & > .select {
+            $spacing: 0.5rem;
+
+            min-height: 50px;
+
+            padding-left: $spacing;
+            padding-right: $spacing;
+
+            font-size: 0.875rem;
+            color: #737373;
+
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            background-image: url('../static/svg/chevron-down.svg');
+            background-repeat: no-repeat;
+            background-position: calc(100% - #{$spacing});
+            background-size: 1rem;
+            border: 1px solid #C8C8C8;
+            border-radius: 0;
+
+            @media screen and (min-width: 48rem) {
+                $spacing: 1rem;
+
+                flex-basis: 24rem;
+
+                padding-left: $spacing;
+                padding-right: $spacing;
+                background-position: calc(100% - #{$spacing});
+            }
+        }
+        
+
+        & > .submit {
+            min-height: 50px;
+            width: 100%;
+           
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+
+            font-family: 'Basetica Bold';
+            font-weight: bold;
+            color: #fff;
+
+            background-color: #9B2E29;
+            border-radius: 4px;
+
+            @media screen and (min-width: 48rem) {
+                width: auto;
+                min-width: 6.25rem;
+
+                font-size: 0.875rem;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.how-heard-submitted-text {
+    font-size: 1rem;
+    color: #00424a;
+}

@@ -113,7 +113,7 @@ const PaymentSubmitButton: FunctionComponent<PaymentSubmitButtonProps & WithChec
             isLoading={ isSubmitting }
             size={ ButtonSize.Large }
             type="submit"
-            variant={ ButtonVariant.Action }
+            variant={ ButtonVariant.Primary }
         >
             <PaymentSubmitButtonText
                 initialisationStrategyType={ initialisationStrategyType }

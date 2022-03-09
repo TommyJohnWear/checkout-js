@@ -1,9 +1,7 @@
 {
-    "extends": [
-        "@bigcommerce/tslint-config"
-    ],
-    "rules": {
-      "max-line-length": false,
-      "object-literal-sort-keys": false
-    }
+  "extends": ["@bigcommerce/tslint-config"],
+  "rules": {
+    "max-line-length": false,
+    "object-literal-sort-keys": false
+  }
 }

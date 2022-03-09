@@ -13,6 +13,7 @@ export enum ButtonVariant {
     Primary = 'primary',
     Secondary = 'secondary',
     Action = 'action',
+    Red = 'red',
 }
 
 export enum ButtonSize {
@@ -40,8 +41,6 @@ function getClassName(props: Pick<ButtonProps, 'className' | 'isFullWidth' | 'is
         { 'button--tiny': size === ButtonSize.Tiny },
         { 'button--large': size === ButtonSize.Large },
         { 'button--slab': isFullWidth },
-        { 'optimizedCheckout-buttonPrimary': variant === ButtonVariant.Primary || variant === ButtonVariant.Action },
-        { 'optimizedCheckout-buttonSecondary': variant === ButtonVariant.Secondary },
         { 'is-loading': isLoading }
     );
 }

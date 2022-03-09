@@ -10,22 +10,23 @@ exports[`OrderSummaryPrice when has non-zero amount and has only required props 
   >
     <div
       aria-live="polite"
-      className="cart-priceItem optimizedCheckout-contentPrimary"
+      className="cart-priceItem coupon-container optimizedCheckout-contentPrimary"
     >
       <span
         className="cart-priceItem-label"
       >
         <span
+          className="totalText cart-subtotal"
           data-test="cart-price-label"
         >
-          Label
-            
+          Total
         </span>
       </span>
       <span
-        className="cart-priceItem-value"
+        className="cart-priceItem-value cart-subtotal-container"
       >
         <span
+          className="cart-price-value cart-subtotal-value cart-summary-total"
           data-test="cart-price-value"
         >
           <WithCurrency(ShopperCurrency)

@@ -17,7 +17,7 @@ const CartSummaryDrawer: FunctionComponent<WithCheckoutCartSummaryProps> = ({
         cartUrl,
         headerLink: (
             <EditLink
-                className="modal-header-link cart-modal-link"
+                className="modal-header-link"
                 url={ cartUrl }
             />
         ),

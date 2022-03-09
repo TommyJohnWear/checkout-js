@@ -2,7 +2,7 @@ import { throttle } from 'lodash';
 import React, { memo, useCallback, FunctionComponent } from 'react';
 
 import { TranslatedString } from '../locale';
-import { IconPrint } from '../ui/icon';
+// import { IconPrint } from '../ui/icon';
 
 export interface PrintLinkProps {
     className?: string;
@@ -26,7 +26,7 @@ const PrintLink: FunctionComponent<PrintLinkProps> = ({ className }) => {
             id="cart-print-link"
             onClick={ handleClick }
         >
-            <IconPrint />
+            { /* <IconPrint /> */ }
             { ' ' }
             <TranslatedString id="cart.print_action" />
         </a>

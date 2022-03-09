@@ -2,6 +2,7 @@ import { FormFieldItem } from '@bigcommerce/checkout-sdk';
 import { isDate, noop } from 'lodash';
 import React, { memo, useCallback, FunctionComponent } from 'react';
 import ReactDatePicker from 'react-datepicker';
+import { HiChevronDown } from 'react-icons/hi';
 
 import { withDate, WithDateProps } from '../../locale';
 
@@ -48,15 +49,16 @@ const DynamicInput: FunctionComponent<DynamicInputProps & WithDateProps> = ({
     switch (fieldType) {
     case DynamicFormFieldType.dropdown:
         return (
-            <select
-                { ...rest as any }
-                className="form-select optimizedCheckout-form-select"
-                data-test={ `${id}-select` }
-                id={ id }
-                name={ name }
-                onChange={ onChange }
-                value={ value === null ? '' : value }
-            >
+            <div className="select-field-wrapper">
+                <select
+                    { ...rest as any }
+                    className="form-select optimizedCheckout-form-select"
+                    data-test={ `${id}-select` }
+                    id={ id }
+                    name={ name }
+                    onChange={ onChange }
+                    value={ value === null ? '' : value }
+                >
                 { placeholder &&
                     <option value="">
                         { placeholder }
@@ -69,7 +71,9 @@ const DynamicInput: FunctionComponent<DynamicInputProps & WithDateProps> = ({
                         { label }
                     </option>
                 ) }
-            </select>
+                </select>
+                <HiChevronDown className="icon" />
+            </div>
         );
 
     case DynamicFormFieldType.radio:

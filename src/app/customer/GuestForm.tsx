@@ -35,7 +35,7 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
     continueAsGuestButtonLabelId,
     isLoading,
     onChangeEmail,
-    onShowLogin,
+    // onShowLogin,
     privacyPolicyUrl,
     requiresMarketingConsent,
 }) => {
@@ -68,18 +68,9 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                 <div className="customerEmail-container">
                     <div className="customerEmail-body">
                         <EmailField onChange={ onChangeEmail } />
-
-                        { (canSubscribe || requiresMarketingConsent) && <BasicFormField
-                            name="shouldSubscribe"
-                            render={ renderField }
-                        /> }
-
-                        { privacyPolicyUrl && <PrivacyPolicyField
-                            url={ privacyPolicyUrl }
-                        /> }
                     </div>
 
-                    <div className="form-actions customerEmail-action">
+                    <div className="form-actions customerEmail-action desktop">
                         <Button
                             className="customerEmail-button"
                             id="checkout-customer-continue"
@@ -93,19 +84,43 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                     </div>
                 </div>
 
+                <div className="subscribe-fields">
+                    { (canSubscribe || requiresMarketingConsent) && <BasicFormField
+                        name="shouldSubscribe"
+                        render={ renderField }
+                    /> }
+
+                    { privacyPolicyUrl && <PrivacyPolicyField
+                        url={ privacyPolicyUrl }
+                    /> }
+                </div>
+
                 {
-                    !isLoading && <p>
+                    !isLoading && <p id="checkout-customer-login-text">
                         <TranslatedString id="customer.login_text" />
                         { ' ' }
                         <a
                             data-test="customer-continue-button"
+                            href="https://tommyjohn.com/account/login"
                             id="checkout-customer-login"
-                            onClick={ onShowLogin }
                         >
                             <TranslatedString id="customer.login_action" />
                         </a>
                     </p>
                 }
+
+                <div className="form-actions customerEmail-action mobile">
+                    <Button
+                        className="customerEmail-button"
+                        id="checkout-customer-continue"
+                        isLoading={ isLoading }
+                        testId="customer-continue-as-guest-button"
+                        type="submit"
+                        variant={ ButtonVariant.Primary }
+                    >
+                        <TranslatedString id={ continueAsGuestButtonLabelId } />
+                    </Button>
+                </div>
 
                 { checkoutButtons }
             </Fieldset>
@@ -124,6 +139,7 @@ export default withLanguage(withFormik<GuestFormProps & WithLanguageProps, Guest
         privacyPolicy: false,
     }),
     handleSubmit: (values, { props: { onContinueAsGuest } }) => {
+        (window as any).utag_data.customer_logged_in = 'false';
         onContinueAsGuest(values);
     },
     validationSchema: ({ language, privacyPolicyUrl }: GuestFormProps & WithLanguageProps) => {

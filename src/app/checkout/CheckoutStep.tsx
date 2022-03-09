@@ -82,7 +82,7 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
                 className={ classNames(
                     'checkout-step',
                     'optimizedCheckout-checkoutStep',
-                    { [`checkout-step--${type}`]: !!type }
+                    { [`checkout-step--${type}`]: !!type, active: isActive }
                 ) }
                 ref={ this.containerRef }
             >
@@ -148,6 +148,8 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
             const input = this.getChildInput();
             const position = this.getScrollPosition();
             const { type, onExpanded = noop } = this.props;
+
+            (window as any).utag_data.site_section = type || '';
 
             if (input) {
                 input.focus();

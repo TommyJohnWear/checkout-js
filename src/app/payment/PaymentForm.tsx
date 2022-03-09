@@ -1,7 +1,8 @@
 import { PaymentMethod } from '@bigcommerce/checkout-sdk';
+import currency from 'currency.js';
 import { withFormik, FormikProps, WithFormikConfig } from 'formik';
 import { isNil, noop, omitBy } from 'lodash';
-import React, { memo, useCallback, useContext, useMemo, FunctionComponent } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo, useState, FunctionComponent } from 'react';
 import { ObjectSchema } from 'yup';
 
 import { withLanguage, WithLanguageProps } from '../locale';
@@ -71,6 +72,39 @@ export interface HostedWidgetPaymentMethodValues {
 export interface AccountCreationValues {
     shouldCreateAccount: boolean;
 }
+
+const PayPalComponent: FunctionComponent = () => {
+    const [total, setTotal] = useState<number | null>(null);
+
+    useEffect(() => {
+        const observer = new MutationObserver(mutations => mutations.forEach(mutation => {
+            const node = mutation?.addedNodes[0].textContent;
+            setTotal(node ? currency(node).value : null);
+        }));
+        const el = document.getElementsByClassName('cart-priceItem--total')[0]?.lastChild;
+        if (el) {
+            const text = el.textContent;
+            if (text) {
+                setTotal(currency(text).value);
+            }
+
+            observer.observe(el, { childList: true, subtree: true });
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
+    return(
+        <>
+            { total && total > 35 ? <div
+                data-pp-amount={ total }
+                data-pp-message
+            /> : null }
+        </>
+    );
+};
 
 const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormValues> & WithLanguageProps> = ({
     availableStoreCredit = 0,
@@ -145,6 +179,8 @@ const PaymentForm: FunctionComponent<PaymentFormProps & FormikProps<PaymentFormV
                 resetForm={ resetForm }
                 values={ values }
             />
+
+            <PayPalComponent />
 
             <PaymentRedeemables />
 

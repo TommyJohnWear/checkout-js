@@ -40,7 +40,7 @@ function getPaymentMethodTitle(
                 titleText: methodName,
             },
             [PaymentMethodType.PaypalCredit]: {
-                logoUrl: cdnPath('/img/payment-providers/paypal-credit.png'),
+                logoUrl: cdnPath('/img/payment-providers/paypal_commerce_pay_later.svg'),
                 titleText: '',
             },
             [PaymentMethodId.PaypalCommerce]: {
@@ -155,6 +155,10 @@ function getPaymentMethodTitle(
                 logoUrl: '',
                 titleText: method.method === 'iban' ? language.translate('payment.stripe_sepa_display_name_text') : methodName,
             },
+            [PaymentMethodId.StripeUPE]: {
+                logoUrl: '',
+                titleText: method.method === 'iban' ? language.translate('payment.stripe_sepa_display_name_text') : methodName,
+            },
         };
 
         // KLUDGE: 'paypal' is actually a credit card method. It is the only
@@ -187,6 +191,8 @@ const PaymentMethodTitle: FunctionComponent<PaymentMethodTitleProps & WithLangua
         if (!isSelected) {
             return;
         }
+
+        (window as any).utag_data.payment_method = methodName || '';
 
         if ('hostedForm' in values && 'cardType' in values.hostedForm && values.hostedForm.cardType) {
             return values.hostedForm.cardType;

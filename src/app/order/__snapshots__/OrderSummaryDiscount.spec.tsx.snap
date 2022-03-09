@@ -4,21 +4,23 @@ exports[`OrderSummaryDiscount when discount has code and remaining balance match
 <div>
   <div
     aria-live="polite"
-    class="cart-priceItem optimizedCheckout-contentPrimary"
+    class="cart-priceItem coupon-container optimizedCheckout-contentPrimary"
   >
     <span
       class="cart-priceItem-label"
     >
       <span
+        class="totalText cart-subtotal"
         data-test="cart-price-label"
       >
-        Gift Certificate  
+        Total
       </span>
     </span>
     <span
-      class="cart-priceItem-value"
+      class="cart-priceItem-value cart-subtotal-container"
     >
       <span
+        class="cart-price-value cart-subtotal-value cart-summary-total"
         data-test="cart-price-value"
       >
         -$11.20

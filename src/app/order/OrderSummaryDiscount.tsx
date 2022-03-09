@@ -20,6 +20,9 @@ const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
 }) => (
     <OrderSummaryPrice
         { ...rest }
+        { ...code && { label: <span className="cart-price-code" data-test="cart-price-code">
+            { code }
+        </span> } }
         { ...(onRemoved && {
             onActionTriggered: () => code && onRemoved(code),
             actionLabel: <TranslatedString id="cart.remove_action" />,
@@ -35,12 +38,12 @@ const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
             <ShopperCurrency amount={ remaining } />
         </span> }
 
-        { code && <span
+        { /* code && <span
             className="cart-priceItem-postFix optimizedCheckout-contentSecondary"
             data-test="cart-price-code"
         >
             { code }
-        </span> }
+        </span> */ }
     </OrderSummaryPrice>
 );
 

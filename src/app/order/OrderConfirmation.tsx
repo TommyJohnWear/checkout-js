@@ -11,7 +11,7 @@ import { isEmbedded, EmbeddedCheckoutStylesheet } from '../embeddedCheckout';
 import { CreatedCustomer, GuestSignUpForm, PasswordSavedSuccessAlert, SignedUpSuccessAlert, SignUpFormValues } from '../guestSignup';
 import { AccountCreationFailedError, AccountCreationRequirementsError } from '../guestSignup/errors';
 import { TranslatedString } from '../locale';
-import { Button, ButtonVariant } from '../ui/button';
+import { HowHeard } from '../tj/HowHeard';
 import { LazyContainer, LoadingSpinner } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
 
@@ -74,8 +74,9 @@ class OrderConfirmation extends Component<
         } = this.props;
 
         loadOrder(orderId)
-            .then(({ data }) => {
-                const { links: { siteLink = '' } = {} } = data.getConfig() || {};
+            .then(() => { // { data }
+                // const { links: { siteLink = '' } = {} } = data.getConfig() || {};
+                const siteLink = 'https://www.tommyjohn.com';
                 const messenger = createEmbeddedMessenger({ parentOrigin: siteLink });
 
                 this.embeddedMessenger = messenger;
@@ -106,10 +107,11 @@ class OrderConfirmation extends Component<
                 storePhoneNumber,
             },
             shopperConfig,
-            links: {
+            /* links: {
                 siteLink,
-            },
+            }, */
         } = config;
+        const siteLink = 'https://www.tommyjohn.com';
 
         return (
             <div className={ classNames(
@@ -142,11 +144,11 @@ class OrderConfirmation extends Component<
                             shopperConfig,
                         }) }
 
+                        <HowHeard order={ order } />
+
                         <div className="continueButtonContainer">
                             <a href={ siteLink } target="_top">
-                                <Button variant={ ButtonVariant.Secondary }>
-                                    <TranslatedString id="order_confirmation.continue_shopping" />
-                                </Button>
+                                <TranslatedString id="order_confirmation.continue_shopping" />
                             </a>
                         </div>
                     </div>

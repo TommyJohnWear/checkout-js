@@ -51,7 +51,7 @@ const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps> = ({
                         data-test={ option.testId }
                         key={ index }
                     >
-                        { option.content }
+                        { `${typeof option.content === 'string' ? option.content.replace('Color ', '').replace('Size ', '') : option.content}${index < ((productOptions?.length ?? 0) - 1) ? ', ' : ''}` }
                     </li>
                 ) }
             </ul>

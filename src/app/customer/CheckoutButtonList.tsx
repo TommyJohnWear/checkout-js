@@ -1,14 +1,16 @@
 import { CustomerInitializeOptions, CustomerRequestOptions } from '@bigcommerce/checkout-sdk';
 import React, { memo, Fragment, FunctionComponent } from 'react';
 
-import { TranslatedString } from '../locale';
+/* import { TranslatedString } from '../locale'; */
 
+import { ApplePayButton } from './customWalletButton';
 import CheckoutButton from './CheckoutButton';
 
 // TODO: The API should tell UI which payment method offers its own checkout button
 export const SUPPORTED_METHODS: string[] = [
     'amazon',
     'amazonpay',
+    'applepay',
     'braintreevisacheckout',
     'chasepay',
     'masterpass',
@@ -60,17 +62,25 @@ const CheckoutButtonList: FunctionComponent<CheckoutButtonListProps> = ({
 
     return (
         <Fragment>
-            { !isInitializing && <p><TranslatedString id="remote.continue_with_text" /></p> }
+            { /* { !isInitializing && <p><TranslatedString id="remote.continue_with_text" /></p> } */ }
 
             <div className="checkoutRemote">
                 { supportedMethodIds.map(methodId =>
-                    <CheckoutButton
-                        containerId={ `${methodId}CheckoutButton` }
-                        key={ methodId }
-                        methodId={ methodId }
-                        onError={ onError }
-                        { ...rest }
-                    />
+                    methodId === 'applepay' ?
+                        <ApplePayButton
+                            containerId={ `${methodId}CheckoutButton` }
+                            key={ methodId }
+                            methodId={ methodId }
+                            onError={ onError }
+                            { ...rest }
+                        /> :
+                        <CheckoutButton
+                            containerId={ `${methodId}CheckoutButton` }
+                            key={ methodId }
+                            methodId={ methodId }
+                            onError={ onError }
+                            { ...rest }
+                        />
                 ) }
             </div>
         </Fragment>

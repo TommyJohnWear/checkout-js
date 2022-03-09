@@ -1,11 +1,12 @@
 @import "../ui/Base";
 
 .dropdown--select {
-    cursor: pointer;
-    position: relative;
+  cursor: pointer;
+  position: relative;
 }
 
 .dropdown-toggle--select {
+    border-radius: 0;
     color: $input-font-color;
     margin-bottom: 0;
     min-height: 3rem;
@@ -21,15 +22,15 @@
 }
 
 .dropdown-menu-item--select {
-    border-bottom: container("border");
+  border-bottom: container("border");
 
-    :last-of-type {
-        border-bottom: 0;
-    }
+  :last-of-type {
+    border-bottom: 0;
+  }
 
-    &:focus {
-        border: container("border");
-        border-color: color("highlight");
-        outline: none;
-    }
+  &:focus {
+    border: container("border");
+    border-color: color("highlight");
+    outline: none;
+  }
 }

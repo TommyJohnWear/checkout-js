@@ -3,7 +3,7 @@ const EventEmitter = require('events');
 const { copyFileSync } = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { join } = require('path');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
@@ -103,12 +103,12 @@ function appConfig(options, argv) {
                     library: LIBRARY_NAME,
                 },
                 plugins: [
-                    new StyleLintPlugin({
+                    /* new StyleLintPlugin({
                         fix: !isProduction,
                         cache: true,
                         cacheLocation: join(process.cwd(), 'node_modules/.cache/'),
                         emitErrors: isProduction,
-                    }),
+                    }), */
                     isProduction && new MiniCssExtractPlugin({
                         filename: `${outputFilename}.css`,
                         chunkFilename: `${outputFilename}.css`,
@@ -187,7 +187,7 @@ function appConfig(options, argv) {
                             use: [
                                 isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
                                 'css-loader',
-                                'sass-loader',
+                                'sass-loader'
                             ],
                             sideEffects: true,
                         },

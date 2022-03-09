@@ -1,6 +1,7 @@
 import { getIn, Field, FieldConfig, FieldProps } from 'formik';
 import { isDate, noop } from 'lodash';
 import React, { createElement, memo, useCallback, useMemo, Component, FunctionComponent } from 'react';
+import { BsCheck2 } from 'react-icons/bs';
 import shallowEqual from 'shallowequal';
 
 import FormFieldContainer from './FormFieldContainer';
@@ -113,7 +114,12 @@ class InnerFieldInput extends Component<InnerFieldInputProps> {
 
         if (render) {
             // tslint:disable-next-line:no-unnecessary-type-assertion
-            return (render as any)(this.props);
+            return field.name !== 'shouldSubscribe' ? (render as any)(this.props) : (
+                <div className="basic-field-wrapper">
+                    { (render as any)(this.props) }
+                    { field.name === 'shouldSubscribe' && <BsCheck2 className="icon" /> }
+                </div>
+            );
         }
 
         if (typeof component === 'string') {
