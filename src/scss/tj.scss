@@ -543,6 +543,15 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 
   .subscribe-text {
       font-size: 0.625rem;
+
+      & > a {
+        font-size: inherit;
+        color: inherit;
+
+        & > ::before {
+          background-color: inherit;
+        }
+      }
   }
 }
 
