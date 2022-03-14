@@ -9,7 +9,7 @@ const TextSubscribe = () => {
     isSubscribedToText.set(!isSubscribedToText.get());
   };
 
-  return localStorage.getItem('subscribeToText') === 'completed' ? <> : (
+  return localStorage.getItem('subscribeToText') === 'completed' ? <></> : (
     <div className="form-body">
       <div id="subscribe-to-text-wrapper">
         <CheckboxFormField
