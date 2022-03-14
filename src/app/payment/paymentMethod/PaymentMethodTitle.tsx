@@ -48,8 +48,8 @@ function getPaymentMethodTitle(
                 titleText: '',
             },
             [PaymentMethodId.PaypalCommerceCredit]: {
-                logoUrl: cdnPath('/img/payment-providers/paypal_commerce_pay_later.svg'),
-                titleText: '',
+                logoUrl: cdnPath('/img/payment-providers/paypal_commerce_logo_letter.svg'),
+                titleText: methodDisplayName,
             },
             [PaymentMethodId.PaypalCommerceAlternativeMethod]: {
                 logoUrl: method.logoUrl || '',
@@ -120,7 +120,7 @@ function getPaymentMethodTitle(
                 titleText: '',
             },
             [PaymentMethodType.Paypal]: {
-                logoUrl: cdnPath('/img/payment-providers/paypalpaymentsprouk.png'),
+                logoUrl: (method.id === PaymentMethodId.BraintreeVenmo && method.logoUrl) ? method.logoUrl : cdnPath('/img/payment-providers/paypalpaymentsprouk.png'),
                 titleText: '',
             },
             [PaymentMethodId.Quadpay]: {
@@ -140,6 +140,10 @@ function getPaymentMethodTitle(
                 titleText: '',
             },
             [PaymentMethodId.AdyenV2]: {
+                logoUrl: `https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/${(method.method === 'scheme') ? 'card' : method.method}.svg`,
+                titleText: methodDisplayName,
+            },
+            [PaymentMethodId.AdyenV3]: {
                 logoUrl: `https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/${(method.method === 'scheme') ? 'card' : method.method}.svg`,
                 titleText: methodDisplayName,
             },
