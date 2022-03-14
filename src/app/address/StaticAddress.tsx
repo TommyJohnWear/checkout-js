@@ -2,7 +2,6 @@ import { Address, CheckoutSelectors, Country, FormField, ShippingInitializeOptio
 import { isEmpty } from 'lodash';
 import React, { memo, useEffect, FunctionComponent } from 'react';
 
-import { shippingAddress } from '../../store';
 import { withCheckout, CheckoutContextProps } from '../checkout';
 
 import isValidAddress from './isValidAddress';
@@ -36,8 +35,6 @@ const StaticAddress: FunctionComponent<StaticAddressEditableProps & WithCheckout
     );
 
     useEffect(() => {
-        shippingAddress.set(addressWithoutLocalization);
-
         (window as any).utag_data.customer_first_name = address.firstName || '';
         (window as any).utag_data.customer_last_name = address.lastName || '';
         (window as any).utag_data.country_code = address.countryCode || '';

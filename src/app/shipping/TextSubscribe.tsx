@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { isSubscribedToText } from '../../store';
 import { CheckboxFormField } from '../ui/form';
 
 const TextSubscribe = () => {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
   const onChange = () => {
-    localStorage.setItem('subscribeToText', (!isSubscribed).toString());
-    setIsSubscribed(prev  => !prev);
+    localStorage.setItem('subscribeToText', (!isSubscribedToText.get()).toString());
+    isSubscribedToText.set(!isSubscribedToText.get());
   };
 
-  return (
+  return localStorage.getItem('subscribeToText') === 'completed' ? <></> : (
     <div className="form-body">
       <div id="subscribe-to-text-wrapper">
         <CheckboxFormField

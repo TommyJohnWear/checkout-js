@@ -2,6 +2,8 @@ import { CheckoutSelectors, CheckoutService } from '@bigcommerce/checkout-sdk';
 import { memoizeOne } from '@bigcommerce/memoize';
 import React, { Component, ReactNode } from 'react';
 
+import { customerPhone } from '../../store';
+
 import CheckoutContext from './CheckoutContext';
 
 export interface CheckoutProviderProps {
@@ -35,8 +37,15 @@ export default class CheckoutProvider extends Component<CheckoutProviderProps, C
     componentDidMount(): void {
         const { checkoutService } = this.props;
 
-        this.unsubscribe = checkoutService.subscribe(checkoutState =>
-            this.setState({ checkoutState })
+        this.unsubscribe = checkoutService.subscribe(checkoutState => {
+                this.setState({ checkoutState });
+                const { getShippingAddress } = checkoutState?.data ?? {};
+
+                const phone = getShippingAddress()?.phone;
+                if (customerPhone.get() !== phone) {
+                    customerPhone.set(phone);
+                }
+            }
         );
     }
 
