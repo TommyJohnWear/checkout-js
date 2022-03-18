@@ -408,6 +408,18 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 // Sign in or continue as customer state
+.checkoutRemote {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 2rem;
+
+  @media only screen and (min-width: 48rem) {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    gap: 1rem;
+  }
+}
+
 #checkout-customer-returning {
   .alertBox-message {
     display: block;
@@ -430,7 +442,29 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
-// Shipping & Billing Steps
+// Express Checkout Buttons
+#amazonpayCheckoutButton {
+  width: 100%;
+  margin-right: 0;
+}
+
+#googlepaybraintreeCheckoutButton {
+  margin-right: 0;
+
+  button {
+    width: 100%;
+  }
+}
+
+#applepayCheckoutButton {
+  margin-right: 0;
+
+  button {
+    width: 100% !important;
+  }
+}
+
+// ** Shipping & Billing Steps **
 
 // hide shipping option since it's not in mock
 .staticConsignment .shippingOption {

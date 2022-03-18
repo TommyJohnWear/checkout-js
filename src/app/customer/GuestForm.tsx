@@ -65,6 +65,8 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                     <TranslatedHtml id="customer.checkout_as_guest_text" />
                 </p>
 
+                { checkoutButtons }
+
                 <div className="customerEmail-container">
                     <div className="customerEmail-body">
                         <EmailField onChange={ onChangeEmail } />
@@ -121,8 +123,6 @@ const GuestForm: FunctionComponent<GuestFormProps & WithLanguageProps & FormikPr
                         <TranslatedString id={ continueAsGuestButtonLabelId } />
                     </Button>
                 </div>
-
-                { checkoutButtons }
             </Fieldset>
         </Form>
     );

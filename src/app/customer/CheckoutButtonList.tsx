@@ -8,12 +8,9 @@ import CheckoutButton from './CheckoutButton';
 
 // TODO: The API should tell UI which payment method offers its own checkout button
 export const SUPPORTED_METHODS: string[] = [
+    'applepay',
     'amazon',
     'amazonpay',
-    'applepay',
-    'braintreevisacheckout',
-    'chasepay',
-    'masterpass',
     'googlepayadyenv2',
     'googlepayauthorizenet',
     'googlepaybraintree',
@@ -22,6 +19,9 @@ export const SUPPORTED_METHODS: string[] = [
     'googlepayorbital',
     'googlepaystripe',
     'googlepaystripeupe',
+    'braintreevisacheckout',
+    'chasepay',
+    'masterpass',
 ];
 
 export interface CheckoutButtonListProps {
@@ -37,11 +37,10 @@ const CheckoutButtonList: FunctionComponent<CheckoutButtonListProps> = ({
     checkEmbeddedSupport,
     onError,
     isInitializing = false,
-    methodIds,
+    methodIds = [],
     ...rest
 }) => {
-    const supportedMethodIds = (methodIds ?? [])
-        .filter(methodId => SUPPORTED_METHODS.indexOf(methodId) !== -1);
+    const supportedMethodIds = SUPPORTED_METHODS?.filter(methodId => methodIds.some(val => val === methodId)) ?? [];
 
     if (supportedMethodIds.length === 0) {
         return null;
