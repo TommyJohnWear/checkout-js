@@ -31,6 +31,7 @@ const options = [
   'YouTube Influencer',
   'Today Show',
   'Squawk Box',
+  'Clay Travis & Buck Sexton',
 ];
 interface HowHeardProps {
   order: Order;
