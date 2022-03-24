@@ -39,7 +39,7 @@ const OrderSummaryItem: FunctionComponent<OrderSummaryItemProps> = ({
                 className="product-title optimizedCheckout-contentPrimary"
                 data-test="cart-item-product-title"
             >
-                { `${quantity} x ${name}` }
+                { `${quantity} x ${name.includes('::') ? name.split('::')[0].trim() : name}` }
             </h5>
             <ul
                 className="product-options optimizedCheckout-contentSecondary"
