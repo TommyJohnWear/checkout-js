@@ -1,5 +1,5 @@
 import { CustomerInitializeOptions } from '@bigcommerce/checkout-sdk';
-import React, { useCallback, useContext, FunctionComponent } from 'react';
+import React, { useCallback, useContext, useEffect, useState, FunctionComponent } from 'react';
 
 import { navigateToOrderConfirmation } from '../../checkout';
 import { LocaleContext } from '../../locale';
@@ -22,7 +22,14 @@ const ApplePayButton: FunctionComponent<CheckoutButtonProps> = ({
         },
     }), [initialize, localeContext, onError, rest.containerId]);
 
-    return <CheckoutButton initialize={ initializeOptions } { ...rest } />;
+    const [hasApplePay, setHasApplePay] = useState(false);
+
+    useEffect(() => {
+        if ((window as any)?.ApplePaySession) { setHasApplePay(true); }
+    }, []);
+
+    return hasApplePay ? <CheckoutButton initialize={ initializeOptions } { ...rest } /> : null;
+
 };
 
 export default ApplePayButton;

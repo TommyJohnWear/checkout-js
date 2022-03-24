@@ -17,6 +17,7 @@ export default function mapToCheckoutProps(
         checkoutSettings: {
             guestCheckoutEnabled: isGuestEnabled = false,
             features = {},
+            remoteCheckoutProviders = [],
         } = {},
         links: {
             loginLink: loginUrl = '',
@@ -35,9 +36,13 @@ export default function mapToCheckoutProps(
         billingAddress: data.getBillingAddress(),
         cart: data.getCart(),
         clearError: checkoutService.clearError,
+        checkoutButtonIds: remoteCheckoutProviders,
         consignments: data.getConsignments(),
+        deinitializeCustomer: checkoutService.deinitializeCustomer,
         hasCartChanged: submitOrderError && submitOrderError.type === 'cart_changed', // TODO: Need to clear the error once it's displayed
+        initializeCustomer: checkoutService.initializeCustomer,
         isGuestEnabled,
+        isInitializing:  statuses.isInitializingCustomer(),
         isLoadingCheckout: statuses.isLoadingCheckout(),
         isPending: statuses.isPending(),
         loadCheckout: checkoutService.loadCheckout,
