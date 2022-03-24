@@ -5,6 +5,7 @@ import { withCheckout, CheckoutContextProps } from '../../checkout';
 
 import getUniquePaymentMethodId from './getUniquePaymentMethodId';
 import AdyenV2PaymentMethod from './AdyenV2PaymentMethod';
+import AdyenV3PaymentMethod from './AdyenV3PaymentMethod';
 import AffirmPaymentMethod from './AffirmPaymentMethod';
 import AmazonPaymentMethod from './AmazonPaymentMethod';
 import AmazonPayV2PaymentMethod from './AmazonPayV2PaymentMethod';
@@ -26,6 +27,7 @@ import MasterpassPaymentMethod from './MasterpassPaymentMethod';
 import MolliePaymentMethod from './MolliePaymentMethod';
 import MonerisPaymentMethod from './MonerisPaymentMethod';
 import OfflinePaymentMethod from './OfflinePaymentMethod';
+import OpyPaymentMethod from './OpyPaymentMethod';
 import PaymentMethodId from './PaymentMethodId';
 import PaymentMethodProviderType from './PaymentMethodProviderType';
 import PaymentMethodType from './PaymentMethodType';
@@ -74,6 +76,10 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
 
     if (method.gateway === PaymentMethodId.AdyenV2) {
         return <AdyenV2PaymentMethod { ...props } />;
+    }
+
+    if (method.gateway === PaymentMethodId.AdyenV3) {
+        return <AdyenV3PaymentMethod { ...props } />;
     }
 
     if (method.id === PaymentMethodId.ApplePay) {
@@ -156,7 +162,8 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
         method.id === PaymentMethodId.CheckoutcomGooglePay ||
         method.id === PaymentMethodId.CybersourceV2GooglePay ||
         method.id === PaymentMethodId.OrbitalGooglePay ||
-        method.id === PaymentMethodId.StripeGooglePay) {
+        method.id === PaymentMethodId.StripeGooglePay ||
+        method.id === PaymentMethodId.StripeUPEGooglePay) {
         return <GooglePayPaymentMethod { ...props } />;
     }
 
@@ -207,7 +214,6 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
         method.gateway === PaymentMethodId.Clearpay ||
         method.id === PaymentMethodId.Humm ||
         method.id === PaymentMethodId.Laybuy ||
-        method.id === PaymentMethodId.Opy ||
         method.id === PaymentMethodId.Quadpay ||
         method.id === PaymentMethodId.Sezzle ||
         method.id === PaymentMethodId.Zip ||
@@ -219,6 +225,10 @@ const PaymentMethodComponent: FunctionComponent<PaymentMethodProps & WithCheckou
 
     if (method.type === PaymentMethodProviderType.Offline) {
         return <OfflinePaymentMethod { ...props } />;
+    }
+
+    if (method.id === PaymentMethodId.Opy) {
+        return <OpyPaymentMethod { ...props } />;
     }
 
     if (method.gateway === PaymentMethodId.Mollie) {
