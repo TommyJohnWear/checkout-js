@@ -196,7 +196,6 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   }
 }
 
-
 // Layout
 .layout {
   & > div {
@@ -385,25 +384,38 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
 }
 
 .checkoutRemote {
-  flex-direction: column;
-
-  width: 100%;
-
-  margin-left: 0;
-  margin-right: 0;
-
-  & > div {
-    margin-top: 1.5rem;
-  }
+  margin: 2rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 
   @media only screen and (min-width: 48rem) {
-    flex-direction: row;
-    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: center;
+    gap: 1rem;
+  }
+}
 
-    & > div {
-      margin-top: 0;
-      margin-right: 1.5rem;
-    }
+// Express Checkout Buttons
+#amazonpayCheckoutButton {
+  width: 100%;
+  margin-right: 0;
+}
+
+#googlepaybraintreeCheckoutButton {
+  margin-right: 0;
+
+  button {
+    width: 100%;
+  }
+}
+
+#applepayCheckoutButton {
+  margin-right: 0;
+
+  button {
+    width: 100% !important;
   }
 }
 
