@@ -40,7 +40,7 @@ const CheckoutButtonList: FunctionComponent<CheckoutButtonListProps> = ({
     methodIds = [],
     ...rest
 }) => {
-    const supportedMethodIds = SUPPORTED_METHODS?.filter(methodId => methodIds.some(val => val === methodId)) ?? [];
+    const supportedMethodIds = SUPPORTED_METHODS?.filter(methodId => methodIds?.some(val => val === methodId)) ?? [];
 
     if (supportedMethodIds.length === 0) {
         return null;
