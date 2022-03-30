@@ -1,4 +1,4 @@
-import { Address, Cart, CartChangedError, CheckoutParams, CheckoutSelectors, Consignment, EmbeddedCheckoutMessenger, EmbeddedCheckoutMessengerOptions, FlashMessage, Promotion, RequestOptions, StepTracker } from '@bigcommerce/checkout-sdk';
+import { Address, Cart, CartChangedError, CheckoutParams, CheckoutSelectors, Consignment, CustomerInitializeOptions, CustomerRequestOptions, EmbeddedCheckoutMessenger, EmbeddedCheckoutMessengerOptions, FlashMessage, Promotion, RequestOptions, StepTracker } from '@bigcommerce/checkout-sdk';
 import classNames from 'classnames';
 import { find, findIndex } from 'lodash';
 import React, { lazy, Component, ReactNode } from 'react';
@@ -8,6 +8,7 @@ import { EmptyCartMessage } from '../cart';
 import { isCustomError, CustomError, ErrorLogger, ErrorModal } from '../common/error';
 import { retry } from '../common/utility';
 import { CheckoutSuggestion, CustomerInfo, CustomerSignOutEvent, CustomerViewType } from '../customer';
+import CheckoutButtonList from '../customer/CheckoutButtonList';
 import { isEmbedded, EmbeddedCheckoutStylesheet } from '../embeddedCheckout';
 import { withLanguage, TranslatedString, WithLanguageProps } from '../locale';
 import { PromotionBannerList } from '../promotion';
@@ -80,6 +81,7 @@ export interface CheckoutState {
 export interface WithCheckoutProps {
     billingAddress?: Address;
     cart?: Cart;
+    checkoutButtonIds: string[];
     consignments?: Consignment[];
     error?: Error;
     hasCartChanged: boolean;
@@ -92,9 +94,12 @@ export interface WithCheckoutProps {
     canCreateAccountInCheckout: boolean;
     promotions?: Promotion[];
     steps: CheckoutStepStatus[];
+    isInitializing: boolean;
     clearError(error?: Error): void;
     loadCheckout(id: string, options?: RequestOptions<CheckoutParams>): Promise<CheckoutSelectors>;
     subscribeToConsignments(subscriber: (state: CheckoutSelectors) => void): () => void;
+    deinitializeCustomer(options: CustomerRequestOptions): Promise<CheckoutSelectors>;
+    initializeCustomer(options: CustomerInitializeOptions): Promise<CheckoutSelectors>;
 }
 
 class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguageProps, CheckoutState> {
@@ -210,10 +215,14 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
 
     private renderContent(): ReactNode {
         const {
+            checkoutButtonIds,
             isPending,
             loginUrl,
             promotions = [],
             steps,
+            deinitializeCustomer,
+            initializeCustomer,
+            isInitializing,
         } = this.props;
 
         const {
@@ -241,6 +250,15 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                     <LoadingNotification isLoading={ isPending } />
 
                     <PromotionBannerList promotions={ promotions } />
+
+                    <CheckoutButtonList
+                        checkEmbeddedSupport={ this.checkEmbeddedSupport }
+                        deinitialize={ deinitializeCustomer }
+                        initialize={ initializeCustomer }
+                        isInitializing={ isInitializing }
+                        methodIds={ checkoutButtonIds }
+                        onError={ this.handleUnhandledError }
+                    />
 
                     <ol className="checkout-steps">
                         { steps

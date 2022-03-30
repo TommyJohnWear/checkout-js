@@ -7,7 +7,7 @@ import { LoadingOverlay } from '../ui/loading';
 
 import { CreateAccountFormValues } from './getCreateCustomerValidationSchema';
 import mapCreateAccountFromFormValues from './mapCreateAccountFromFormValues';
-import CheckoutButtonList from './CheckoutButtonList';
+// import CheckoutButtonList from './CheckoutButtonList';
 import CreateAccountForm from './CreateAccountForm';
 import CustomerViewType from './CustomerViewType';
 import EmailLoginForm, { EmailLoginFormValues } from './EmailLoginForm';
@@ -136,25 +136,25 @@ class Customer extends Component<CustomerProps & WithCheckoutCustomerProps, Cust
     private renderGuestForm(): ReactNode {
         const {
             canSubscribe,
-            checkEmbeddedSupport,
-            checkoutButtonIds,
+            // checkEmbeddedSupport,
+            // checkoutButtonIds,
             defaultShouldSubscribe,
-            deinitializeCustomer,
+            // deinitializeCustomer,
             email,
-            initializeCustomer,
+            // initializeCustomer,
             isContinuingAsGuest = false,
             isExecutingPaymentMethodCheckout = false,
             isInitializing = false,
             privacyPolicyUrl,
             providerWithCustomCheckout,
             requiresMarketingConsent,
-            onUnhandledError = noop,
+            // onUnhandledError = noop,
         } = this.props;
 
         return (
             <GuestForm
                 canSubscribe={ canSubscribe }
-                checkoutButtons={
+                /* checkoutButtons={
                     <CheckoutButtonList
                         checkEmbeddedSupport={ checkEmbeddedSupport }
                         deinitialize={ deinitializeCustomer }
@@ -163,7 +163,7 @@ class Customer extends Component<CustomerProps & WithCheckoutCustomerProps, Cust
                         methodIds={ checkoutButtonIds }
                         onError={ onUnhandledError }
                     />
-                }
+                } */
                 continueAsGuestButtonLabelId={ !!providerWithCustomCheckout ? 'customer.continue' : 'customer.continue_as_guest_action' }
                 defaultShouldSubscribe={ defaultShouldSubscribe }
                 email={ this.draftEmail || email }
