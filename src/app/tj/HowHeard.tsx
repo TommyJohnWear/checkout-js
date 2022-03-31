@@ -33,6 +33,18 @@ const options = [
   'Squawk Box',
   'Clay Travis & Buck Sexton',
 ];
+
+const shuffleArray = (array: any[] = []): any[] => {
+  // shallow copy array
+  const newArr = ([] as any).concat(array);
+
+  for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+  }
+
+  return newArr;
+};
 interface HowHeardProps {
   order: Order;
 }
@@ -91,7 +103,7 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
       <div className="field-wrapper">
         <select className="select" name="orderComment" onChange={ handleChange } value ={ selected }>
           <option disabled hidden value="">Source</option>
-          { options.map(option => (
+          { shuffleArray(options).map(option => (
             <option key={ option } value={ option }>{ option }</option>
           )) }
         </select>
