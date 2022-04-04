@@ -24,7 +24,7 @@ import CheckoutStep from './CheckoutStep';
 import CheckoutStepStatus from './CheckoutStepStatus';
 import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
-// import { checkoutID } from '../../store';
+import { checkoutID } from '../../store';
 
 const Billing = lazy(() => retry(() => import(
     /* webpackChunkName: "billing" */
@@ -55,6 +55,14 @@ const Shipping = lazy(() => retry(() => import(
     /* webpackChunkName: "shipping" */
     '../shipping/Shipping'
 )));
+
+const parseCartProductIDs = cart => {
+    let cartProductIDs = [];
+    if(cart && cart.lineItems && cart.lineItems.physicalItems) {
+        cartProductIDs = cart.lineItems.physicalItems.map(p => p.productId);
+    }
+    return cartProductIDs;
+}
 
 export interface CheckoutProps {
     checkoutId: string;
@@ -134,8 +142,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             loadCheckout,
             subscribeToConsignments,
         } = this.props;
-        console.log("data===0",checkoutId);
-        // checkoutID.set(checkoutId);
+        checkoutID.set(checkoutId);
 
         try {
             const { data } = await loadCheckout(checkoutId, {
@@ -146,6 +153,9 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                     ] as any, // FIXME: Currently the enum is not exported so it can't be used here.
                 },
             });
+
+            const cartProductIDs = parseCartProductIDs(data.getCart())
+            console.log("-data====",cartProductIDs);
             const { links: { siteLink = '' } = {} } = data.getConfig() || {};
             const errorFlashMessages = data.getFlashMessages('error') || [];
 

@@ -26,11 +26,11 @@ import { Toggle } from '../ui/toggle';
 
 // import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 import { AppliedRedeemablesProps } from './AppliedRedeemables';
-// import { checkoutID } from '../../store';
+import { checkoutID } from '../../store';
 
 
 const functio = () => {
-  console.log("op");
+  console.log("o--p", checkoutID.get());
 }
 export interface RedeemableFormValues {
   redeemableCode: string;
