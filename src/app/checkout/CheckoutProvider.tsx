@@ -47,6 +47,10 @@ export default class CheckoutProvider extends Component<CheckoutProviderProps, C
                 }
             }
         );
+       
+
+        // const cartData = checkoutState?.data?.getCart();
+        console.log('I was triggered during componentDidMount')
     }
 
     componentWillUnmount(): void {

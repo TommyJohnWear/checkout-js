@@ -5,7 +5,7 @@ import { TranslatedString } from '../locale';
 const OrderSummaryHeader: FunctionComponent = ({ children }) => (
     <header className="cart-header">
         <h3 className="cart-title optimizedCheckout-headingSecondary">
-            <TranslatedString id="cart.cart_heading" />
+            <TranslatedString id="cart.cart_heading" /> 000--0
         </h3>
        { children }
     </header>

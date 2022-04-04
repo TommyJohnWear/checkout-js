@@ -26,7 +26,12 @@ import { Toggle } from '../ui/toggle';
 
 // import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 import { AppliedRedeemablesProps } from './AppliedRedeemables';
+// import { checkoutID } from '../../store';
 
+
+const functio = () => {
+  console.log("op");
+}
 export interface RedeemableFormValues {
   redeemableCode: string;
   coupons?: Coupon[];
@@ -268,7 +273,8 @@ export default withLanguage(
       { props: { applyCoupon, applyGiftCertificate, clearError } }
     ) {
       const code = redeemableCode.trim();
-
+      console.log("cod9e---",code);
+      functio();
       try {
         await applyGiftCertificate(code);
       } catch (error) {

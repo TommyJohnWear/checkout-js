@@ -24,6 +24,7 @@ import CheckoutStep from './CheckoutStep';
 import CheckoutStepStatus from './CheckoutStepStatus';
 import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
+// import { checkoutID } from '../../store';
 
 const Billing = lazy(() => retry(() => import(
     /* webpackChunkName: "billing" */
@@ -133,6 +134,8 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             loadCheckout,
             subscribeToConsignments,
         } = this.props;
+        console.log("data===0",checkoutId);
+        // checkoutID.set(checkoutId);
 
         try {
             const { data } = await loadCheckout(checkoutId, {
