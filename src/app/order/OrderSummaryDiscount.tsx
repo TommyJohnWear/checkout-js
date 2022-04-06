@@ -11,6 +11,11 @@ export interface OrderSummaryDiscountProps extends OrderSummaryPriceProps {
     onRemoved?(code: string): void;
 }
 
+const check = () => {
+    console.log("pls work");
+    return true;
+}
+
 const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
     code,
     remaining,
@@ -24,7 +29,7 @@ const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
             { code }
         </span> } }
         { ...(onRemoved && {
-            onActionTriggered: () => code && onRemoved(code),
+            onActionTriggered: () => code && onRemoved(code) && check(),
             actionLabel: <TranslatedString id="cart.remove_action" />,
         }) }
         amount={ -1 * (amount || 0) }

@@ -39,6 +39,7 @@
     "@bigcommerce/request-sender": "^0.5.1",
     "@bigcommerce/script-loader": "^2.2.2",
     "@nanostores/react": "^0.1.5",
+    "@sanity/client": "^3.3.0",
     "@sentry/browser": "^5.27.4",
     "@sentry/integrations": "^5.27.4",
     "@types/card-validator": "^4.1.0",

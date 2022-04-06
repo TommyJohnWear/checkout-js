@@ -24,7 +24,15 @@ import CheckoutStep from './CheckoutStep';
 import CheckoutStepStatus from './CheckoutStepStatus';
 import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
-import { checkoutID } from '../../store';
+import { checkoutID, checkoutProductID, sanityData, checkoutProductInformation, productsApplicableFor3For48Promo } from '../../store';
+import sanityClient from '@sanity/client';
+
+const client = sanityClient({
+  projectId: 'tw5gcwis',
+  dataset: 'beta',
+  useCdn: false,
+  apiVersion: 'v2021-07-26',
+});
 
 const Billing = lazy(() => retry(() => import(
     /* webpackChunkName: "billing" */
@@ -56,12 +64,128 @@ const Shipping = lazy(() => retry(() => import(
     '../shipping/Shipping'
 )));
 
-const parseCartProductIDs = cart => {
-    let cartProductIDs = [];
+const parseCartProducts = (cart: any) => {
+    let cartProductInfo = [];
+    console.log("ca9999+", cart)
     if(cart && cart.lineItems && cart.lineItems.physicalItems) {
-        cartProductIDs = cart.lineItems.physicalItems.map(p => p.productId);
+        cartProductInfo = cart.lineItems.physicalItems.map((p: any) => ({
+            productId: p.productId,
+            variantId: p.variantId,
+            quantity: p.quantity,
+            itemId: p.id,
+            // listPrice: 10
+        }));
     }
-    return cartProductIDs;
+    return cartProductInfo;
+}
+
+// const getSetSanityData = async (productIDs: any) => {
+//     productIDs = productIDs.map((item: any) => `${item}`);
+//     const query = `*[ _type == "Product" && productId in ${JSON.stringify(productIDs)} ]{ productId, isThreeforFortyEightEligible }`;
+//     client.fetch(query)
+//         .then(data => {
+//                 // init(data[0].shippingTier);
+//             console.log(data,"------0-0-=====",/* checkoutID.get() */);
+//             return data;
+//         })
+//     .catch(error => console.log('Something went wrong fetching data from sanity: ', error));
+// }
+
+const getCurrentCartProductInfo = async (productIDs: number[], variantIDs: number[]) => {
+    const url = `/graphql`;
+    const query = `
+    query imagesForProducts (
+      $productIds: [Int!],
+      $variantIds: [Int!],
+    ) {
+      site {
+        products(entityIds: $productIds) {
+          edges {
+            node {
+              entityId
+              path
+              variants(entityIds: $variantIds) {
+                edges {
+                  node {
+                    entityId
+                    prices {
+                        price {
+                          ...MoneyFields
+                        }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    fragment MoneyFields on Money {
+        value
+        currencyCode
+    }
+    `
+
+    let variables = {
+        productIds: productIDs,
+        variantIds: variantIDs,
+      }
+
+    const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9jaGVja291dC50b21teWpvaG4uaW8iXSwiZWF0IjoxNzAzOTMzODM2LCJpYXQiOjE2NDkxNjQ3MzYsImlzcyI6IkJDIiwic2lkIjoxMDAxOTQ5NTIzLCJzdWIiOiJmMXh4ZHduMGF1cGV2ZzNpajZpOTJhd3JzdGNpY205Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.OaE5DmlEwF2ir3-A6_DevhjicSinIWuU2QZZFMIUCXFSXWWThLuZVAyBjG_IflHh6qzHU_6AKh7ebk5tGMje8Q`,
+        },
+        body: JSON.stringify({ query, variables }),
+      };
+  
+      try {
+        const res = await fetch(url, options);
+        let { data } = await res.json();
+        data = data.site.products.edges.flatMap(({ node: product = {} }:any) => {
+            const { entityId: productId } = product;
+            return product.variants.edges.map(({ node: variant = {} }: any) => ({
+              productId,
+              variantId: variant.entityId,
+              price: variant.prices.price.value,
+            }));
+          })
+        return data;
+      } catch (err) {
+        console.log("Error while fetching data from BigC", err);
+        return [];
+      }
+}
+
+
+const getProductsApplicableFor3For48 = (sanityData: any, cartProductInfo: any, parsedCartProductInfo: any) => {
+    console.log("getProductsApplicableFor3For48-", sanityData, cartProductInfo, parsedCartProductInfo);
+    sanityData = sanityData.filter((d: any) => d.isThreeforFortyEightEligible);
+    parsedCartProductInfo = parsedCartProductInfo.map((lineItem: any) => {
+        let productsWithSameId = parsedCartProductInfo.filter((p: any) => p.productId == lineItem.productId);
+        let totalQty = 0;
+        productsWithSameId.forEach((element: any) => {
+            totalQty += element.quantity;
+        });
+        console.log(lineItem.productId, "totalQty==",totalQty);
+        totalQty >= 3 ? lineItem.isApplicableFor3for48 = true : lineItem.isApplicableFor3for48 = false;
+        return lineItem;
+    });
+
+    let productsApplicableFor3For48 = parsedCartProductInfo.filter((o1: any) => sanityData.some((o2: any) => o1.productId === +o2.productId && o1.isApplicableFor3for48));
+
+    productsApplicableFor3For48.map((item: any)=> {
+        let data = cartProductInfo.filter((d:any) => d.productId == item.productId && item.variantId == d.variantId);
+        item.price = data[0].price
+        return item
+    });
+
+    console.log("parsedCartProductInfo==",productsApplicableFor3For48);
+    return productsApplicableFor3For48
+
 }
 
 export interface CheckoutProps {
@@ -154,8 +278,67 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                 },
             });
 
-            const cartProductIDs = parseCartProductIDs(data.getCart())
-            console.log("-data====",cartProductIDs);
+            const parsedCartProductInfo = parseCartProducts(data.getCart());
+            const cartProductIDs = parsedCartProductInfo.map((item: any) => `${item.productId}`);
+            const cartVariantIDs = parsedCartProductInfo.map((item: any) => item.variantId);
+            const cartBigCProductIDs = parsedCartProductInfo.map((item: any) => item.productId);
+            console.log("parsedCartProductInfo==",cartVariantIDs);
+            let cartProductInfo = await getCurrentCartProductInfo(cartBigCProductIDs, cartVariantIDs);
+            checkoutProductID.set(cartProductIDs);
+            checkoutProductInformation.set(parsedCartProductInfo);
+            // getSanityData(cartProductIDs);
+            console.log("cartProductIDs=!!!!=",cartProductInfo);
+
+
+    //     let ui = 'http://localhost:8888/api/update-users-cart';
+        
+    //    await fetch(
+    //         ui,
+    //         {
+    //             method: "GET",
+    //             headers: {
+    //               "Content-Type": "application/json",
+    //             },
+    //           }
+    //       ).then(data => {
+    //         // init(data[0].shippingTier);
+    //     console.log(data,"------0-0-=====",/* checkoutID.get() */);
+    //     // sanityData.set(data);
+    //     // return data;
+    // })
+
+
+
+            // cartProductIDs = cartProductIDs.map((item: any) => `${item}`);
+            const query = `*[ _type == "Product" && productId in ${JSON.stringify(cartProductIDs)} ]{ productId, isThreeforFortyEightEligible }`;
+            client.fetch(query)
+                .then(data => {
+                    let dummyData = [
+                        {
+                            "isThreeforFortyEightEligible": true,
+                            "productId": "2147"
+                        },
+                        {
+                            "isThreeforFortyEightEligible": true,
+                            "productId": "2149"
+                        },
+                        {
+                            "isThreeforFortyEightEligible": true,
+                            "productId": "2151"
+                        }
+                    ]
+                        // init(data[0].shippingTier);
+                    data.push(dummyData)
+                        // init(data[0].shippingTier);
+                    console.log(data,"------0Jubin-0-=====",/* checkoutID.get() */);
+                    sanityData.set(data);
+                    let productsApplicableFor3For48 = getProductsApplicableFor3For48(data[0], cartProductInfo, parsedCartProductInfo);
+                    productsApplicableFor3For48Promo.set(productsApplicableFor3For48);
+
+                    return data;
+                })
+            .catch(error => console.log('Something went wrong fetching data from sanity: ', error));
+
             const { links: { siteLink = '' } = {} } = data.getConfig() || {};
             const errorFlashMessages = data.getFlashMessages('error') || [];
 
