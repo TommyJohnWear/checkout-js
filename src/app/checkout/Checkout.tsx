@@ -282,12 +282,12 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             const cartProductIDs = parsedCartProductInfo.map((item: any) => `${item.productId}`);
             const cartVariantIDs = parsedCartProductInfo.map((item: any) => item.variantId);
             const cartBigCProductIDs = parsedCartProductInfo.map((item: any) => item.productId);
-            console.log("parsedCartProductInfo==",cartVariantIDs);
+            // console.log("parsedCartProductInfo==",cartVariantIDs);
             let cartProductInfo = await getCurrentCartProductInfo(cartBigCProductIDs, cartVariantIDs);
             checkoutProductID.set(cartProductIDs);
             checkoutProductInformation.set(parsedCartProductInfo);
             // getSanityData(cartProductIDs);
-            console.log("cartProductIDs=!!!!=",cartProductInfo);
+            console.log("===cartProductIDs=!!!!=",cartProductInfo);
 
 
     //     let ui = 'http://localhost:8888/api/update-users-cart';

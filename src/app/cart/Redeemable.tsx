@@ -26,7 +26,7 @@ import { Toggle } from '../ui/toggle';
 
 // import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 import { AppliedRedeemablesProps } from './AppliedRedeemables';
-import { checkoutID, checkoutProductInformation, productsApplicableFor3For48Promo } from '../../store';
+import { checkoutID, /* checkoutProductInformation, */ productsApplicableFor3For48Promo } from '../../store';
 
 
 
@@ -138,10 +138,8 @@ const updateCartWithOriginalProducts = async (cartProducts: any) => {
     "list_price": p.price,
     "lineItemID": p.itemId
   }))
-  console.log("0000", cartProducts);
+  console.log("0-||||000", cartProducts);
 
-  let generatedResponse: any;
-  generatedResponse = [];
   for(let products of cartProducts) {
     try {
       let url = 'https://deploy-preview-1118--tj-bc.netlify.app/api/update-users-cart';
@@ -167,107 +165,11 @@ const updateCartWithOriginalProducts = async (cartProducts: any) => {
       console.log('error'+ error);
     }
   }
-  // console.log('complete all', generatedResponse) 
-
-
-  // Promise.all(generatedResponse)
-  // .then((values: any) => {
-  //   console.log("generatedResponse-",values);
-  // })
-  // .catch(() => {
-
-  // })
-
-
-
-  // console.log('res++--++');
-  // let ui = 'http://localhost:8888/api/update-users-cart';
-        
-  // try {
-  //   const res = await fetch(ui, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       grant_type: "client_credentials",
-  //     }),
-  //   }).then((res) => res.json());
-
-  //   console.log('res++--++',res);
-
-  //   // return res;
-  // } catch (error) {
-  //   return null;
-  // }
+  
 
 return 1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   console.log("cartProducts-",cartProducts);
-// //   [
-// //     {
-// //         "productId": 294,
-// //         "variantId": 4173,
-// //         "quantity": 12,
-// //         "itemId": "81016fd5-33ba-4a40-b40b-57e44c2c5afd",
-// //         "listPrice": 10
-// //     }
-// // ].map((item: any) => item.itemId);
-// [
-//   {
-//       "productId": 294,
-//       "variantId": 4173,
-//       "quantity": 3,
-//       "itemId": "81016fd5-33ba-4a40-b40b-57e44c2c5afd",
-//       "listPrice": 10
-//   }
-// ].forEach(async (element: any) => {
-//   console.log("dat--list_price--0-",element);
-//   const url = `/api/storefront/carts/${checkoutID.get()}/items/${element.itemId}`;
-//     const options = {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//           "X-Auth-Token": 'e5apns39hddlmmesop13plhbm8v11td',
-//           "Accept": "application/json"
-//       },
-//       body: JSON.stringify({
-//         line_items: {
-//           "product_id": 294,
-//       "variant_id": 4173,
-//       "quantity": 3,
-//       "list_price": 10
-//         }
-//       })
-//     };
-
-//     try {
-//       const res = await fetch(url, options);
-//       // const status = res.status;
-//       const cartAPIResponse = await res.json();
-//       console.log("cartAPIResponse--",cartAPIResponse);
-//         // return totalDiscount;
-      
-//       // return { status, data: response };
-//     } catch (err) {
-//       console.log("Coupon API Error:", err);
-//       return 0;
-//       // return { errors: { data: err } };
-//     }
-//   })
-  
 }
+
 export interface RedeemableFormValues {
   redeemableCode: string;
   coupons?: Coupon[];
@@ -506,22 +408,25 @@ export default withLanguage(
 
     async handleSubmit(
       { redeemableCode },
-      { props: { applyGiftCertificate, clearError } }
+      { props: { applyCoupon, applyGiftCertificate, clearError } }
     ) {
       const code = redeemableCode.trim();
       
       let couponDiscountAmt = await getCouponInfo(code);
       let threefor48Discount = get3For48DiscountTotal(productsApplicableFor3For48Promo.get());
-      console.log("cod9e--0-",threefor48Discount);
+      console.log(couponDiscountAmt, "-----cod9e--0-",threefor48Discount);
       try {
         await applyGiftCertificate(code);
       } catch (error) {
-        clearError(error);
+        
         if(couponDiscountAmt >= threefor48Discount) {
           await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
           // window.location.reload();
+          console.log("E2130XD2U2GX2---", error);
           // await removeOldLineItemsFromCart()
-          // applyCoupon(code);
+          clearError(error);
+          applyCoupon(code);
+          
           // console.log("apply coupon-+-", productsApplicableFor3For48Promo.get());
           window.location.reload();
         } else {
