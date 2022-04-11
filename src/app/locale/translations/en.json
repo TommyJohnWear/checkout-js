@@ -52,7 +52,7 @@
         "cart": {
             "billed_amount_text": "*You will be charged and invoiced {total} ({code}) for this order.",
             "based_on_currency_text": "Based on {total} {code}",
-            "cart_heading": "Order Summary3",
+            "cart_heading": "Order Summary",
             "digital_item_text": "Digital Item",
             "discount_text": "Discount",
             "downloads_action": "Go to Downloads",
@@ -386,7 +386,7 @@
             "apply_action": "Apply",
             "apply_store_credit_after_action": "store credit to order",
             "apply_store_credit_before_action": "Apply",
-            "code_invalid_error": "Invalid discount code.",
+            "code_invalid_error": "This coupon cannot be combined with the current pack 3 for $48 discount.",
             "code_label": "Gift Certificate or Coupon Code",
             "code_required_error": "Please enter a gift certificate or coupon code",
             "coupon_location_error": "Your shipping address doesn't meet the location requirements for the coupon code you entered.",

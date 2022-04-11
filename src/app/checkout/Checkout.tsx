@@ -66,7 +66,7 @@ const Shipping = lazy(() => retry(() => import(
 
 const parseCartProducts = (cart: any) => {
     let cartProductInfo = [];
-    console.log("ca9999+", cart)
+    console.log("000===========0ca9999+", cart)
     if(cart && cart.lineItems && cart.lineItems.physicalItems) {
         cartProductInfo = cart.lineItems.physicalItems.map((p: any) => ({
             productId: p.productId,
@@ -78,18 +78,6 @@ const parseCartProducts = (cart: any) => {
     }
     return cartProductInfo;
 }
-
-// const getSetSanityData = async (productIDs: any) => {
-//     productIDs = productIDs.map((item: any) => `${item}`);
-//     const query = `*[ _type == "Product" && productId in ${JSON.stringify(productIDs)} ]{ productId, isThreeforFortyEightEligible }`;
-//     client.fetch(query)
-//         .then(data => {
-//                 // init(data[0].shippingTier);
-//             console.log(data,"------0-0-=====",/* checkoutID.get() */);
-//             return data;
-//         })
-//     .catch(error => console.log('Something went wrong fetching data from sanity: ', error));
-// }
 
 const getCurrentCartProductInfo = async (productIDs: number[], variantIDs: number[]) => {
     const url = `/graphql`;
@@ -183,7 +171,7 @@ const getProductsApplicableFor3For48 = (sanityData: any, cartProductInfo: any, p
         return item
     });
 
-    console.log("parsedCartProductInfo==",productsApplicableFor3For48);
+    console.log("pParsedCartProductInfo==",productsApplicableFor3For48);
     return productsApplicableFor3For48
 
 }
@@ -286,30 +274,9 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             let cartProductInfo = await getCurrentCartProductInfo(cartBigCProductIDs, cartVariantIDs);
             checkoutProductID.set(cartProductIDs);
             checkoutProductInformation.set(parsedCartProductInfo);
-            // getSanityData(cartProductIDs);
-            console.log("cartProductIDs=!!!!=",cartProductInfo);
-
-
-    //     let ui = 'http://localhost:8888/api/update-users-cart';
-        
-    //    await fetch(
-    //         ui,
-    //         {
-    //             method: "GET",
-    //             headers: {
-    //               "Content-Type": "application/json",
-    //             },
-    //           }
-    //       ).then(data => {
-    //         // init(data[0].shippingTier);
-    //     console.log(data,"------0-0-=====",/* checkoutID.get() */);
-    //     // sanityData.set(data);
-    //     // return data;
-    // })
 
 
 
-            // cartProductIDs = cartProductIDs.map((item: any) => `${item}`);
             const query = `*[ _type == "Product" && productId in ${JSON.stringify(cartProductIDs)} ]{ productId, isThreeforFortyEightEligible }`;
             client.fetch(query)
                 .then(data => {
@@ -327,10 +294,8 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                             "productId": "2151"
                         }
                     ]
-                        // init(data[0].shippingTier);
                     data.push(dummyData)
-                        // init(data[0].shippingTier);
-                    console.log(data,"------0Jubin-0-=====",/* checkoutID.get() */);
+
                     sanityData.set(data);
                     let productsApplicableFor3For48 = getProductsApplicableFor3For48(data[0], cartProductInfo, parsedCartProductInfo);
                     productsApplicableFor3For48Promo.set(productsApplicableFor3For48);
