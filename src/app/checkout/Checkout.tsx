@@ -66,14 +66,12 @@ const Shipping = lazy(() => retry(() => import(
 
 const parseCartProducts = (cart: any) => {
     let cartProductInfo = [];
-    console.log("000===========0ca9999+", cart)
     if(cart && cart.lineItems && cart.lineItems.physicalItems) {
         cartProductInfo = cart.lineItems.physicalItems.map((p: any) => ({
             productId: p.productId,
             variantId: p.variantId,
             quantity: p.quantity,
             itemId: p.id,
-            // listPrice: 10
         }));
     }
     return cartProductInfo;
@@ -150,30 +148,27 @@ const getCurrentCartProductInfo = async (productIDs: number[], variantIDs: numbe
 
 
 const getProductsApplicableFor3For48 = (sanityData: any, cartProductInfo: any, parsedCartProductInfo: any) => {
-    console.log("getProductsApplicableFor3For48-", sanityData, cartProductInfo, parsedCartProductInfo);
     sanityData = sanityData.filter((d: any) => d.isThreeforFortyEightEligible);
-    parsedCartProductInfo = parsedCartProductInfo.map((lineItem: any) => {
-        let productsWithSameId = parsedCartProductInfo.filter((p: any) => p.productId == lineItem.productId);
-        let totalQty = 0;
-        productsWithSameId.forEach((element: any) => {
-            totalQty += element.quantity;
-        });
-        console.log(lineItem.productId, "totalQty==",totalQty);
-        totalQty >= 3 ? lineItem.isApplicableFor3for48 = true : lineItem.isApplicableFor3for48 = false;
-        return lineItem;
-    });
 
-    let productsApplicableFor3For48 = parsedCartProductInfo.filter((o1: any) => sanityData.some((o2: any) => o1.productId === +o2.productId && o1.isApplicableFor3for48));
+    let productsApplicableFor3For48 = parsedCartProductInfo.filter((o1: any) => sanityData.some((o2: any) => o1.productId === +o2.productId && o2.isThreeforFortyEightEligible));
+
+    if(productsApplicableFor3For48.length > 0) {
+        productsApplicableFor3For48 = productsApplicableFor3For48.map((lineItem: any) => {
+            let totalQty = 0;
+            productsApplicableFor3For48.forEach((element: any) => {
+                totalQty += element.quantity;
+            });
+            totalQty >= 3 ? lineItem.isApplicableFor3for48 = true : lineItem.isApplicableFor3for48 = false;
+            return lineItem;
+        });
+      }
 
     productsApplicableFor3For48.map((item: any)=> {
         let data = cartProductInfo.filter((d:any) => d.productId == item.productId && item.variantId == d.variantId);
         item.price = data[0].price
-        return item
+        return item;
     });
-
-    console.log("pParsedCartProductInfo==",productsApplicableFor3For48);
-    return productsApplicableFor3For48
-
+    return productsApplicableFor3For48;
 }
 
 export interface CheckoutProps {
@@ -270,7 +265,6 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             const cartProductIDs = parsedCartProductInfo.map((item: any) => `${item.productId}`);
             const cartVariantIDs = parsedCartProductInfo.map((item: any) => item.variantId);
             const cartBigCProductIDs = parsedCartProductInfo.map((item: any) => item.productId);
-            console.log("parsedCartProductInfo==",cartVariantIDs);
             let cartProductInfo = await getCurrentCartProductInfo(cartBigCProductIDs, cartVariantIDs);
             checkoutProductID.set(cartProductIDs);
             checkoutProductInformation.set(parsedCartProductInfo);

@@ -368,7 +368,7 @@ export default withLanguage(
       
       let couponDiscountAmt = await getCouponInfo(code);
       let threefor48Discount = get3For48DiscountTotal(productsApplicableFor3For48Promo.get());
-      console.log("cod9e--0-",threefor48Discount);
+      console.log(couponDiscountAmt, "++cod9e--0-",threefor48Discount);
       try {
         await applyGiftCertificate(code);
       } catch (error) {
@@ -376,10 +376,6 @@ export default withLanguage(
         if(couponDiscountAmt >= threefor48Discount) {
           clearError(error);
           await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
-          // window.location.reload();
-          // await removeOldLineItemsFromCart()
-          // applyCoupon(code);
-          // console.log("apply coupon-+-", productsApplicableFor3For48Promo.get());
           
           applyCoupon(code);
           // window.location.reload();

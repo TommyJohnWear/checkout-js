@@ -16,7 +16,6 @@ const check = async () => {
       "list_price": 16,
       "lineItemID": p.itemId
     }))
-    console.log("00Remooo00", cartProducts);
 
     for(let products of cartProducts) {
       try {
@@ -32,13 +31,8 @@ const check = async () => {
             cartID: checkoutID.get()
           })
         }
-        /* let insertResponse = */  await fetch(url, options);
-        // const cartAPIResponse = await insertResponse.json();
-        console.log("reeee------ee");
-        // // generatedResponse.push(insertResponse)
-
+        await fetch(url, options);
         window.location.reload();
-
       } catch (error) {
         console.log('error'+ error);
       }
@@ -53,11 +47,6 @@ export interface OrderSummaryDiscountProps extends OrderSummaryPriceProps {
     code?: string;
     onRemoved?(code: string): void;
 }
-
-// const check = () => {
-//     console.log("pls work");
-//     return true;
-// }
 
 const OrderSummaryDiscount: FunctionComponent<OrderSummaryDiscountProps> = ({
     code,
