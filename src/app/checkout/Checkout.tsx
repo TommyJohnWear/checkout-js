@@ -24,7 +24,7 @@ import CheckoutStep from './CheckoutStep';
 import CheckoutStepStatus from './CheckoutStepStatus';
 import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
-import { checkoutID, checkoutProductID, sanityData, checkoutProductInformation, productsApplicableFor3For48Promo } from '../../store';
+import { checkoutID, checkoutProductID, sanityData, checkoutProductInformation, productsApplicableFor3For48Promo, is3For48PromoActive } from '../../store';
 import sanityClient from '@sanity/client';
 
 const client = sanityClient({
@@ -171,6 +171,20 @@ const getProductsApplicableFor3For48 = (sanityData: any, cartProductInfo: any, p
     return productsApplicableFor3For48;
 }
 
+const checkIf3For48PromoIsEnabled = () => {
+    const query = `*[_type=='site-settings' && !(_id in path("drafts.**"))]{
+        threeforFortyEightPromo,
+      }[0]`;
+    client.fetch(query)
+        .then(data => {
+            if(data.threeforFortyEightPromo && data.threeforFortyEightPromo.enable3For48) {
+                console.log("ioooooooo");
+                is3For48PromoActive.set(data.threeforFortyEightPromo.enable3For48);
+            }
+        })
+        .catch(error => console.log('Something went wrong fetching data from sanity: ', error));
+}
+
 export interface CheckoutProps {
     checkoutId: string;
     containerId: string;
@@ -268,8 +282,8 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             let cartProductInfo = await getCurrentCartProductInfo(cartBigCProductIDs, cartVariantIDs);
             checkoutProductID.set(cartProductIDs);
             checkoutProductInformation.set(parsedCartProductInfo);
-
-
+            checkIf3For48PromoIsEnabled();
+            
 
             const query = `*[ _type == "Product" && productId in ${JSON.stringify(cartProductIDs)} ]{ productId, isThreeforFortyEightEligible }`;
             client.fetch(query)
@@ -277,15 +291,11 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                     let dummyData = [
                         {
                             "isThreeforFortyEightEligible": true,
-                            "productId": "2147"
+                            "productId": "1412"
                         },
                         {
                             "isThreeforFortyEightEligible": true,
-                            "productId": "2149"
-                        },
-                        {
-                            "isThreeforFortyEightEligible": true,
-                            "productId": "2151"
+                            "productId": "1744"
                         }
                     ]
                     data.push(dummyData)

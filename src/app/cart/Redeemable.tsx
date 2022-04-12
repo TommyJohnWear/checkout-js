@@ -26,7 +26,7 @@ import { Toggle } from '../ui/toggle';
 
 // import AppliedRedeemables, { AppliedRedeemablesProps } from './AppliedRedeemables';
 import { AppliedRedeemablesProps } from './AppliedRedeemables';
-import { checkoutID, productsApplicableFor3For48Promo } from '../../store';
+import { checkoutID, productsApplicableFor3For48Promo, is3For48PromoActive } from '../../store';
 
 
 
@@ -92,8 +92,6 @@ const removeAppliedCoupon = async (code: any) => {
 }
 
 const updateCartWithOriginalProducts = async (cartProducts: any) => {
-
-  
   cartProducts = cartProducts.map((p:any) => ({
     "product_id": p.productId,
     "variant_id": p.variantId,
@@ -372,20 +370,23 @@ export default withLanguage(
       try {
         await applyGiftCertificate(code);
       } catch (error) {
-        // clearError(error);
-        if(couponDiscountAmt >= threefor48Discount) {
-          clearError(error);
-          await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
-          
-          applyCoupon(code);
-          // window.location.reload();
+        console.log("Don't apply coupon-+", is3For48PromoActive.get())
+        if(is3For48PromoActive.get()) {
+          if(couponDiscountAmt >= threefor48Discount) {
+            clearError(error);
+            await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
+            
+            applyCoupon(code);
+            // window.location.reload();
+          } else {
+            console.log("error===",error);
+            removeAppliedCoupon(code);
+            // console.log("Don't apply coupon-", is3For48PromoActive.get())
+          }
         } else {
-          removeAppliedCoupon(code);
-          console.log("Don't apply coupon-")
+          clearError(error);
+          applyCoupon(code);
         }
-
-        
-        
       }
     },
 

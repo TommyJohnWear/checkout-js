@@ -7,6 +7,8 @@ export const checkoutProductID = atom<object | []>([]);
 export const checkoutProductInformation = atom<object | []>([]);
 export const sanityData = atom<object | []>([]);
 export const productsApplicableFor3For48Promo = atom<object | []>([]);
+export const is3For48PromoActive = atom<boolean>(false);
+
 
 const unsubAbandonCart = customerPhone.subscribe(async value => {
   const passRegex = value && /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(value);
