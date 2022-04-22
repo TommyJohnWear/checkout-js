@@ -86,6 +86,10 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
       });
 
       setIsSubmitted(true);
+
+      if (Array.isArray((window as any)?._uxa)) {
+        (window as any)._uxa.push(['trackPageEvent', `howHeard/${selected}`]);
+      }
     } catch (error) {
       console.error(error);
     }
