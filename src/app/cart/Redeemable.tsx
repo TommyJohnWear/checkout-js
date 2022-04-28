@@ -91,6 +91,27 @@ const removeAppliedCoupon = async (code: any) => {
   }
 }
 
+const displayPromoError = (displayPromoError: any) => {
+  let promoErrorNodes = document.querySelectorAll('[data-error-section="promo-error"]');
+  let couponContainer = document.querySelectorAll('.couponContainer');
+  
+  if(promoErrorNodes.length) {
+    if(displayPromoError) {
+      promoErrorNodes[0].setAttribute("style", "display:block;");
+    } else {
+      promoErrorNodes[0].setAttribute("style", "display:none;");
+    }
+  }
+
+  if(couponContainer.length) {
+    if(displayPromoError) {
+      couponContainer[0].setAttribute("style", "display:none;");
+    } else {
+      couponContainer[0].setAttribute("style", "display:block;");
+    }
+  }
+}
+
 const updateCartWithOriginalProducts = async (cartProducts: any) => {
   cartProducts = cartProducts.map((p:any) => ({
     "product_id": p.productId,
@@ -99,6 +120,7 @@ const updateCartWithOriginalProducts = async (cartProducts: any) => {
     "list_price": p.price,
     "lineItemID": p.itemId
   }))
+  console.log("cartProducts----",cartProducts);
 
   for(let products of cartProducts) {
     try {
@@ -299,6 +321,14 @@ const RedeemableForm: FunctionComponent<
                 </span>
               ) }
 
+            <span data-error-section="promo-error" className="couponError">
+              <div className="alertBox alertBox--error">
+                <div aria-live="assertive" className="alertBox-column alertBox-message" role="alert">
+                  This coupon cannot be combined with the current pack 3 for $48 discount.
+                </div>
+              </div>
+            </span>
+
             <div className="couponContainer">
               { coupons?.length ? (
                 <p className="couponHeading">Code Applied</p>
@@ -366,27 +396,51 @@ export default withLanguage(
       
       let couponDiscountAmt = await getCouponInfo(code);
       let threefor48Discount = get3For48DiscountTotal(productsApplicableFor3For48Promo.get());
-      console.log(couponDiscountAmt, "++cod9e--0-",threefor48Discount);
+      console.log(couponDiscountAmt, "++cod9e--0-",is3For48PromoActive.get());
       try {
         await applyGiftCertificate(code);
       } catch (error) {
-        console.log("Don't apply coupon-+", is3For48PromoActive.get())
-        if(is3For48PromoActive.get()) {
+        console.log("Don't apply coupon-+", error);
+        // clearError(error);
+        if(couponDiscountAmt && is3For48PromoActive.get()) {
+          console.log("Don't apply cou");
           if(couponDiscountAmt >= threefor48Discount) {
             clearError(error);
+            console.log("Don'ly cou");
             await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
-            
             applyCoupon(code);
-            // window.location.reload();
+            // displayPromoError();
+            displayPromoError(false);
           } else {
-            console.log("error===",error);
+            console.log("Don'ly cou111");
+            clearError(error);
+            displayPromoError(true);
             removeAppliedCoupon(code);
-            // console.log("Don't apply coupon-", is3For48PromoActive.get())
           }
         } else {
+          console.log("Don'ly cou11122");
+          // console.log("Don't apply");
           clearError(error);
           applyCoupon(code);
         }
+        
+       
+        // if(is3For48PromoActive.get()) {
+        //   if(couponDiscountAmt >= threefor48Discount) {
+        //     clearError(error);
+        //     await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
+            
+        //     applyCoupon(code);
+        //     // window.location.reload();
+        //   } else {
+        //     console.log("error===",error);
+        //     removeAppliedCoupon(code);
+        //     // console.log("Don't apply coupon-", is3For48PromoActive.get())
+        //   }
+        // } else {
+        //   clearError(error);
+        //   applyCoupon(code);
+        // }
       }
     },
 

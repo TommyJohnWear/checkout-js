@@ -178,7 +178,7 @@ const checkIf3For48PromoIsEnabled = () => {
     client.fetch(query)
         .then(data => {
             if(data.threeforFortyEightPromo && data.threeforFortyEightPromo.enable3For48) {
-                console.log("ioooooooo");
+                console.log("ioo--oooooo", data.threeforFortyEightPromo.enable3For48);
                 is3For48PromoActive.set(data.threeforFortyEightPromo.enable3For48);
             }
         })
@@ -291,16 +291,17 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                     let dummyData = [
                         {
                             "isThreeforFortyEightEligible": true,
-                            "productId": "1412"
+                            "productId": "5888"
                         },
                         {
                             "isThreeforFortyEightEligible": true,
-                            "productId": "1744"
+                            "productId": "5683"
                         }
                     ]
                     data.push(dummyData)
 
                     sanityData.set(data);
+                    console.log("I'm here")
                     let productsApplicableFor3For48 = getProductsApplicableFor3For48(data[0], cartProductInfo, parsedCartProductInfo);
                     productsApplicableFor3For48Promo.set(productsApplicableFor3For48);
 

@@ -947,6 +947,10 @@ a, .cart-header-link, #checkout-customer-login, .cart-price-action {
   display: none;
 }
 
+[data-error-section="promo-error"] {
+  display: none;
+}
+
 // *** Form Styles ***
 
 // Input
