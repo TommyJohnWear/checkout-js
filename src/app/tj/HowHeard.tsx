@@ -32,6 +32,7 @@ const options = [
   'Today Show',
   'Squawk Box',
   'Clay Travis & Buck Sexton',
+  'Billboard',
 ];
 
 const shuffleArray = (array: any[] = []): any[] => {
@@ -53,12 +54,6 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   const [selected, setSelected] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const dateFormat =  new Intl.DateTimeFormat('default', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
   useEffect(() => {
     const lastSelected = localStorage?.getItem('selectHowHeard');
     lastSelected ? setSelected(lastSelected) : setSelected('');
@@ -73,15 +68,11 @@ export const HowHeard: FunctionComponent<HowHeardProps> = ({ order }) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await fetch('https://c61be1f08813ab847d4e69961c6b5e63.m.pipedream.net',  {
+      await fetch('https://functions.tommyjohn.com/api/how-heard',  {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
-            selected,
-            orderId: order.orderId,
-            date: dateFormat.format(new Date()),
+          selected,
+          orderId: order.orderId,
         }),
       });
 
