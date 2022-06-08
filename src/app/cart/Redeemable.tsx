@@ -28,6 +28,46 @@ import { Toggle } from '../ui/toggle';
 import { AppliedRedeemablesProps } from './AppliedRedeemables';
 import { checkoutID, productsApplicableFor3For48Promo, is3For48PromoActive } from '../../store';
 
+const getCouponData = async (code: any) => {
+  const url = `https://deploy-preview-1118--tj-bc.netlify.app/api/coupon-info`;
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        "couponCode": code
+      }),
+    };
+    try {
+      const res = await fetch(url, options);
+      let couponData = await res.json();
+      let stackCoupon = false;
+      let rejectCoupon = false;
+      let rejectCouponIfDiscountIsLess = false;
+
+      console.log("++couponInfo====++",couponData);
+      if(couponData && couponData.promos && couponData.promos.data && 
+        couponData.promos.data[0]) {
+            console.log("inf==1");
+            if(couponData.promos.data[0].can_be_used_with_other_promotions && !couponData.promos.data[0].coupon_overrides_automatic_when_offering_higher_discounts) {
+                stackCoupon = true;
+                console.log("inf==2");
+            } else if(!couponData.promos.data[0].can_be_used_with_other_promotions && !couponData.promos.data[0].coupon_overrides_automatic_when_offering_higher_discounts) {
+              rejectCoupon = true;
+                console.log("inf==3");
+            } else if(!couponData.promos.data[0].can_be_used_with_other_promotions && couponData.promos.data[0].coupon_overrides_automatic_when_offering_higher_discounts) {
+                console.log("inf==4");
+                rejectCouponIfDiscountIsLess = true;
+            }
+        }
+        return {
+          stackCoupon,
+          rejectCoupon,
+          rejectCouponIfDiscountIsLess
+        }
+    } catch (err) {
+      console.log("Coupon API Error:", err);
+      return 0;
+    }
+}
 
 
 const getCouponInfo = async (code: any) => {
@@ -393,25 +433,57 @@ export default withLanguage(
       { props: { applyCoupon, applyGiftCertificate, clearError } }
     ) {
       const code = redeemableCode.trim();
+      let couponDiscountAmt = 0;
+      let couponData = {};
+      // const couponData = await getCouponData(code);
       
-      let couponDiscountAmt = await getCouponInfo(code);
+
+      const allPromise = Promise.all([getCouponData(code), getCouponInfo(code)]);
+      try {
+        const values = await allPromise;
+        couponDiscountAmt = values[1] ? values[1] : couponDiscountAmt;
+        couponData = values[0] ? values[0] : couponData;
+      } catch (error) {
+        console.log("Promise rejectReason", error);
+      }
+
+      // allPromise.then(values => {
+      //   console.log("pppppppp---=======--22", values);
+      //   couponDiscountAmt = values[1] ? values[1] : couponDiscountAmt;
+      //   couponData = values[0] ? values[0] : couponData;
+
+      //   values; // [valueOfPromise1, valueOfPromise2, ...]
+      // }).catch(error => {
+        
+      // });
+
+
+      console.log(couponDiscountAmt, "pppppppp22", couponData)
+      
+      // let couponDiscountAmt = await getCouponInfo(code);
       let threefor48Discount = get3For48DiscountTotal(productsApplicableFor3For48Promo.get());
       console.log(couponDiscountAmt, "++cod9e--0-",is3For48PromoActive.get());
       try {
         await applyGiftCertificate(code);
       } catch (error) {
-        console.log("Don't apply coupon-+", error);
+        console.log(is3For48PromoActive.get(), "Don't apply coupon-+", couponDiscountAmt);
         // clearError(error);
         if(couponDiscountAmt && is3For48PromoActive.get()) {
           console.log("Don't apply cou");
-          if(couponDiscountAmt >= threefor48Discount) {
+          if(couponDiscountAmt > 0 && couponData.stackCoupon) {
             clearError(error);
             console.log("Don'ly cou");
-            await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
+            // await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
             applyCoupon(code);
             // displayPromoError();
             displayPromoError(false);
-          } else {
+          } else if(couponDiscountAmt >= threefor48Discount && couponData.rejectCoupon) {
+            clearError(error);
+            console.log("Don'ly cou");
+            await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
+            displayPromoError(true);
+            removeAppliedCoupon(code);
+          } else if(couponDiscountAmt < threefor48Discount && couponData.rejectCouponIfDiscountIsLess) {
             console.log("Don'ly cou111");
             clearError(error);
             displayPromoError(true);
