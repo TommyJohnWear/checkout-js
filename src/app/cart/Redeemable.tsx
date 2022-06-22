@@ -434,7 +434,11 @@ export default withLanguage(
     ) {
       const code = redeemableCode.trim();
       let couponDiscountAmt = 0;
-      let couponData = {};
+      let couponData = {
+        stackCoupon: false,
+        rejectCoupon: false,
+        rejectCouponIfDiscountIsLess: false
+      };
       // const couponData = await getCouponData(code);
       
 
@@ -469,10 +473,10 @@ export default withLanguage(
         console.log(is3For48PromoActive.get(), "Don't apply coupon-+", couponDiscountAmt);
         // clearError(error);
         if(couponDiscountAmt && is3For48PromoActive.get()) {
-          console.log("Don't apply cou");
+          console.log("Don3't appl--y cou");
           if(couponDiscountAmt > 0 && couponData.stackCoupon) {
             clearError(error);
-            console.log("Don'ly cou");
+            console.log("Don'ly cou0");
             // await updateCartWithOriginalProducts(productsApplicableFor3For48Promo.get());
             applyCoupon(code);
             // displayPromoError();

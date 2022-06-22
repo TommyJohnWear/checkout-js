@@ -276,6 +276,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             });
 
             const parsedCartProductInfo = parseCartProducts(data.getCart());
+            console.log("parsedCartProductInfo==",parsedCartProductInfo);
             const cartProductIDs = parsedCartProductInfo.map((item: any) => `${item.productId}`);
             const cartVariantIDs = parsedCartProductInfo.map((item: any) => item.variantId);
             const cartBigCProductIDs = parsedCartProductInfo.map((item: any) => item.productId);
