@@ -178,7 +178,7 @@ const checkIf3For48PromoIsEnabled = () => {
     client.fetch(query)
         .then(data => {
             if(data.threeforFortyEightPromo && data.threeforFortyEightPromo.enable3For48) {
-                console.log("ioo--oooooo", data.threeforFortyEightPromo.enable3For48);
+                console.log("9999999ioo-|||-ooooo0000o", data.threeforFortyEightPromo.enable3For48);
                 is3For48PromoActive.set(data.threeforFortyEightPromo.enable3For48);
             }
         })

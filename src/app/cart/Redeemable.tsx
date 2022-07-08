@@ -473,7 +473,7 @@ export default withLanguage(
         console.log(is3For48PromoActive.get(), "Don't apply coupon-+", couponDiscountAmt);
         // clearError(error);
         if(couponDiscountAmt && is3For48PromoActive.get()) {
-          console.log("Don3't appl--y cou");
+          console.log("Don3't appl--y cou", threefor48Discount);
           if(couponDiscountAmt > 0 && couponData.stackCoupon) {
             clearError(error);
             console.log("Don'ly cou0");
@@ -492,6 +492,12 @@ export default withLanguage(
             clearError(error);
             displayPromoError(true);
             removeAppliedCoupon(code);
+          } else if(couponDiscountAmt > threefor48Discount && couponData.rejectCouponIfDiscountIsLess) {
+            console.log("H====eeee---ee");
+            applyCoupon(code);
+            // displayPromoError();
+            displayPromoError(false);
+            clearError(error);
           }
         } else {
           console.log("Don'ly cou11122");
