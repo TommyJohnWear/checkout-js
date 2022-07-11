@@ -10,12 +10,12 @@ import { isAppExport } from './AppExport';
 declare const LIBRARY_NAME: string;
 declare const MANIFEST_JSON: AssetManifest;
 
-// declare global {
-//     interface Window {
-//         NOIBUJS?: any;
-//         checkoutConfig?: any;
-//     }
-//   }
+declare global {
+    interface Window {
+        NOIBUJS?: any;
+        checkoutConfig?: any;
+    }
+  }
 
 export interface AssetManifest {
     appVersion: string;

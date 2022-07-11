@@ -133,15 +133,14 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             loadCheckout,
             subscribeToConsignments,
         } = this.props;
-console.log("===--------depppppppppp000--pl------oy=====+++++++===");
 
 
-    const sdkCheck = setInterval(() => {
-        if(window.NOIBUJS){
-            clearInterval(sdkCheck);
-            window.NOIBUJS.addCustomAttribute('checkoutID', window.checkoutConfig.checkoutId);
-        }
-    }, 3000);
+        const sdkCheck = setInterval(() => {
+            if(window.NOIBUJS){
+                clearInterval(sdkCheck);
+                window.NOIBUJS.addCustomAttribute('checkoutID', window.checkoutConfig.checkoutId);
+            }
+        }, 3000);
 
         try {
             const { data } = await loadCheckout(checkoutId, {
