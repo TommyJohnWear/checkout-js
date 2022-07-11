@@ -133,6 +133,15 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             loadCheckout,
             subscribeToConsignments,
         } = this.props;
+console.log("===--------deploy=====+++++++===");
+
+
+    const sdkCheck = setInterval(() => {
+        if(window.NOIBUJS){
+            clearInterval(sdkCheck);
+            window.NOIBUJS.addCustomAttribute('checkoutID', window.checkoutConfig.checkoutId);
+        }
+    }, 3000);
 
         try {
             const { data } = await loadCheckout(checkoutId, {
