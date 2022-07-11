@@ -133,7 +133,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
             loadCheckout,
             subscribeToConsignments,
         } = this.props;
-console.log("===--------deploy=====+++++++===");
+console.log("===--------depppppppppp000--pl------oy=====+++++++===");
 
 
     const sdkCheck = setInterval(() => {
